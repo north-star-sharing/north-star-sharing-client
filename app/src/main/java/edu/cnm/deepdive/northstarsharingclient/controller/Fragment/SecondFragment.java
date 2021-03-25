@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.northstarsharingclient.controller;
+package edu.cnm.deepdive.northstarsharingclient.controller.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

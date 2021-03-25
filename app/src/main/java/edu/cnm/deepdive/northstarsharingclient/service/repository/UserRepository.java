@@ -1,8 +1,10 @@
-package edu.cnm.deepdive.northstarsharingclient.service;
+package edu.cnm.deepdive.northstarsharingclient.service.repository;
 
 import android.content.Context;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import edu.cnm.deepdive.northstarsharingclient.model.User;
+import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
+import edu.cnm.deepdive.northstarsharingclient.service.NorthStarSharingWebServiceProxy;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 

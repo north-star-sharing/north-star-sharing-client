@@ -7,7 +7,7 @@
   android:layout_height="match_parent"
   android:layout_margin="@dimen/half_static_spacing"
   android:padding="@dimen/half_static_spacing"
-  tools:context=".controller.LoginActivity">
+  tools:context=".controller.activity.LoginActivity">
 
   <com.google.android.gms.common.SignInButton
     android:id="@+id/sign_in_button"

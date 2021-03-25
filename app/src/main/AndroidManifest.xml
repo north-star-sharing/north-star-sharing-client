@@ -11,10 +11,10 @@
     android:theme="@style/AppTheme">
     <activity
       android:label="@string/title_activity_main"
-      android:name=".controller.MainActivity"
+      android:name=".controller.activity.MainActivity"
       android:theme="@style/AppTheme.NoActionBar">
     </activity>
-    <activity android:name=".controller.LoginActivity">
+    <activity android:name=".controller.activity.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -22,5 +22,7 @@
       </intent-filter>
     </activity>
   </application>
+
+  <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

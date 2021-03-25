@@ -11,7 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.OnLifecycleEvent;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import edu.cnm.deepdive.northstarsharingclient.model.User;
-import edu.cnm.deepdive.northstarsharingclient.service.UserRepository;
+import edu.cnm.deepdive.northstarsharingclient.service.repository.UserRepository;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {

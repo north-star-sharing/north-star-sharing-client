@@ -10,5 +10,6 @@
   <string name="hello_first_fragment">Hello first fragment</string>
   <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
   <string name="sign_out">Sign Out</string>
-  <string name="main_fragment_label">Main Fragment</string>
+  <string name="home_screen_fragment_label">Home Screen Fragment</string>
+  <string name="login_failure">Login Failed, please try again.</string>
 </resources>
