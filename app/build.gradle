@@ -71,6 +71,7 @@ static def getProperty(String filename, String property) {
         // OKHttp logging
         implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
         implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
         // RetroFit (REST client) with ReactiveX & Gson
         def retrofit_version = "2.9.0"

@@ -12,4 +12,7 @@
   <string name="sign_out">Sign Out</string>
   <string name="home_screen_fragment_label">Home Screen Fragment</string>
   <string name="login_failure">Login Failed, please try again.</string>
+  <string name="title_home">Home</string>
+  <string name="title_dashboard">Dashboard</string>
+  <string name="title_notifications">Notifications</string>
 </resources>
