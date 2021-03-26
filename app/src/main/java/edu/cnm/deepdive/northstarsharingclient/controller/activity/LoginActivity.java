@@ -30,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
               binding = ActivityLoginBinding.inflate(getLayoutInflater());
               binding.signInButton.setOnClickListener((c) ->
                   signInService.startSignIn(this, LOGIN_REQUEST_CODE));
+              setContentView(binding.getRoot());
             });
-    setContentView(binding.getRoot());
   }
 
   @Override
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
               Toast.makeText(this,
                   getString(R.string.login_failure),
                   Toast.LENGTH_LONG)
-          .show());
+                  .show());
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }
