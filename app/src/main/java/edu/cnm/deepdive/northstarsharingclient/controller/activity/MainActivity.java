@@ -4,72 +4,54 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
-import edu.cnm.deepdive.northstarsharingclient.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
-
-  private MainViewModel viewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
-    setViewModel();
-  }
-
-  private void setViewModel() {
-    viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-    getLifecycle().addObserver(viewModel);
-    viewModel.getThrowable().observe(this, (throwable) -> {
-      if (throwable != null) {
-        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG)
-            .show();
-      }
-    });
+    BottomNavigationView navView = findViewById(R.id.nav_view);
+    // Passing each menu ID as a set of Ids because each
+    // menu should be considered as top level destinations.
+    AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+        R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+        .build();
+    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    NavigationUI.setupWithNavController(navView, navController);
   }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    super.onCreateOptionsMenu(menu);
     getMenuInflater().inflate(R.menu.main_options, menu);
     return true;
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     boolean handled = true;
     switch (item.getItemId()) {
       case R.id.sign_out:
-        logout();
+        GoogleSignInService.getInstance().signOut()
+            .addOnCompleteListener((ignore) -> {
+              Intent intent = new Intent(this, LoginActivity.class)
+                  .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+              startActivity(intent);
+            });
         break;
       default:
         handled = super.onOptionsItemSelected(item);
     }
     return handled;
-  }
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-  }
-
-  private void logout() {
-    GoogleSignInService
-        .getInstance()
-        .signOut()
-        .addOnCompleteListener((ignored) -> {
-          Intent intent = new Intent(this, LoginActivity.class)
-              .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-          startActivity(intent);
-        });
   }
 }
