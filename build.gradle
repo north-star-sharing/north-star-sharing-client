@@ -1,7 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply plugin: 'java'
-apply plugin: JavadocPlugin
-
 buildscript {
 
     ext.navigationVersion = '2.3.4'
@@ -24,59 +21,8 @@ allprojects {
         jcenter()
     }
 }
-//
-//task clean(type: Delete) {
-//    delete rootProject.buildDir
-//}
 
-javadoc {
-    // New DSL to configure the task
-    // added by the JavadocPlugin.
-    output {
-        html5 = true
-    }
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
 
-/**
- * Plugin to add the {@link JavadocOutputOptions} extension
- * to the Javadoc tasks.
- * <p>
- * Also make sure Gradle can check if the task needs
- * to rerun when the output format changes.
- */
-class JavadocPlugin implements Plugin<Project> {
-
-    void apply(Project project) {
-        project.tasks.withType(Javadoc) { Javadoc task ->
-
-            JavadocOutputOptions outputOptions =
-                    task.extensions.create("output", JavadocOutputOptions)
-            project.afterEvaluate {
-                task.inputs.property("output.html5", outputOptions.html5)
-                task.options.addBooleanOption("html4", outputOptions.html4)
-                task.options.addBooleanOption("html5", outputOptions.html5)
-            }
-
-        }
-    }
-
-}
-
-/**
- * Extension for Javadoc tasks to define
- * if the output format must be HTML 4 or HTML 5.
- */
-class JavadocOutputOptions {
-    Boolean html4 = true
-    Boolean html5 = !html4
-
-    void setHtml4(boolean useHtml4) {
-        html4 = useHtml4
-        html5 = !html4
-    }
-
-    void setHtml5(boolean useHtml5) {
-        html5 = useHtml5
-        html4 = !html5
-    }
-}
