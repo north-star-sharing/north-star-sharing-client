@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import edu.cnm.deepdive.northstarsharingclient.R;
+import edu.cnm.deepdive.northstarsharingclient.controller.activity.LoginActivity;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 
 public class MainActivity extends AppCompatActivity {
