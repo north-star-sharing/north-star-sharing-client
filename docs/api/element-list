@@ -1,0 +1,9 @@
+edu.cnm.deepdive.northstarsharingclient
+edu.cnm.deepdive.northstarsharingclient.controller.activity
+edu.cnm.deepdive.northstarsharingclient.controller.activity.ui.dashboard
+edu.cnm.deepdive.northstarsharingclient.controller.activity.ui.home
+edu.cnm.deepdive.northstarsharingclient.controller.activity.ui.notifications
+edu.cnm.deepdive.northstarsharingclient.model
+edu.cnm.deepdive.northstarsharingclient.service
+edu.cnm.deepdive.northstarsharingclient.service.repository
+edu.cnm.deepdive.northstarsharingclient.viewmodel

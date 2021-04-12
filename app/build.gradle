@@ -100,3 +100,53 @@ static def getProperty(String filename, String property) {
         compileOnly 'com.google.android.wearable:wearable:2.8.1'
 
     }
+
+task generateApiDoc() {
+    group "reporting"
+    description "Generates all Javadoc"
+}
+
+android.applicationVariants.all { variant ->
+    def task = project.tasks.create("generate${variant.name.capitalize()}Javadoc", Javadoc) {
+        title "North Star Sharing (${project.android.defaultConfig.versionName})"
+        group "ApiDoc"
+        description "Generates Javadoc for $variant.name."
+
+        source = variant.sourceSets.collect { it.java.sourceFiles }.inject { m, i -> m + i }
+
+        doFirst {
+            classpath = project.files(
+                    project.file(projectDir).toPath().resolve("build/intermediates/javac/${variant.name}/classes"),
+                    variant.javaCompileProvider.get().classpath.files,
+                    project.android.getBootClasspath())
+        }
+
+        if (JavaVersion.current().isJava8Compatible()) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+
+        exclude '**/R'
+        exclude '**/R.**'
+        exclude '**/R\$**'
+        exclude '**/BuildConfig*'
+
+        destinationDir = file("$projectDir/../docs/api")
+
+        options {
+            windowTitle = "Roulette (${project.android.defaultConfig.versionName})"
+            memberLevel = JavadocMemberLevel.PROTECTED
+            linkSource = false
+//        set linkSource to true to share with other team members
+            author = false
+            links 'https://docs.oracle.com/javase/8/docs/api/'
+            links 'http://reactivex.io/RxJava/javadoc/'
+            links 'https://www.javadoc.io/doc/com.google.code.gson/gson/latest/'
+            linksOffline 'https://developer.android.com/reference', "$projectDir/.."
+        }
+
+        failOnError true
+    }
+
+    task.dependsOn "assemble${variant.name.capitalize()}"
+
+}
