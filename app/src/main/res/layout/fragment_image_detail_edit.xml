@@ -19,7 +19,7 @@
       android:scaleType="fitCenter"
       android:adjustViewBounds="true"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="text_input_layout"
+      app:layout_constraintBottom_toTopOf="@id/text_input_layout"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintWidth_percent=".7"
@@ -40,7 +40,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/title_layout"
+      android:id="@+id/text_input_layout"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/static_spacing"

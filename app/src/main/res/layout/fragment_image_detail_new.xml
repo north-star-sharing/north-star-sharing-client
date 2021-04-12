@@ -19,7 +19,7 @@
       android:scaleType="fitCenter"
       android:adjustViewBounds="true"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="text_input_layout"
+      app:layout_constraintBottom_toTopOf="@+id/text_input_layout_new"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintWidth_percent=".7"
@@ -33,14 +33,14 @@
       android:layout_margin="@dimen/static_spacing"
       android:scaleType="fitCenter"
       android:adjustViewBounds="true"
-      android:src="@drawable/ic_edit"
+      android:src="@drawable/ic_save"
       app:layout_constraintTop_toTopOf="@id/image"
       app:layout_constraintEnd_toEndOf="@id/image"
       android:contentDescription="@string/edit_button"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/title_layout"
+      android:id="@+id/text_input_layout_new"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/static_spacing"
@@ -76,17 +76,30 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"/>
 
-    <AutoCompleteTextView
-      android:id="@+id/tags"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/half_static_spacing"
-      android:hint="@string/add_a_tag"
-      android:inputType="textAutoComplete"
-      app:layout_constraintTop_toBottomOf="@id/description"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"/>
+      <AutoCompleteTextView
+        android:id="@+id/tags"
+        android:layout_width="29dp"
+        android:layout_height="38dp"
+        android:layout_margin="@dimen/half_static_spacing"
+        android:hint="@string/add_a_tag"
+        android:inputType="textAutoComplete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description"/>
+
+      <ImageButton
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/static_spacing"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/find_tag_button"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@id/tags"
+        app:layout_constraintEnd_toEndOf="@id/tags"
+        app:layout_constraintTop_toTopOf="@id/tags"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

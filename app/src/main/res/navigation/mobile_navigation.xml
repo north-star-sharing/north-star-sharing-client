@@ -7,19 +7,8 @@
 
   <fragment
     android:id="@+id/navigation_home"
-    android:label="@string/title_home"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.activity.ui.home.HomeFragment"
-    tools:layout="@layout/fragment_home"/>
+    android:label="@string/image_list"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
+    tools:layout="@layout/fragment_image_list"/>
 
-  <fragment
-    android:id="@+id/navigation_dashboard"
-    android:label="@string/title_dashboard"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.activity.ui.dashboard.DashboardFragment"
-    tools:layout="@layout/fragment_dashboard"/>
-
-  <fragment
-    android:id="@+id/navigation_notifications"
-    android:label="@string/title_notifications"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.activity.ui.notifications.NotificationsFragment"
-    tools:layout="@layout/fragment_notifications"/>
 </navigation>

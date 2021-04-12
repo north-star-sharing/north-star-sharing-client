@@ -9,17 +9,20 @@
 
   <!--Navigation Titles-->
 
+  <string name="image_list">Home Screen, Image List</string>
+
   <!--  Layout Display Text-->
 
-  <string name="image_title">Image Title</string>
   <string name="gallery_title">Gallery Title</string>
-  <string name="title_home">Title Home</string>
   <string name="settings">Settings</string>
   <string name="add_a_tag">Add a tag</string>
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="image_title">Image Title</string>
   <string name="description">Description</string>
+
+  <!--  Button names-->
+
   <string name="edit_button">Button to edit existing picture</string>
+  <string name="save_button">Button to save existing picture</string>
+  <string name="find_tag_button">Button to find new tags</string>
 
 </resources>

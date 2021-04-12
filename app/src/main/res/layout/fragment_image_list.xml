@@ -36,7 +36,8 @@
       app:layout_constraintTop_toBottomOf="@id/tag_text_layout"
       app:layout_constraintBottom_toTopOf="@id/home_screen_image_list"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"/>
+      app:layout_constraintEnd_toEndOf="parent"
+      style="@style/TextAppearance.AppCompat.Small"/>
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/home_screen_image_list"
