@@ -3,6 +3,7 @@ package edu.cnm.deepdive.northstarsharingclient.service;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.util.Log;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -48,6 +49,9 @@ public class GoogleSignInService {
 
   private void setAccount(GoogleSignInAccount account) {
     this.account = account;
+    if (account != null) { //testing with Postman
+      Log.d(getClass().getSimpleName() + "  Bearer Token " , account.getIdToken());
+    }
   }
 
   public Single<GoogleSignInAccount> refresh() {
