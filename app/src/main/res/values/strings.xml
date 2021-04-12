@@ -1,18 +1,22 @@
 <resources>
   <string name="app_name">North Star Sharing Client</string>
   <string name="title_activity_main">MainActivity</string>
-  <!-- Strings used for fragments for navigation -->
-  <string name="first_fragment_label">First Fragment</string>
-  <string name="second_fragment_label">Second Fragment</string>
-  <string name="next">Next</string>
-  <string name="previous">Previous</string>
 
-  <string name="hello_first_fragment">Hello first fragment</string>
-  <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+  <!--  Google Login Text-->
+
   <string name="sign_out">Sign Out</string>
-  <string name="home_screen_fragment_label">Home Screen Fragment</string>
   <string name="login_failure">Login Failed, please try again.</string>
-  <string name="title_home">Home</string>
-  <string name="title_dashboard">Dashboard</string>
-  <string name="title_notifications">Notifications</string>
+
+  <!--Navigation Titles-->
+
+  <!--  Layout Display Text-->
+
+  <string name="image_title">Image Title</string>
+  <string name="gallery_title">Gallery Title</string>
+  <string name="title_home">Title Home</string>
+  <string name="settings">Settings</string>
+  <string name="add_a_tag">Add a tag</string>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
