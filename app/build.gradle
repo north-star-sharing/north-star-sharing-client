@@ -6,134 +6,135 @@ static def getProperty(String filename, String property) {
     properties.load(new FileInputStream(filename))
     return properties.getProperty(property)
 }
-    static def quoted(String value) {
-        return "\"${value}\""
+
+static def quoted(String value) {
+    return "\"${value}\""
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    android {
-        compileSdkVersion 30
-        buildToolsVersion "30.0.3"
+    defaultConfig {
+        applicationId "edu.cnm.deepdive.northstarsharingclient"
+        minSdkVersion 24
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
+        def connection_properties = "$projectDir/../../../services/north-star-sharing.properties"
 
-        defaultConfig {
-            applicationId "edu.cnm.deepdive.northstarsharingclient"
-            minSdkVersion 24
-            targetSdkVersion 30
-            versionCode 1
-            versionName "1.0"
-
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-            def connection_properties = "$projectDir/../../../services/north-star-sharing.properties"
-
-            buildConfigField "String", "CLIENT_ID", quoted(
-                    getProperty(connection_properties, "client_id")
-            )
-            buildConfigField "String", "BASE_URL", quoted(
-                    getProperty(connection_properties, "base_url")
-            )
-            buildConfigField "String", "CONTENT_FORMAT", quoted(
-                    getProperty(connection_properties, "content_format")
-            )
-        }
-
-        buildTypes {
-            release {
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            }
-        }
-        buildFeatures {
-            viewBinding true
-        }
+        buildConfigField "String", "CLIENT_ID", quoted(
+                getProperty(connection_properties, "client_id")
+        )
+        buildConfigField "String", "BASE_URL", quoted(
+                getProperty(connection_properties, "base_url")
+        )
+        buildConfigField "String", "CONTENT_FORMAT", quoted(
+                getProperty(connection_properties, "content_format")
+        )
     }
 
-    dependencies {
-
-        // File tree
-        implementation fileTree(dir: "libs", include: ["*.jar"])
-
-        // Google android
-        implementation 'com.google.android.material:material:1.3.0'
-        implementation 'com.google.android.gms:play-services-auth:19.0.0'
-
-        // Gson (Google JSON)
-        implementation 'com.google.code.gson:gson:2.8.6'
-
-        //Picasso Library
-        implementation 'com.squareup.picasso:picasso:2.71828'
-
-        // OKHttp logging
-        implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-
-        // RetroFit (REST client) with ReactiveX & Gson
-        def retrofit_version = "2.9.0"
-        implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-        implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-        implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-
-        // Basic Jetpack support
-        implementation 'androidx.core:core:1.3.2'
-        implementation 'androidx.media:media:1.3.0'
-        implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
-        implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
-        implementation 'androidx.appcompat:appcompat:1.2.0'
-
-        def camerax_version = "1.1.0-alpha03"
-        // CameraX core library using camera2 implementation
-        implementation "androidx.camera:camera-camera2:$camerax_version"
-        // CameraX Lifecycle Library
-        implementation "androidx.camera:camera-lifecycle:$camerax_version"
-        // CameraX View class
-        implementation "androidx.camera:camera-view:1.0.0-alpha23"
-
-        // Basic Android components
-        implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-        implementation "androidx.recyclerview:recyclerview:1.2.0"
-        implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
-        implementation 'androidx.preference:preference:1.1.1'
-
-        // Fragment & navigation dependencies
-        implementation 'androidx.fragment:fragment:1.3.2'
-        implementation 'com.google.android.gms:play-services-maps:17.0.0'
-        implementation "androidx.navigation:navigation-fragment:$navigationVersion"
-        implementation "androidx.navigation:navigation-ui:$navigationVersion"
-        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-        // Lifecycle (LiveData and ViewModel) dependencies
-        def lifecycle_version = '2.3.1'
-        implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
-        implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
-        implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-        implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-
-        // AndroidX
-        implementation 'androidx.appcompat:appcompat:1.2.0'
-        implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-
-        // ReactiveX
-        implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
-        implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-
-
-        // Junit testing
-        testImplementation 'junit:junit:4.13'
-
-        // AndroidX test
-        androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-        androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-        compileOnly 'com.google.android.wearable:wearable:2.8.1'
-
-        // Stetho (inspection) dependency
-        implementation 'com.facebook.stetho:stetho:1.5.1'
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    // File tree
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Google android
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    // Gson (Google JSON)
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //Picasso Library
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // OKHttp logging
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // RetroFit (REST client) with ReactiveX & Gson
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // Basic Jetpack support
+    implementation 'androidx.core:core:1.3.2'
+    implementation 'androidx.media:media:1.3.0'
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
+    implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    def camerax_version = "1.1.0-alpha03"
+    // CameraX core library using camera2 implementation
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    // CameraX Lifecycle Library
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    // CameraX View class
+    implementation "androidx.camera:camera-view:1.0.0-alpha23"
+
+    // Basic Android components
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation 'androidx.preference:preference:1.1.1'
+
+    // Fragment & navigation dependencies
+    implementation 'androidx.fragment:fragment:1.3.2'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "androidx.navigation:navigation-fragment:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui:$navigationVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Lifecycle (LiveData and ViewModel) dependencies
+    def lifecycle_version = '2.3.1'
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // AndroidX
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    // ReactiveX
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+
+    // Junit testing
+    testImplementation 'junit:junit:4.13'
+
+    // AndroidX test
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    compileOnly 'com.google.android.wearable:wearable:2.8.1'
+
+    // Stetho (inspection) dependency
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+}
 
 task generateApiDoc() {
     group "reporting"
