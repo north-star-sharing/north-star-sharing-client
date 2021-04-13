@@ -26,5 +26,6 @@
   <string name="find_tag_button">Button to find new tags</string>
   <string name="navigation_camera">Camera</string>
   <string name="edit_label">Edit Image</string>
+  <string name="activity_main_title">Title Activity Main</string>
 
 </resources>
