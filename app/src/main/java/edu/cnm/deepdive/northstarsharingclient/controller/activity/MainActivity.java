@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,7 +17,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import edu.cnm.deepdive.northstarsharingclient.R;
-import edu.cnm.deepdive.northstarsharingclient.controller.activity.LoginActivity;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,16 +30,20 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     FloatingActionButton camera = findViewById(R.id.to_camera);
-    camera.setOnClickListener((v) -> {
-//      add intent to bring up camera
-      Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null).show();
+    camera.setOnClickListener(new View.OnClickListener() {
+      //    TODO  Add intent to go to camera
+      @Override
+      public void onClick(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            .setAction("Action", null).show();
+      }
     });
+    DrawerLayout drawer = findViewById(R.id.drawer_layout);
+    NavigationView navigationView = findViewById(R.id.nav_view);
     appBarConfiguration = new AppBarConfiguration.Builder(
         R.id.navigation_home, R.id.navigation_new)
+        .setDrawerLayout(drawer)
         .build();
-    DrawerLayout draw = findViewById(R.id.drawer_layout);
-    NavigationView navigationView = findViewById(R.id.nav_view);
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navigationView, navController);
@@ -68,5 +72,12 @@ public class MainActivity extends AppCompatActivity {
         handled = super.onOptionsItemSelected(item);
     }
     return handled;
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+    return NavigationUI.navigateUp(navController, appBarConfiguration)
+        || super.onSupportNavigateUp();
   }
 }
