@@ -15,7 +15,7 @@ public class ImageListFragment extends Fragment {
     // Required empty public constructor
   }
 
-  public static ImageListFragment newInstance(String param1, String param2) {
+  public static ImageListFragment newInstance() {
     ImageListFragment fragment = new ImageListFragment();
     return fragment;
   }

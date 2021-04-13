@@ -1,6 +1,5 @@
 <resources>
   <string name="app_name">North Star Sharing Client</string>
-  <string name="title_activity_main">MainActivity</string>
 
   <!--  Google Login Text-->
 
@@ -18,11 +17,14 @@
   <string name="add_a_tag">Add a tag</string>
   <string name="image_title">Image Title</string>
   <string name="description">Description</string>
+  <string name="gallery_list_title">Available Galleries</string>
 
   <!--  Button names-->
 
   <string name="edit_button">Button to edit existing picture</string>
   <string name="save_button">Button to save existing picture</string>
   <string name="find_tag_button">Button to find new tags</string>
+  <string name="navigation_camera">Camera</string>
+  <string name="edit_label">Edit Image</string>
 
 </resources>
