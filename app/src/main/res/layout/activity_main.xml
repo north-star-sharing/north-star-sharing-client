@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <com.google.android.material.bottomnavigation.BottomNavigationView
+  <com.google.android.material.navigation.NavigationView
     android:id="@+id/nav_view"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -16,9 +16,9 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:menu="@menu/bottom_nav_menu"/>
+    app:menu="@menu/app_drawer_menu"/>
 
-  <fragment
+  <androidx.fragment.app.FragmentContainerView
     android:id="@+id/nav_host_fragment"
     android:layout_width="0dp"
     android:layout_height="0dp"
