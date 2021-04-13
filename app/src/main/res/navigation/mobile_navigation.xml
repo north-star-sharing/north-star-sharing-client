@@ -12,35 +12,35 @@
     android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
     tools:layout="@layout/fragment_image_list">
 
-  <action
-    android:id="@+id/open_camera"
-    app:destination="@id/open_camera">
+<!--  <action-->
+<!--    android:id="@+id/open_camera"-->
+<!--    app:destination="@id/open_camera">-->
 
-    <argument
-      android:name="celestial_coordinates"
-      app:argType="String"/>
+<!--    <argument-->
+<!--      android:name="celestial_coordinates"-->
+<!--      app:argType="String"/>-->
 
-    <argument
-      android:name="celestial_coordinates"
-      app:argType="String"/>
+<!--    <argument-->
+<!--      android:name="celestial_coordinates"-->
+<!--      app:argType="String"/>-->
 
-    <argument
-      android:name="celestial_coordinates"
-      app:argType="String"/>
+<!--    <argument-->
+<!--      android:name="celestial_coordinates"-->
+<!--      app:argType="String"/>-->
 
-    <argument
-      android:name="celestial_coordinates"
-      app:argType="String"/>
+<!--    <argument-->
+<!--      android:name="celestial_coordinates"-->
+<!--      app:argType="String"/>-->
 
-  </action>
+<!--  </action>-->
 
   </fragment>
 
-  <fragment
-    android:id="@+id/fragment_camera"
-    android:label="@string/navigation_camera"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.CameraFragment"
-    tools:layout="@layout/fragment_camera"/>
+<!--  <fragment-->
+<!--    android:id="@+id/fragment_camera"-->
+<!--    android:label="@string/navigation_camera"-->
+<!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.CameraFragment"-->
+<!--    tools:layout="@layout/fragment_camera"/>-->
 
   <dialog
     android:id="@+id/navigation_edit"
