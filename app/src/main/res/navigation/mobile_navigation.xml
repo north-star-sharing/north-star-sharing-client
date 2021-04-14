@@ -94,4 +94,10 @@
 
   <!--  </dialog>-->
 
+  <fragment
+    android:id="@+id/navigation_settings"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.SettingsFragment"
+    android:label="@string/settings_title"
+    tools:layout="@xml/preferences"/>
+
 </navigation>

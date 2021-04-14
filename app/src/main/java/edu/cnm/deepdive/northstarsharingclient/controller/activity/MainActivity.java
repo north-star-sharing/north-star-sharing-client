@@ -21,6 +21,7 @@ import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 public class MainActivity extends AppCompatActivity {
 
   private AppBarConfiguration appBarConfiguration;
+  private NavController navController;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,16 @@ public class MainActivity extends AppCompatActivity {
         R.id.navigation_home)
         .setDrawerLayout(drawer)
         .build();
-    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+    navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navigationView, navController);
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+    return NavigationUI.navigateUp(navController, appBarConfiguration)
+        || super.onSupportNavigateUp();
   }
 
   @Override
@@ -58,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     boolean handled = true;
     switch (item.getItemId()) {
+      case R.id.setting:
+        navController.navigate(R.id.navigation_settings);
+        break;
       case R.id.sign_out:
         GoogleSignInService.getInstance().signOut()
             .addOnCompleteListener((ignore) -> {
@@ -72,10 +83,4 @@ public class MainActivity extends AppCompatActivity {
     return handled;
   }
 
-  @Override
-  public boolean onSupportNavigateUp() {
-    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-    return NavigationUI.navigateUp(navController, appBarConfiguration)
-        || super.onSupportNavigateUp();
-  }
 }
