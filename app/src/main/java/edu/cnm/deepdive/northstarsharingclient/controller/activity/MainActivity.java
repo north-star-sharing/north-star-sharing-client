@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -27,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
     FloatingActionButton camera = findViewById(R.id.to_camera);
     camera.setOnClickListener(new View.OnClickListener() {
       //    TODO  Add intent to go to camera
@@ -40,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
     });
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
     NavigationView navigationView = findViewById(R.id.nav_view);
-    appBarConfiguration = new AppBarConfiguration.Builder(
-        R.id.navigation_home, R.id.navigation_new)
+    appBarConfiguration = new AppBarConfiguration
+        .Builder(
+        R.id.navigation_home)
         .setDrawerLayout(drawer)
         .build();
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

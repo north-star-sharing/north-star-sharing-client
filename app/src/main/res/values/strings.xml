@@ -14,7 +14,7 @@
 
   <string name="gallery_title">Gallery Title</string>
   <string name="settings">Settings</string>
-  <string name="add_a_tag">Add a tag</string>
+  <string name="add_a_tag">Search: Tags</string>
   <string name="image_title">Image Title</string>
   <string name="description">Description</string>
   <string name="gallery_list_title">Available Galleries</string>

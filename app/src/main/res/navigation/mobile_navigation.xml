@@ -36,62 +36,62 @@
 
   </fragment>
 
-<!--  <fragment-->
-<!--    android:id="@+id/fragment_camera"-->
-<!--    android:label="@string/navigation_camera"-->
-<!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.CameraFragment"-->
-<!--    tools:layout="@layout/fragment_camera"/>-->
+  <!--  <fragment-->
+  <!--    android:id="@+id/fragment_camera"-->
+  <!--    android:label="@string/navigation_camera"-->
+  <!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.CameraFragment"-->
+  <!--    tools:layout="@layout/fragment_camera"/>-->
 
-  <dialog
-    android:id="@+id/navigation_edit"
-    android:label="@string/edit_label"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
-    tools:layout="@layout/fragment_image_detail_edit">
+  <!--  <dialog-->
+  <!--    android:id="@+id/navigation_edit"-->
+  <!--    android:label="@string/edit_label"-->
+  <!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"-->
+  <!--    tools:layout="@layout/fragment_image_detail_edit">-->
 
-    <argument
-      android:name="image_id"
-      app:argType="long"/>
+  <!--    <argument-->
+  <!--      android:name="image_id"-->
+  <!--      app:argType="long"/>-->
 
-    <argument
-      android:name="image_uri"
-      app:argType="android.net.Uri"
-      app:nullable="true"
-      android:defaultValue="@null"/>
+  <!--    <argument-->
+  <!--      android:name="image_uri"-->
+  <!--      app:argType="android.net.Uri"-->
+  <!--      app:nullable="true"-->
+  <!--      android:defaultValue="@null"/>-->
 
-    <argument
-      android:name="gallery_id"
-      app:argType="long"/>
+  <!--    <argument-->
+  <!--      android:name="gallery_id"-->
+  <!--      app:argType="long"/>-->
 
-    <argument
-      android:name="description"
-      app:argType="String"/>
+  <!--    <argument-->
+  <!--      android:name="description"-->
+  <!--      app:argType="String"/>-->
 
-  </dialog>
+  <!--  </dialog>-->
 
-  <dialog
-    android:id="@+id/navigation_new"
-    android:label="@string/edit_label"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
-    tools:layout="@layout/fragment_image_detail_new">
+  <!--  <dialog-->
+  <!--    android:id="@+id/navigation_new"-->
+  <!--    android:label="@string/edit_label"-->
+  <!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"-->
+  <!--    tools:layout="@layout/fragment_image_detail_new">-->
 
-    <argument
-      android:name="image_id"
-      app:argType="long"/>
+  <!--    <argument-->
+  <!--      android:name="image_id"-->
+  <!--      app:argType="long"/>-->
 
-    <argument
-      android:name="image_uri"
-      app:argType="android.net.Uri"
-      app:nullable="true"
-      android:defaultValue="@null"/>
+  <!--    <argument-->
+  <!--      android:name="image_uri"-->
+  <!--      app:argType="android.net.Uri"-->
+  <!--      app:nullable="true"-->
+  <!--      android:defaultValue="@null"/>-->
 
-    <argument
-      android:name="gallery_id"
-      app:argType="long"/>
+  <!--    <argument-->
+  <!--      android:name="gallery_id"-->
+  <!--      app:argType="long"/>-->
 
-    <argument
-      android:name="description"
-      app:argType="String"/>
+  <!--    <argument-->
+  <!--      android:name="description"-->
+  <!--      app:argType="String"/>-->
 
-  </dialog>
+  <!--  </dialog>-->
 
 </navigation>
