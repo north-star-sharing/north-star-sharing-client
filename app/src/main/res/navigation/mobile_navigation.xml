@@ -6,6 +6,20 @@
   android:id="@+id/mobile_navigation"
   app:startDestination="@+id/navigation_home">
 
+  <action
+    android:id="@+id/explain_permissions"
+    app:destination="@id/navigation_permission_explanation">
+
+    <argument
+      android:name="permissions_to_explain"
+      app:argType="string[]"/>
+
+    <argument
+      android:name="permissions_to_request"
+      app:argType="string[]"/>
+
+  </action>
+
   <fragment
     android:id="@+id/navigation_home"
     android:label="@string/image_list"
@@ -41,6 +55,12 @@
   <!--    android:label="@string/navigation_camera"-->
   <!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.CameraFragment"-->
   <!--    tools:layout="@layout/fragment_camera"/>-->
+
+  <fragment
+    android:id="@+id/navigation_settings"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.SettingsFragment"
+    android:label="@string/settings_title"
+    tools:layout="@xml/preferences"/>
 
   <!--  <dialog-->
   <!--    android:id="@+id/navigation_edit"-->
@@ -94,10 +114,15 @@
 
   <!--  </dialog>-->
 
-  <fragment
-    android:id="@+id/navigation_settings"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.SettingsFragment"
-    android:label="@string/settings_title"
-    tools:layout="@xml/preferences"/>
+  <dialog
+    android:id="@+id/navigation_permission_explanation"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.PermissionsFragment">
+    <argument
+      android:name="permissions_to_explain"
+      app:argType="string[]"/>
+    <argument
+      android:name="permissions_to_request"
+      app:argType="string[]"/>
+  </dialog>
 
 </navigation>
