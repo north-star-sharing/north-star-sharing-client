@@ -3,20 +3,6 @@
   package="edu.cnm.deepdive.northstarsharingclient">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-feature android:name="android.hardware.location.gps"/>
-    <uses-feature
-      android:name="android.hardware.camera.any"
-      android:required="true"/>
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission
-      android:maxSdkVersion="18"
-      android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
     <application
       android:allowBackup="false"
       android:icon="@mipmap/ic_launcher"
@@ -42,6 +28,34 @@
 
         </activity>
 
+        <provider
+          android:authorities="edu.cnm.deepdive.northstarsharingclient"
+          android:exported="false"
+          android:grantUriPermissions="true"
+          android:name="androidx.core.content.FileProvider">
+            <meta-data
+              android:name="android.support.FILE_PROVIDER_PATHS"
+              android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
     </application>
+
+    <uses-feature
+      android:name="android.hardware.camera"
+      android:required="false"/>
+    <uses-feature
+      android:name="android.hardware.location.gps"
+      android:required="false"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission
+      android:maxSdkVersion="18"
+      android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
+    <uses-permission android:name="android.permission.CAMERA"/>
 
 </manifest>
