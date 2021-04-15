@@ -1,6 +1,9 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -9,32 +12,44 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.PermissionViewModel;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-  static final int REQUEST_IMAGE_CAPTURE = 0414;
+  static final int PERMISSIONS_REQUEST_CODE = 1515;
+  static final int REQUEST_IMAGE_CAPTURE = 1414;
   String currentPhotoPath;
   private AppBarConfiguration appBarConfiguration;
   private NavController navController;
+
+  private PermissionViewModel permissionViewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    permissionViewModel = new ViewModelProvider(this).get(PermissionViewModel.class);
+    checkPermissions();
     FloatingActionButton camera = findViewById(R.id.to_camera);
     camera.setOnClickListener(v -> dispatchTakePictureIntent());
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -84,6 +99,64 @@ public class MainActivity extends AppCompatActivity {
     return handled;
   }
 
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+      @NonNull int[] grantResults) {
+    if (requestCode == PERMISSIONS_REQUEST_CODE) {
+      for (int i = 0; i < permissions.length; i++) {
+        String permission = permissions[i];
+        int result = grantResults[i];
+        if (result == PackageManager.PERMISSION_GRANTED) {
+          permissionViewModel.grantPermission(permission);
+        } else {
+          permissionViewModel.revokePermission(permission);
+        }
+      }
+    } else {
+      super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+  }
+
+
+  public void onAcknowledge(String[] permissionsToRequest) {
+    ActivityCompat.requestPermissions(this, permissionsToRequest, PERMISSIONS_REQUEST_CODE);
+  }
+
+  private void checkPermissions() {
+    try {
+      PackageInfo info = getPackageManager().getPackageInfo(getPackageName(),
+          PackageManager.GET_META_DATA | PackageManager.GET_PERMISSIONS);
+      String[] permissions = info.requestedPermissions;
+      List<String> permissionsToRequest = new LinkedList<>();
+      List<String> permissionsToExplain = new LinkedList<>();
+      for (String permission : permissions) {
+        if (ContextCompat.checkSelfPermission(this, permission)
+            != PackageManager.PERMISSION_GRANTED) {
+          permissionsToRequest.add(permission);
+          if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+            permissionsToExplain.add(permission);
+          }
+        } else {
+          permissionViewModel.grantPermission(permission);
+        }
+      }
+      if (!permissionsToExplain.isEmpty()) {
+        explainPermissions(
+            permissionsToExplain.toArray(new String[0]),
+            permissionsToRequest.toArray(new String[0]));
+      } else if (!permissionsToRequest.isEmpty()) {
+        onAcknowledge(permissionsToRequest.toArray(new String[0]));
+      }
+    } catch (NameNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void explainPermissions(String[] permissionsToExplain, String[] permissionsToRequest) {
+    navController.navigate(
+        MobileNavigationDirections.explainPermissions(permissionsToExplain, permissionsToRequest));
+  }
 
   private File createImageFile() throws IOException {
     // Create an image file name
