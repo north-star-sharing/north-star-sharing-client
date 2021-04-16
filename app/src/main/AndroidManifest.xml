@@ -52,7 +52,7 @@
           android:name="androidx.core.content.FileProvider">
             <meta-data
               android:name="android.support.FILE_PROVIDER_PATHS"
-              android:resource="@xml/file_paths"></meta-data>
+              android:resource="@xml/file_paths"/>
         </provider>
 
     </application>

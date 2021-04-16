@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import edu.cnm.deepdive.northstarsharingclient.R;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -42,7 +43,7 @@ public class PermissionsFragment extends DialogFragment {
     PermissionsFragmentArgs args = PermissionsFragmentArgs.fromBundle(getArguments());
     return new Builder(getContext())
         .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle("Select Premissions")
+        .setTitle(R.string.permissions_dialog_title)
         .setMessage(buildMessage(args.getPermissionsToExplain()))
         .setNeutralButton(android.R.string.ok,
             (dlg, which) -> listener.onAcknowledge(args.getPermissionsToRequest()))

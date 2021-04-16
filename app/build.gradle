@@ -134,6 +134,7 @@ dependencies {
 
     // Stetho (inspection) dependency
     implementation 'com.facebook.stetho:stetho:1.5.1'
+
 }
 
 task generateApiDoc() {

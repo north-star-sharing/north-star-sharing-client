@@ -43,5 +43,6 @@
   </string>
   <string name="attachment_summary_off">Only download attachments when manually requested</string>
   <string name="settings_title">Settings</string>
+  <string name="permissions_dialog_title">Select Permissions</string>
 
 </resources>
