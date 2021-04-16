@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     setContentView(R.layout.activity_main);
     permissionViewModel = new ViewModelProvider(this).get(PermissionViewModel.class);
     checkPermissions();
+    Toolbar toolbar = findViewById(R.id.toolbar);
     FloatingActionButton camera = findViewById(R.id.to_camera);
     camera.setOnClickListener(v -> dispatchTakePictureIntent());
     drawer = findViewById(R.id.drawer_layout);
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         R.id.navigation_home)
         .setDrawerLayout(drawer)
         .build();
+//    setSupportActionBar(toolbar);
     navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navigationView, navController);
