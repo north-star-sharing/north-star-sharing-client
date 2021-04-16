@@ -1,21 +1,28 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -33,16 +40,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DrawerListener {
 
   static final int PERMISSIONS_REQUEST_CODE = 1515;
   static final int REQUEST_IMAGE_CAPTURE = 1414;
   String currentPhotoPath;
   private AppBarConfiguration appBarConfiguration;
   private NavController navController;
-
   private PermissionViewModel permissionViewModel;
+  private SensorManager sensorManager;
+  private NavigationView navigationView;
+  private List<MenuItem> dynamicItems = new LinkedList<>();
+  private Random rng = new Random();
+  private DrawerLayout drawer;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
     checkPermissions();
     FloatingActionButton camera = findViewById(R.id.to_camera);
     camera.setOnClickListener(v -> dispatchTakePictureIntent());
-    DrawerLayout drawer = findViewById(R.id.drawer_layout);
-    NavigationView navigationView = findViewById(R.id.nav_view);
+    drawer = findViewById(R.id.drawer_layout);
+    drawer.setDrawerListener(this);
+    navigationView = findViewById(R.id.nav_view);
     appBarConfiguration = new AppBarConfiguration
         .Builder(
         R.id.navigation_home)
@@ -62,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
     navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navigationView, navController);
+    sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+    List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
+//    TODO Connect to a viewModel and observe the list of galleries storing them in a field
+
   }
 
   @Override
@@ -99,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
     return handled;
   }
 
+//  Permissions
 
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -158,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
         MobileNavigationDirections.explainPermissions(permissionsToExplain, permissionsToRequest));
   }
 
+
+  //  Camera
+//   TODO move to repository
   private File createImageFile() throws IOException {
     // Create an image file name
     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -191,5 +213,41 @@ public class MainActivity extends AppCompatActivity {
       }
     }
   }
+
+  @Override
+  public void onDrawerSlide(@NonNull @NotNull View drawerView, float slideOffset) {
+
+  }
+
+  @Override
+  public void onDrawerOpened(@NonNull @NotNull View drawerView) {
+//    TODO From the field containing the list of galleries add each gallery to the menu in the
+//     fallowing line
+    Menu menu = navigationView.getMenu();
+    MenuItem item = menu.add(Menu.NONE,  rng.nextInt(),  Menu.NONE,"Fun New Menu");
+    item.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Clicker");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    dynamicItems.add(item);
+  }
+
+  @Override
+  public void onDrawerClosed(@NonNull @NotNull View drawerView) {
+    Menu menu = navigationView.getMenu();
+    for (MenuItem item : dynamicItems) {
+      menu.removeItem(item.getItemId());
+    }
+    dynamicItems.clear();
+  }
+
+  @Override
+  public void onDrawerStateChanged(int newState) {
+
+  }
+
+//  Sensors
+
 
 }
