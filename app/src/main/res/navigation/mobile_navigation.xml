@@ -38,14 +38,6 @@
 <!--      android:name="celestial_coordinates"-->
 <!--      app:argType="String"/>-->
 
-<!--    <argument-->
-<!--      android:name="celestial_coordinates"-->
-<!--      app:argType="String"/>-->
-
-<!--    <argument-->
-<!--      android:name="celestial_coordinates"-->
-<!--      app:argType="String"/>-->
-
 <!--  </action>-->
 
   </fragment>

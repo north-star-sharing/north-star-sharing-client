@@ -6,4 +6,5 @@
 
   <dimen name="activity_horizontal_margin">16dp</dimen>
   <dimen name="activity_vertical_margin">16dp</dimen>
+  <dimen name="app_drawer_top_padding">65dp</dimen>
 </resources>
