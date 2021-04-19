@@ -117,4 +117,14 @@
       app:argType="string[]"/>
   </dialog>
 
+  <action
+    android:id="@+id/open_upload_properties"
+    app:destination="@id/open_upload_properties">
+
+    <argument
+      android:name="content_uri"
+      app:argType="android.net.Uri"/>
+
+  </action>
+
 </navigation>
