@@ -39,12 +39,12 @@ public class LoginActivity extends AppCompatActivity {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == LOGIN_REQUEST_CODE) {
       signInService.completeSignIn(data)
-          .addOnSuccessListener(this::switchToMain)
-          .addOnFailureListener((throwable) ->
-              Toast.makeText(this,
-                  getString(R.string.login_failure),
-                  Toast.LENGTH_LONG)
-                  .show());
+                   .addOnSuccessListener(this::switchToMain)
+                   .addOnFailureListener((throwable) ->
+                       Toast.makeText(this,
+                           getString(R.string.login_failure),
+                           Toast.LENGTH_LONG)
+                            .show());
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }

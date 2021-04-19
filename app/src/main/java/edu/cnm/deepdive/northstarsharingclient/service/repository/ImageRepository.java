@@ -45,7 +45,7 @@ public class ImageRepository {
         .flatMap((token) -> {
           try (
               Cursor cursor = resolver.query(uri, null, null, null, null);
-              InputStream input = resolver.openInputStream(uri);
+              InputStream input = resolver.openInputStream(uri)
           ) {
             MediaType type = MediaType.parse(resolver.getType(uri));
             int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);

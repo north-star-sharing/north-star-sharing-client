@@ -54,6 +54,7 @@ public interface NorthStarSharingWebServiceProxy {
   Single<List<Gallery>> getGalleries(@Header("Authorization") String bearerToken);
 
   class InstanceHolder {
+
     private static final NorthStarSharingWebServiceProxy INSTANCE;
 
     static {

@@ -1,16 +1,12 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.fragment;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import edu.cnm.deepdive.northstarsharingclient.controller.fragment.PermissionsFragmentArgs.Builder;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
-import javax.annotation.Nullable;
 
 
 public class ImageListFragment extends Fragment {

@@ -59,7 +59,8 @@ public class PermissionsFragment extends DialogFragment {
     } else if (hostActivity instanceof OnAcknowledgeListener) {
       listener = (OnAcknowledgeListener) hostActivity;
     } else {
-      listener = (perms) -> {};
+      listener = (perms) -> {
+      };
     }
     return listener;
   }
@@ -69,16 +70,17 @@ public class PermissionsFragment extends DialogFragment {
     String packageName = getContext().getPackageName();
     Resources res = getResources();
     return Arrays.stream(permissionsToExplain)
-        .map((permission) -> {
-          String[] permissionNameParts = permission.split(PERMISSION_DELIMITER);
-          String permissionKey = permissionNameParts[permissionNameParts.length - 1].toLowerCase()
-              + EXPLANATION_KEY_SUFFIX;
-          int explanationId = res.getIdentifier(permissionKey, "string", packageName);
-          return (explanationId != 0) ? getString(explanationId) : null;
-        })
-        .filter(Objects::nonNull)
-        .distinct()
-        .collect(Collectors.joining("\n"));
+                 .map((permission) -> {
+                   String[] permissionNameParts = permission.split(PERMISSION_DELIMITER);
+                   String permissionKey =
+                       permissionNameParts[permissionNameParts.length - 1].toLowerCase()
+                           + EXPLANATION_KEY_SUFFIX;
+                   int explanationId = res.getIdentifier(permissionKey, "string", packageName);
+                   return (explanationId != 0) ? getString(explanationId) : null;
+                 })
+                 .filter(Objects::nonNull)
+                 .distinct()
+                 .collect(Collectors.joining("\n"));
   }
 
   /**
@@ -88,6 +90,7 @@ public class PermissionsFragment extends DialogFragment {
 
     /**
      * Continues permissions request flow after user has acknowledged permission rationales.
+     *
      * @param permissionsToRequest Permissions that should be requested of user.
      */
     void onAcknowledge(String[] permissionsToRequest);

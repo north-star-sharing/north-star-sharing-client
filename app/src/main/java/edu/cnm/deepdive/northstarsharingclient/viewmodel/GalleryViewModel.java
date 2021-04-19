@@ -48,10 +48,10 @@ public class GalleryViewModel extends AndroidViewModel implements LifecycleObser
     throwable.postValue(null);
     pending.add(
         galleryRepository.getGalleryList()
-        .subscribe(
-            galleryList::postValue,
-            throwable::postValue
-        )
+                         .subscribe(
+                             galleryList::postValue,
+                             throwable::postValue
+                         )
     );
   }
 

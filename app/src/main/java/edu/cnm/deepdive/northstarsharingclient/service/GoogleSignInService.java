@@ -50,16 +50,16 @@ public class GoogleSignInService {
   private void setAccount(GoogleSignInAccount account) {
     this.account = account;
     if (account != null) { //testing with Postman
-      Log.d(getClass().getSimpleName() + "  Bearer Token " , account.getIdToken());
+      Log.d(getClass().getSimpleName() + "  Bearer Token ", account.getIdToken());
     }
   }
 
   public Single<GoogleSignInAccount> refresh() {
     return Single.create((emitter) ->
         client.silentSignIn()
-            .addOnSuccessListener(this::setAccount)
-            .addOnSuccessListener(emitter::onSuccess)
-            .addOnFailureListener(emitter::onError)
+              .addOnSuccessListener(this::setAccount)
+              .addOnSuccessListener(emitter::onSuccess)
+              .addOnFailureListener(emitter::onError)
     );
   }
 

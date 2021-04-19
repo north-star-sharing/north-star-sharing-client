@@ -27,10 +27,10 @@ public class UserRepository {
 
   public Single<User> getUserProfile() {
     return signInService.refresh()
-        .observeOn(Schedulers.io())
-        .flatMap((account) ->
-            webServiceProxy.getProfile(getBearerToken(account.getIdToken())))
-        .subscribeOn(Schedulers.io());
+                        .observeOn(Schedulers.io())
+                        .flatMap((account) ->
+                            webServiceProxy.getProfile(getBearerToken(account.getIdToken())))
+                        .subscribeOn(Schedulers.io());
   }
 
   private String getBearerToken(String idToken) {

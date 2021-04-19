@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private NavController navController;
   private PermissionViewModel permissionViewModel;
   private NavigationView navigationView;
-  private List<MenuItem> dynamicItems = new LinkedList<>();
-  private Random rng = new Random();
+  private final List<MenuItem> dynamicItems = new LinkedList<>();
+  private final Random rng = new Random();
   private DrawerLayout drawer;
 
   /* Camera orientation fields */

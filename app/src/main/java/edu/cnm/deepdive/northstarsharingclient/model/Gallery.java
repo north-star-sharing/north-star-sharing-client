@@ -63,7 +63,8 @@ public class Gallery implements Serializable {
   }
 
   /**
-   * Sets the datetime this gallery was first persisted to the database to the specified {@code created}.
+   * Sets the datetime this gallery was first persisted to the database to the specified {@code
+   * created}.
    */
   public void setCreated(Date created) {
     this.created = created;
@@ -77,7 +78,8 @@ public class Gallery implements Serializable {
   }
 
   /**
-   * Sets the datetime this gallery was most recently persisted in the database to the specified {@code updated}.
+   * Sets the datetime this gallery was most recently persisted in the database to the specified
+   * {@code updated}.
    */
   public void setUpdated(Date updated) {
     this.updated = updated;

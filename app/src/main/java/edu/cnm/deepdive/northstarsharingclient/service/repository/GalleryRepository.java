@@ -24,7 +24,7 @@ public class GalleryRepository {
   public Single<Gallery> getGallery(UUID id) {
     return signInService.refreshBearerToken()
                         .observeOn(Schedulers.io())
-                        .flatMap((account) -> serviceProxy.getGallery(id,account));
+                        .flatMap((account) -> serviceProxy.getGallery(id, account));
   }
 
   public Single<List<Gallery>> getGalleryList() {

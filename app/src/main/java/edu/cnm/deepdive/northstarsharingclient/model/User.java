@@ -2,7 +2,6 @@ package edu.cnm.deepdive.northstarsharingclient.model;
 
 import com.google.gson.annotations.Expose;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -46,7 +45,8 @@ public class User {
   }
 
   /**
-   * Sets the datetime this user was first persisted to the database to the specified {@code created}.
+   * Sets the datetime this user was first persisted to the database to the specified {@code
+   * created}.
    */
   public void setCreated(Date created) {
     this.created = created;
@@ -60,7 +60,8 @@ public class User {
   }
 
   /**
-   * Sets the datetime this user was most recently persisted in the database to the specified {@code updated}.
+   * Sets the datetime this user was most recently persisted in the database to the specified {@code
+   * updated}.
    */
   public void setConnected(Date connected) {
     this.connected = connected;
