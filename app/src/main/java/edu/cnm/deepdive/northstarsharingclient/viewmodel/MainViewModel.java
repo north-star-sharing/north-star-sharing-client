@@ -10,15 +10,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.OnLifecycleEvent;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.model.User;
+import edu.cnm.deepdive.northstarsharingclient.service.repository.ImageRepository;
 import edu.cnm.deepdive.northstarsharingclient.service.repository.UserRepository;
 import io.reactivex.disposables.CompositeDisposable;
+import java.util.List;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
 
+  private final UserRepository userRepository;
+  private final ImageRepository imageRepository;
   private final MutableLiveData<GoogleSignInAccount> account;
   private final MutableLiveData<User> user;
-  private final UserRepository userRepository;
+  private final MutableLiveData<Image> image;
+  private final MutableLiveData<List<Image>> imageList;
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pendingTask;
 
@@ -26,12 +32,14 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
   public MainViewModel(
       @NonNull Application application) {
     super(application);
-    user = new MutableLiveData<>();
     userRepository = new UserRepository(application);
+    imageRepository = new ImageRepository(application);
     account = new MutableLiveData<>(userRepository.getAccount());
+    user = new MutableLiveData<>();
+    image = new MutableLiveData<>();
+    imageList = new MutableLiveData<>();
     throwable = new MutableLiveData<>();
     pendingTask = new CompositeDisposable();
-
   }
 
   public LiveData<User> getUser() {
@@ -40,6 +48,14 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
 
   public LiveData<Throwable> getThrowable() {
     return throwable;
+  }
+
+  public LiveData<Image> getImage() {
+    return image;
+  }
+
+  public LiveData<List<Image>> getImageList() {
+    return imageList;
   }
 
   @OnLifecycleEvent(Event.ON_STOP)

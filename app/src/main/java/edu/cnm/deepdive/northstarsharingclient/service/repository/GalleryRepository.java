@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 import java.util.UUID;
 
-public class GalleyRepository {
+public class GalleryRepository {
 
   private final Context context;
   private final NorthStarSharingWebServiceProxy serviceProxy;
@@ -27,10 +27,10 @@ public class GalleyRepository {
                         .flatMap((account) -> serviceProxy.getGallery(id,account));
   }
 
-  public Single<List<Gallery>> getGalleries() {
+  public Single<List<Gallery>> getGalleryList() {
     return signInService.refreshBearerToken()
                         .observeOn(Schedulers.io())
                         .flatMap(serviceProxy::getGalleries);
   }
 }
-}
+
