@@ -15,9 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -33,7 +33,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
 import edu.cnm.deepdive.northstarsharingclient.R;
+import edu.cnm.deepdive.northstarsharingclient.controller.fragment.UploadPropertiesFragment;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.MainViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.PermissionViewModel;
 import java.io.File;
 import java.io.IOException;
@@ -50,10 +53,13 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   static final int REQUEST_IMAGE_CAPTURE = 1414;
   String currentPhotoPath;
   private AppBarConfiguration appBarConfiguration;
+  private UploadPropertiesFragment uploadPropertiesFragment;
   private NavController navController;
   private PermissionViewModel permissionViewModel;
   private SensorManager sensorManager;
   private NavigationView navigationView;
+  private MainViewModel mainViewModel;
+  private GalleryViewModel galleryViewModel;
   private List<MenuItem> dynamicItems = new LinkedList<>();
   private Random rng = new Random();
   private DrawerLayout drawer;
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     permissionViewModel = new ViewModelProvider(this).get(PermissionViewModel.class);
     checkPermissions();
     FloatingActionButton camera = findViewById(R.id.to_camera);
-    camera.setOnClickListener((v) -> dispatchTakePictureIntent());
+    camera.setOnClickListener(this::onClick);
     drawer = findViewById(R.id.drawer_layout);
     drawer.setDrawerListener(this);
     navigationView = findViewById(R.id.nav_view);
@@ -80,7 +86,19 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
     List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
 //    TODO Connect to a viewModel and observe the list of galleries storing them in a field
+    setUpViewModel();
+  }
 
+  private void setUpViewModel() {
+    mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+    getLifecycle().addObserver(mainViewModel);
+    mainViewModel.getThrowable()
+                 .observe(this, ((throwable) -> {
+                   if (throwable != null) {
+                     Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG)
+                          .show();
+                   }
+                 }));
   }
 
   @Override
@@ -105,17 +123,23 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         navController.navigate(R.id.navigation_settings);
         break;
       case R.id.sign_out:
-        GoogleSignInService.getInstance().signOut()
-            .addOnCompleteListener((ignore) -> {
-              Intent intent = new Intent(this, LoginActivity.class)
-                  .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-              startActivity(intent);
-            });
+        signOut();
         break;
       default:
         handled = super.onOptionsItemSelected(item);
     }
     return handled;
+  }
+
+  private void signOut() {
+    GoogleSignInService.getInstance()
+                       .signOut()
+                       .addOnCompleteListener((ignore) -> {
+                         Intent intent = new Intent(this, LoginActivity.class)
+                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                 | Intent.FLAG_ACTIVITY_NEW_TASK);
+                         startActivity(intent);
+                       });
   }
 
 //  Permissions
@@ -201,9 +225,12 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
       File photoFile = null;
       try {
         photoFile = createImageFile();
+
       } catch (IOException ex) {
-        // Error occurred while creating the File
-//          TODO create snackbar
+        Toast.makeText(this,
+            R.string.upload_failure,
+            Toast.LENGTH_SHORT)
+             .show();
       }
       if (photoFile != null) {
         Uri photoURI = FileProvider.getUriForFile(this,
@@ -213,7 +240,10 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
       }
     }
+//    TODO Show dialog here?
   }
+
+
 
   @Override
   public void onDrawerSlide(@NonNull @NotNull View drawerView, float slideOffset) {
@@ -225,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
 //    TODO From the field containing the list of galleries add each gallery to the menu in the
 //     fallowing line
     Menu menu = navigationView.getMenu();
-    MenuItem item = menu.add(Menu.NONE,  rng.nextInt(),  Menu.NONE,"Fun New Menu");
+    MenuItem item = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Fun New Menu");
     item.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Clicker");
       drawer.closeDrawer(GravityCompat.START, true);
@@ -246,6 +276,10 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   @Override
   public void onDrawerStateChanged(int newState) {
 
+  }
+
+  private void onClick(View v) {
+    dispatchTakePictureIntent();
   }
 
 //  Sensors

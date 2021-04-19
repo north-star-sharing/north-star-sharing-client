@@ -1,16 +1,23 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import edu.cnm.deepdive.northstarsharingclient.controller.fragment.PermissionsFragmentArgs.Builder;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
+import javax.annotation.Nullable;
 
 
 public class ImageListFragment extends Fragment {
 
   private FragmentImageListBinding binding;
+  private AlertDialog dialog;
+
   public ImageListFragment() {
     // Required empty public constructor
   }
@@ -26,10 +33,17 @@ public class ImageListFragment extends Fragment {
 
   }
 
+//  public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+//    binding = FragmentImageListBinding.inflate(LayoutInflater.from(getContext()), null, false);
+//    dialog = new Builder(AlertDialog)
+//        .set
+//  }
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentImageListBinding.inflate(inflater, container, false);
+//    binding.toCamera.setOnClickListener((click) -> dialog);
     return binding.getRoot();
   }
 }

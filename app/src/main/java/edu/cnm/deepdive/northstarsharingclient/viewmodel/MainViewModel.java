@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.northstarsharingclient.viewmodel;
 
 import android.app.Application;
+import android.net.Uri;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -68,4 +69,26 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     this.throwable.postValue(throwable);
   }
 
+  public void store(Uri uri, String title, String description) {
+    throwable.postValue(null);
+    pendingTask.add(
+        imageRepository
+            .add(uri, title, description)
+            .subscribe(
+                (image) -> loadImages(), // TODO explore updating list in place without refreshing.
+                this::postThrowable
+            )
+    );
+  }
+
+  public void loadImages() {
+    throwable.postValue(null);
+    pendingTask.add(
+        imageRepository.getAll()
+                       .subscribe(
+                           imageList::postValue,
+                           throwable::postValue
+                       )
+    );
+  }
 }
