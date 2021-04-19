@@ -24,6 +24,7 @@ public interface NorthStarSharingWebServiceProxy {
   Single<User> getProfile(@Header("Authorization") String bearerToken);
 
 
+
   class InstanceHolder {
     private static final NorthStarSharingWebServiceProxy INSTANCE;
 
