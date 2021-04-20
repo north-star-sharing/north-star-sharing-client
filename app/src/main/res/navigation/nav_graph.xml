@@ -74,9 +74,9 @@
       android:name="gallery_id"
       app:argType="long"/>
 
-    <argument
-      android:name="description"
-      app:argType="String"/>
+<!--    <argument-->
+<!--      android:name="description"-->
+<!--      app:argType="String"/>-->
 
   </dialog>
 
@@ -100,9 +100,9 @@
       android:name="gallery_id"
       app:argType="long"/>
 
-    <argument
-      android:name="description"
-      app:argType="String"/>
+<!--    <argument-->
+<!--      android:name="description"-->
+<!--      app:argType="String"/>-->
 
   </dialog>
 
