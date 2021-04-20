@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.util.Log;
 import edu.cnm.deepdive.northstarsharingclient.model.Image;
+import edu.cnm.deepdive.northstarsharingclient.model.User;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 import edu.cnm.deepdive.northstarsharingclient.service.NorthStarSharingWebServiceProxy;
 import io.reactivex.Single;
@@ -38,7 +39,6 @@ public class ImageRepository {
 
   @SuppressWarnings("BlockingMethodInNonBlockingContext")
   public Single<Image> add(Uri uri, File file, String title, String description) {
-    File[] filesCreated = new File[1];
     return signInService
         .refreshBearerToken()
         .observeOn(Schedulers.io())
@@ -61,10 +61,10 @@ public class ImageRepository {
           }
         })
         .doFinally(() -> {
-          if (filesCreated[0] != null) {
+          if (file != null) {
             try {
               //noinspection ResultOfMethodCallIgnored
-              filesCreated[0].delete();
+              file.delete();
             } catch (Exception e) {
               Log.e(getClass().getName(), e.getMessage(), e);
             }
