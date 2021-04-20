@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private float[] floatGeoMagnetic = new float[3];
   private float[] floatRotationMatrix = new float[9];
   private float[] floatOrientation = new float[3]; //[0] = Azimuth, [1] = pitch, [2] = roll
-  private float azimuth;
-  private float pitch;
-  private float roll;
+  private double azimuth;
+  private double pitch;
+  private double roll;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         floatGeoMagnetic = event.values;
         SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic);
         SensorManager.getOrientation(floatRotationMatrix, floatOrientation);
-        azimuth = (float) (-floatOrientation[0] * 180 / 3.14159);
-        pitch = (float) (-floatOrientation[1] * 180 / 3.14159);
-        roll = (float) (-floatOrientation[2] * 180 / 3.14159);
+        azimuth = -floatOrientation[0] * 180 / Math.PI;
+        pitch =   -floatOrientation[1] * 180 / Math.PI;
+        roll =    -floatOrientation[2] * 180 / Math.PI;
       }
 
       @Override

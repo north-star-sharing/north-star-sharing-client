@@ -38,6 +38,21 @@ public class Image implements Serializable {
   private String contentType;
 
   @Expose
+  private float azimuth;
+
+  @Expose
+  private float pitch;
+
+  @Expose
+  private float roll;
+
+  @Expose
+  private double latitude;
+
+  @Expose
+  private double longitude;
+
+  @Expose
   private String href;
 
   @Expose
@@ -129,6 +144,98 @@ public class Image implements Serializable {
    */
   public void setName(String name) {
     this.name = name;
+  }
+
+  /**
+   * Returns the azimuth angle in degrees at the time the image was captured. This value represents
+   * the angle between the device's y-axis and the magnetic north pole. When facing north, this
+   * angle is 0, when facing south, this angle is π. Likewise, when facing east, this angle is π/2,
+   * and when facing west, this angle is -π/2. The range of values is -π to π.
+   */
+  public float getAzimuth() {
+    return azimuth;
+  }
+
+  /**
+   * Sets the azimuth angle in degrees at the time the image was captured. This value represents
+   * the angle between the device's y-axis and the magnetic north pole. When facing north, this
+   * angle is 0, when facing south, this angle is π. Likewise, when facing east, this angle is π/2,
+   * and when facing west, this angle is -π/2. The range of values is -π to π.
+   */
+  public void setAzimuth(float azimuth) {
+    this.azimuth = azimuth;
+  }
+
+  /**
+   * Returns the pitch angle in degrees at the time the image was captured. This value represents
+   * the angle between a plane parallel to the device's screen and a plane parallel to the ground.
+   * Assuming that the bottom edge of the device faces the user and that the screen is face-up,
+   * tilting the top edge of the device toward the ground creates a positive pitch angle. The range
+   * of values is -π to π.
+   */
+  public float getPitch() {
+    return pitch;
+  }
+
+  /**
+   * Sets the pitch angle in degrees at the time the image was captured. This value represents
+   * the angle between a plane parallel to the device's screen and a plane parallel to the ground.
+   * Assuming that the bottom edge of the device faces the user and that the screen is face-up,
+   * tilting the top edge of the device toward the ground creates a positive pitch angle. The range
+   * of values is -π to π.
+   */
+  public void setPitch(float pitch) {
+    this.pitch = pitch;
+  }
+
+  /**
+   * Returns the roll angle in degrees at the time the image was captured. This value represents the
+   * angle between a plane perpendicular to the device's screen and a plane perpendicular to the
+   * ground. Assuming that the bottom edge of the device faces the user and that the screen is
+   * face-up, tilting the left edge of the device toward the ground creates a positive roll angle.
+   * The range of values is -π/2 to π/2.
+   */
+  public float getRoll() {
+    return roll;
+  }
+
+  /**
+   * Sets the roll angle in degrees at the time the image was captured. This value represents the
+   * angle between a plane perpendicular to the device's screen and a plane perpendicular to the
+   * ground. Assuming that the bottom edge of the device faces the user and that the screen is
+   * face-up, tilting the left edge of the device toward the ground creates a positive roll angle.
+   * The range of values is -π/2 to π/2.
+   */
+  public void setRoll(float roll) {
+    this.roll = roll;
+  }
+
+  /**
+   * Returns the north/south latitude in degrees at the time the image was captured.
+   */
+  public double getLatitude() {
+    return latitude;
+  }
+
+  /**
+   * Sets the north/south latitude in degrees at the time the image was captured.
+   */
+  public void setLatitude(double latitude) {
+    this.latitude = latitude;
+  }
+
+  /**
+   * Returns the east/west longitude in degrees at the time the image was captured.
+   */
+  public double getLongitude() {
+    return longitude;
+  }
+
+  /**
+   * Sets the east/west longitude in degrees at the time the image was captured.
+   */
+  public void setLongitude(double longitude) {
+    this.longitude = longitude;
   }
 
   /**
