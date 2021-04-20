@@ -37,7 +37,7 @@ public class ImageRepository {
   }
 
   @SuppressWarnings("BlockingMethodInNonBlockingContext")
-  public Single<Image> add(Uri uri, String title, String description) {
+  public Single<Image> add(Uri uri, File file, String title, String description) {
     File[] filesCreated = new File[1];
     return signInService
         .refreshBearerToken()
@@ -48,16 +48,9 @@ public class ImageRepository {
               InputStream input = resolver.openInputStream(uri)
           ) {
             MediaType type = MediaType.parse(resolver.getType(uri));
-            int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-            cursor.moveToFirst();
-            String filename = cursor.getString(nameIndex);
-            File outputDir = context.getCacheDir();
-            File outputFile = File.createTempFile("xfer", null, outputDir);
-            filesCreated[0] = outputFile;
-            Files.copy(input, outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            RequestBody fileBody = RequestBody.create(outputFile, type);
+            RequestBody fileBody = RequestBody.create(file, type);
             MultipartBody.Part filePart =
-                MultipartBody.Part.createFormData("file", filename, fileBody);
+                MultipartBody.Part.createFormData("file", file.getName(), fileBody);
             RequestBody titlePart = RequestBody.create(title, multipartFormType);
             if (description != null) {
               RequestBody descriptionPart = RequestBody.create(description, multipartFormType);

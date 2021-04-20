@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,18 +19,24 @@ import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageDetailNewBinding;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.MainViewModel;
+import java.io.File;
+import org.jetbrains.annotations.NotNull;
 
 public class UploadPropertiesFragment extends DialogFragment implements TextWatcher {
 
   private FragmentImageDetailNewBinding binding;
   private Uri uri;
+  private File file;
   private AlertDialog dialog;
   private MainViewModel viewModel;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    uri = ImageListFragmentArgs.fromBundle(getArguments()).getImageUri();
+    UploadPropertiesFragmentArgs args = UploadPropertiesFragmentArgs.fromBundle(getArguments());
+    uri = args.getImageUri();
+    file = args.getImageFile();
+//    TODO Get other args as needed
   }
 
   @NonNull
@@ -46,6 +53,14 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
         .create();
     dialog.setOnShowListener((dlg) -> checkSubmitConditions());
     return dialog;
+  }
+
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull @NotNull LayoutInflater inflater,
+      @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+    return binding.getRoot();
   }
 
   @Override
@@ -79,7 +94,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     String description = binding.description.getText()
                                             .toString()
                                             .trim();
-    viewModel.store(uri, title, (description.isEmpty() ? null : description));
+    viewModel.store(uri, file, title, (description.isEmpty() ? null : description));
   }
 
   @Override

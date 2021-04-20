@@ -16,6 +16,7 @@ import edu.cnm.deepdive.northstarsharingclient.model.User;
 import edu.cnm.deepdive.northstarsharingclient.service.repository.ImageRepository;
 import edu.cnm.deepdive.northstarsharingclient.service.repository.UserRepository;
 import io.reactivex.disposables.CompositeDisposable;
+import java.io.File;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
@@ -69,11 +70,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     this.throwable.postValue(throwable);
   }
 
-  public void store(Uri uri, String title, String description) {
+  public void store(Uri uri, File file, String title, String description) {
     throwable.postValue(null);
     pendingTask.add(
         imageRepository
-            .add(uri, title, description)
+            .add(uri, file,title, description)
             .subscribe(
                 (image) -> loadImages(), // TODO explore updating list in place without refreshing.
                 this::postThrowable

@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -34,6 +35,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
+import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNewUpload;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
@@ -51,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
 
   static final int PERMISSIONS_REQUEST_CODE = 1515;
   static final int REQUEST_IMAGE_CAPTURE = 1414;
-  String currentPhotoPath;
+  private final List<MenuItem> dynamicItems = new LinkedList<>();
+  private final Random rng = new Random();
+  private String currentPhotoPath;
   private AppBarConfiguration appBarConfiguration;
   private NavController navController;
   private PermissionViewModel permissionViewModel;
   private NavigationView navigationView;
-  private final List<MenuItem> dynamicItems = new LinkedList<>();
-  private final Random rng = new Random();
   private DrawerLayout drawer;
 
   /* Camera orientation fields */
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private double azimuth;
   private double pitch;
   private double roll;
+  private File image;
+  private Uri uri;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +122,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic);
         SensorManager.getOrientation(floatRotationMatrix, floatOrientation);
         azimuth = -floatOrientation[0] * 180 / Math.PI;
-        pitch =   -floatOrientation[1] * 180 / Math.PI;
-        roll =    -floatOrientation[2] * 180 / Math.PI;
+        pitch = -floatOrientation[1] * 180 / Math.PI;
+        roll = -floatOrientation[2] * 180 / Math.PI;
       }
 
       @Override
@@ -159,12 +163,14 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         navController.navigate(R.id.navigation_settings);
         break;
       case R.id.sign_out:
-        GoogleSignInService.getInstance().signOut()
-            .addOnCompleteListener((ignore) -> {
-              Intent intent = new Intent(this, LoginActivity.class)
-                  .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-              startActivity(intent);
-            });
+        GoogleSignInService.getInstance()
+                           .signOut()
+                           .addOnCompleteListener((ignore) -> {
+                             Intent intent = new Intent(this, LoginActivity.class)
+                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                     | Intent.FLAG_ACTIVITY_NEW_TASK);
+                             startActivity(intent);
+                           });
         break;
       default:
         handled = super.onOptionsItemSelected(item);
@@ -240,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
     String imageFileName = "CELST_" + timeStamp + "_";
     File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-    File image = File.createTempFile(
+    image = File.createTempFile(
         imageFileName,
         ".jpg",
         storageDir
@@ -252,21 +258,30 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private void dispatchTakePictureIntent() {
     Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-      File photoFile = null;
       try {
-        photoFile = createImageFile();
+        File photoFile = createImageFile();
+        uri = FileProvider.getUriForFile(this,
+            "edu.cnm.deepdive.northstarsharingclient",
+            photoFile);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
       } catch (IOException ex) {
         // Error occurred while creating the File
         Snackbar.make(findViewById(R.id.drawer_layout), "Failed to take a picture",
-            BaseTransientBottomBar.LENGTH_INDEFINITE).show();
+            BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .show();
       }
-      if (photoFile != null) {
-        Uri photoURI = FileProvider.getUriForFile(this,
-            "edu.cnm.deepdive.northstarsharingclient",
-            photoFile);
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-      }
+    }
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+      OpenNewUpload action = MobileNavigationDirections.openNewUpload(0, 0 , "Test description");
+      action.setImageUri(uri);
+      action.setImageFile(image);
+      navController.navigate(action);
     }
   }
 

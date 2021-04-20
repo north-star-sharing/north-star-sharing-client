@@ -20,6 +20,37 @@
 
   </action>
 
+  <action
+    android:id="@+id/open_new_upload"
+    app:destination="@id/navigation_new">
+
+    <argument
+      android:name="image_id"
+      app:argType="long"/>
+
+    <argument
+      android:name="image_uri"
+      app:argType="android.net.Uri"
+      app:nullable="true"
+      android:defaultValue="@null"/>
+
+    <argument
+      android:name="image_file"
+      app:argType="java.io.File"
+      app:nullable="true"
+      android:defaultValue="@null"/>
+
+    <argument
+      android:name="gallery_id"
+      app:argType="long"/>
+
+    <argument
+      android:name="description"
+      app:argType="string"/>
+
+
+  </action>
+
   <fragment
     android:id="@+id/navigation_home"
     android:label="@string/image_list"
@@ -74,16 +105,16 @@
       android:name="gallery_id"
       app:argType="long"/>
 
-<!--    <argument-->
-<!--      android:name="description"-->
-<!--      app:argType="String"/>-->
+    <argument
+      android:name="description"
+      app:argType="string"/>
 
   </dialog>
 
   <dialog
     android:id="@+id/navigation_new"
     android:label="@string/edit_label"
-    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.UploadPropertiesFragment"
     tools:layout="@layout/fragment_image_detail_new">
 
     <argument
@@ -97,12 +128,18 @@
       android:defaultValue="@null"/>
 
     <argument
+      android:name="image_file"
+      app:argType="java.io.File"
+      app:nullable="true"
+      android:defaultValue="@null"/>
+
+    <argument
       android:name="gallery_id"
       app:argType="long"/>
 
-<!--    <argument-->
-<!--      android:name="description"-->
-<!--      app:argType="String"/>-->
+    <argument
+      android:name="description"
+      app:argType="string"/>
 
   </dialog>
 
