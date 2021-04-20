@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     checkPermissions();
     FloatingActionButton camera = findViewById(R.id.to_camera);
     camera.setOnClickListener((v) -> dispatchTakePictureIntent());
+//    TODO Add dialog for saving
     drawer = findViewById(R.id.drawer_layout);
     drawer.setDrawerListener(this);
     navigationView = findViewById(R.id.nav_view);

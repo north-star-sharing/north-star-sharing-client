@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/mobile_navigation"
+  app:startDestination="@+id/navigation_home">
+
+  <action
+    android:id="@+id/explain_permissions"
+    app:destination="@id/navigation_permission_explanation">
+
+    <argument
+      android:name="permissions_to_explain"
+      app:argType="string[]"/>
+
+    <argument
+      android:name="permissions_to_request"
+      app:argType="string[]"/>
+
+  </action>
+
+  <fragment
+    android:id="@+id/navigation_home"
+    android:label="@string/image_list"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
+    tools:layout="@layout/fragment_image_list">
+
+    <!--  <action-->
+    <!--    android:id="@+id/open_camera"-->
+    <!--    app:destination="@id/open_camera">-->
+
+    <!--    <argument-->
+    <!--      android:name="celestial_coordinates"-->
+    <!--      app:argType="String"/>-->
+
+    <!--    <argument-->
+    <!--      android:name="celestial_coordinates"-->
+    <!--      app:argType="String"/>-->
+
+    <!--  </action>-->
+
+  </fragment>
+
+  <!--  <fragment-->
+  <!--    android:id="@+id/fragment_camera"-->
+  <!--    android:label="@string/navigation_camera"-->
+  <!--    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.CameraFragment"-->
+  <!--    tools:layout="@layout/fragment_camera"/>-->
+
+  <fragment
+    android:id="@+id/navigation_settings"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.SettingsFragment"
+    android:label="@string/settings_title"
+    tools:layout="@xml/preferences"/>
+
+  <dialog
+    android:id="@+id/navigation_edit"
+    android:label="@string/edit_label"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
+    tools:layout="@layout/fragment_image_detail_edit">
+
+    <argument
+      android:name="image_id"
+      app:argType="long"/>
+
+    <argument
+      android:name="image_uri"
+      app:argType="android.net.Uri"
+      app:nullable="true"
+      android:defaultValue="@null"/>
+
+    <argument
+      android:name="gallery_id"
+      app:argType="long"/>
+
+    <argument
+      android:name="description"
+      app:argType="String"/>
+
+  </dialog>
+
+  <dialog
+    android:id="@+id/navigation_new"
+    android:label="@string/edit_label"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
+    tools:layout="@layout/fragment_image_detail_new">
+
+    <argument
+      android:name="image_id"
+      app:argType="long"/>
+
+    <argument
+      android:name="image_uri"
+      app:argType="android.net.Uri"
+      app:nullable="true"
+      android:defaultValue="@null"/>
+
+    <argument
+      android:name="gallery_id"
+      app:argType="long"/>
+
+    <argument
+      android:name="description"
+      app:argType="String"/>
+
+  </dialog>
+
+  <dialog
+    android:id="@+id/navigation_permission_explanation"
+    android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.PermissionsFragment">
+    <argument
+      android:name="permissions_to_explain"
+      app:argType="string[]"/>
+    <argument
+      android:name="permissions_to_request"
+      app:argType="string[]"/>
+  </dialog>
+
+</navigation>

@@ -29,7 +29,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-//    uri = A.fromBundle(getArguments()).getContentUri;
+    uri = ImageListFragmentArgs.fromBundle(getArguments()).getImageUri();
   }
 
   @NonNull
