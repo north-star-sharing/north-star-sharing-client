@@ -62,7 +62,7 @@ public interface NorthStarSharingWebServiceProxy {
           .excludeFieldsWithoutExposeAnnotation()
           .create();
       HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-      interceptor.setLevel(BuildConfig.DEBUG ? Level.BODY : Level.NONE);
+      interceptor.setLevel(BuildConfig.DEBUG ? Level.HEADERS : Level.NONE);
       OkHttpClient okClient = new OkHttpClient
           .Builder()
           .addInterceptor(interceptor)

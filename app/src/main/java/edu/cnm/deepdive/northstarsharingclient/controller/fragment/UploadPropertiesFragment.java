@@ -27,6 +27,9 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   private FragmentImageDetailNewBinding binding;
   private Uri uri;
   private File file;
+  private String title;
+  private String gallery;
+  private String description;
   private AlertDialog dialog;
   private MainViewModel viewModel;
 
@@ -36,6 +39,8 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     UploadPropertiesFragmentArgs args = UploadPropertiesFragmentArgs.fromBundle(getArguments());
     uri = args.getImageUri();
     file = args.getImageFile();
+    description = args.getDescription();
+    title = args.getImageTitle();
 //    TODO Get other args as needed
   }
 

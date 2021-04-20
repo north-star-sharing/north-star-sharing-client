@@ -41,6 +41,10 @@
       android:defaultValue="@null"/>
 
     <argument
+      android:name="image_title"
+      app:argType="string"/>
+
+    <argument
       android:name="gallery_id"
       app:argType="long"/>
 
@@ -134,12 +138,17 @@
       android:defaultValue="@null"/>
 
     <argument
-      android:name="gallery_id"
-      app:argType="long"/>
+      android:name="image_title"
+      app:argType="string"/>
 
     <argument
       android:name="description"
       app:argType="string"/>
+
+    <argument
+      android:name="gallery_id"
+      app:argType="long"/>
+
 
   </dialog>
 
