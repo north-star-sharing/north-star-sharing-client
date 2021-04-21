@@ -39,6 +39,7 @@ import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
 import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNewUpload;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
+import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private ImageViewModel imageViewModel;
   private NavigationView navigationView;
   private DrawerLayout drawer;
+  private File image;
+  private Uri uri;
 
   /* Camera orientation fields */
   private FragmentImageListBinding binding;
@@ -79,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private double azimuth;
   private double pitch;
   private double roll;
-  private File image;
-  private Uri uri;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

@@ -85,6 +85,16 @@
       app:argType="string"/>
 
 
+    <action
+      android:id="@+id/action_navigation_home_self"
+      app:destination="@id/navigation_home">
+
+    <argument
+      android:name="gallery_images"
+      app:argType="string"/>
+
+    </action>
+
   </fragment>
 
   <!--  <fragment-->
