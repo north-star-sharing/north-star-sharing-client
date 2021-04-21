@@ -19,7 +19,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.R;
-import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageDetailNewBinding;
+import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentUploadPropertiesDialogBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class UploadPropertiesFragment extends DialogFragment implements TextWatcher {
 
-  private FragmentImageDetailNewBinding binding;
+  private FragmentUploadPropertiesDialogBinding binding;
   private Uri uri;
   private File file;
   private String title;
@@ -56,7 +56,8 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   @Override
   public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
     binding =
-        FragmentImageDetailNewBinding.inflate(LayoutInflater.from(getContext()), null, false);
+        FragmentUploadPropertiesDialogBinding.inflate(LayoutInflater.from(getContext()), null,
+            false);
     dialog = new Builder(getContext())
         .setIcon(R.drawable.ic_add)
         .setTitle(R.string.store_dialog)

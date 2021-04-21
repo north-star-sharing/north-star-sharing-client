@@ -48,7 +48,7 @@
     app:layout_constraintStart_toEndOf="@id/thumbnail_image"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_weight="3"
-    android:text="@string/gallery_title"
+    android:text="@string/description_title"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
