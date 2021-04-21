@@ -18,6 +18,7 @@ import edu.cnm.deepdive.northstarsharingclient.service.repository.UserRepository
 import io.reactivex.disposables.CompositeDisposable;
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
 
@@ -70,7 +71,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     this.throwable.postValue(throwable);
   }
 
-  public void store(Uri uri, File file, String title, String description) {
+  public void store(Uri uri, File file, String title, String description, UUID galleryId) {
     throwable.postValue(null);
     pendingTask.add(
         imageRepository

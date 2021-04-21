@@ -30,7 +30,7 @@ public class GalleryRepository {
   public Single<List<Gallery>> getGalleryList() {
     return signInService.refreshBearerToken()
                         .observeOn(Schedulers.io())
-                        .flatMap(serviceProxy::getGalleries);
+                        .flatMap(serviceProxy::getGalleryList);
   }
 }
 

@@ -12,6 +12,7 @@ import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
 import edu.cnm.deepdive.northstarsharingclient.service.repository.GalleryRepository;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
+import java.util.UUID;
 
 public class GalleryViewModel extends AndroidViewModel implements LifecycleObserver {
 
@@ -32,6 +33,7 @@ public class GalleryViewModel extends AndroidViewModel implements LifecycleObser
     loadGalleryList();
   }
 
+
   public LiveData<Gallery> getGallery() {
     return gallery;
   }
@@ -42,6 +44,18 @@ public class GalleryViewModel extends AndroidViewModel implements LifecycleObser
 
   public LiveData<Throwable> getThrowable() {
     return throwable;
+  }
+
+  public void getGallery(UUID id) {
+    throwable.postValue(null);
+    pending.add(
+        galleryRepository
+            .getGallery(id)
+            .subscribe(
+                gallery::postValue,
+                throwable::postValue
+            )
+    );
   }
 
   public void loadGalleryList() {

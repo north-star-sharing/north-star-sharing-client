@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +20,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageDetailNewBinding;
+import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.MainViewModel;
 import java.io.File;
+import java.util.List;
+import java.util.UUID;
 import org.jetbrains.annotations.NotNull;
 
 public class UploadPropertiesFragment extends DialogFragment implements TextWatcher {
@@ -32,6 +38,8 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   private String description;
   private AlertDialog dialog;
   private MainViewModel viewModel;
+  private GalleryViewModel galleryViewModel;
+  private List<Gallery> galleryList;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,7 +64,11 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
         .setNeutralButton(android.R.string.cancel, (dlg, which) -> {/* No need to do anything. */})
         .setPositiveButton(android.R.string.ok, (dlg, which) -> upload())
         .create();
-    dialog.setOnShowListener((dlg) -> checkSubmitConditions());
+    dialog.setOnShowListener((dlg) -> {
+      binding.galleryTitle.addTextChangedListener(this);
+      binding.imageTitle.addTextChangedListener(this);
+      checkSubmitConditions();
+    });
     return dialog;
   }
 
@@ -79,6 +91,18 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     //noinspection ConstantConditions
     viewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
     // TODO Observe as necessary, in the ImageListFragment
+    galleryViewModel = new ViewModelProvider(getActivity()).get(GalleryViewModel.class);
+    galleryViewModel
+        .getGalleryList()
+        .observe(getViewLifecycleOwner(),
+            (galleryList) -> {
+              this.galleryList = galleryList;
+              AutoCompleteTextView simpleAutoText = binding.galleryTitle;
+              ArrayAdapter<Gallery> adapter = new ArrayAdapter<>(
+                  getContext(), android.R.layout.simple_list_item_1, galleryList);
+              simpleAutoText.setThreshold(1);
+              simpleAutoText.setAdapter(adapter);
+            });
   }
 
 
@@ -99,7 +123,16 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     String description = binding.description.getText()
                                             .toString()
                                             .trim();
-    viewModel.store(uri, file, title, (description.isEmpty() ? null : description));
+    String galleryTitle = binding.galleryTitle.getText()
+                                              .toString()
+                                              .trim();
+    UUID galleryId = null;
+    for (Gallery g : galleryList) {
+      if (g != null && galleryTitle.equals(g.getTitle())) {
+        galleryId = g.getId();
+      }
+    }
+    viewModel.store(uri, file, title, (description.isEmpty() ? null : description), galleryId);
   }
 
   @Override
