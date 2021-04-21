@@ -34,19 +34,21 @@ public interface NorthStarSharingWebServiceProxy {
   Single<User> getProfile(@Header("Authorization") String bearerToken);
 
   @Multipart
-  @POST("images")
-  Single<Image> post(
-      @Header("Authorization") String bearerToken,
-      @Part MultipartBody.Part file,
-      @Part("title") RequestBody title);
-
-  @Multipart
-  @POST("images")
+  @POST("galleries/{id}/images")
   Single<Image> post(
       @Header("Authorization") String bearerToken,
       @Part MultipartBody.Part file,
       @Part("title") RequestBody title,
-      @Part("description") RequestBody description);
+      @Path("id") UUID galleryId);
+
+  @Multipart
+  @POST("galleries/{id}/images")
+  Single<Image> post(
+      @Header("Authorization") String bearerToken,
+      @Part MultipartBody.Part file,
+      @Part("title") RequestBody title,
+      @Part("description") RequestBody description,
+      @Path("id") UUID galleryId);
 
   @GET("images")
   Single<List<Image>> getAllImages(@Header("Authorization") String bearerToken);

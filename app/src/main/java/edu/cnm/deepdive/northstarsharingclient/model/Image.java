@@ -58,6 +58,9 @@ public class Image implements Serializable {
   @Expose
   private User user;
 
+  @Expose
+  private Gallery gallery;
+
   // Getters and Setters
 
   /**
@@ -250,6 +253,14 @@ public class Image implements Serializable {
    */
   public void setContentType(String contentType) {
     this.contentType = contentType;
+  }
+
+  public Gallery getGallery() {
+    return gallery;
+  }
+
+  public void setGallery(Gallery gallery) {
+    this.gallery = gallery;
   }
 
   /**
