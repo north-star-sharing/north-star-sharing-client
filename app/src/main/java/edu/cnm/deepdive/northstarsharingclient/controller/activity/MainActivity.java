@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +40,8 @@ import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNe
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.PermissionViewModel;
 import java.io.File;
 import java.io.IOException;
@@ -59,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private AppBarConfiguration appBarConfiguration;
   private NavController navController;
   private PermissionViewModel permissionViewModel;
+  private GalleryViewModel galleryViewModel;
+  private ImageViewModel imageViewModel;
   private NavigationView navigationView;
   private DrawerLayout drawer;
 
@@ -82,27 +87,20 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     binding = FragmentImageListBinding.inflate(getLayoutInflater());
+    // Establish app permissions
     permissionViewModel = new ViewModelProvider(this).get(PermissionViewModel.class);
     checkPermissions();
-    FloatingActionButton camera = findViewById(R.id.to_camera);
-    camera.setOnClickListener((v) -> dispatchTakePictureIntent());
-//    TODO Add dialog for saving
-    drawer = findViewById(R.id.drawer_layout);
-    drawer.setDrawerListener(this);
-    navigationView = findViewById(R.id.nav_view);
-    appBarConfiguration = new AppBarConfiguration
-        .Builder(
-        R.id.navigation_home)
-        .setDrawerLayout(drawer)
-        .build();
-    navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-    NavigationUI.setupWithNavController(navigationView, navController);
-
+    setUpImageViewModel();
+    setUpGalleryViewModel();
+    setUpCamera();
+    setUpNavigation();
+    // Get access to the sensor manager for establishing the camera's position/angles.
     sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+    // TODO Move sensor stuff into onActivityResult() so we can capture the lat/lon coordinates &
+    //      camera angle of the picture.
     sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-
     SensorEventListener sensorEventListenerAccelerometer = new SensorEventListener() {
       @Override
       public void onSensorChanged(SensorEvent event) {
@@ -114,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
       @Override
       public void onAccuracyChanged(Sensor sensor, int accuracy) { /* Do nothing. */ }
     };
-
     SensorEventListener sensorEventListenerMagneticField = new SensorEventListener() {
       @Override
       public void onSensorChanged(SensorEvent event) {
@@ -127,18 +124,51 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
       }
 
       @Override
-      public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        /* Do nothing. */
-      }
+      public void onAccuracyChanged(Sensor sensor, int accuracy) { /* Do nothing. */ }
     };
-
     sensorManager.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer,
         SensorManager.SENSOR_DELAY_NORMAL);
     sensorManager.registerListener(sensorEventListenerMagneticField, sensorMagneticField,
         SensorManager.SENSOR_DELAY_NORMAL);
+  }
 
-//    TODO Connect to a viewModel and observe the list of galleries storing them in a field
+  private void setUpCamera() {
+    FloatingActionButton camera = findViewById(R.id.to_camera);
+    camera.setOnClickListener((v) -> dispatchTakePictureIntent());
+  }
 
+  private void setUpNavigation() {
+    drawer = findViewById(R.id.drawer_layout);
+    drawer.setDrawerListener(this);
+    navigationView = findViewById(R.id.nav_view);
+    appBarConfiguration = new AppBarConfiguration
+        .Builder(
+        R.id.navigation_home)
+        .setDrawerLayout(drawer)
+        .build();
+    navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    NavigationUI.setupWithNavController(navigationView, navController);
+  }
+
+  private void setUpGalleryViewModel() {
+    galleryViewModel = new ViewModelProvider(this).get(GalleryViewModel.class);
+    getLifecycle().addObserver(galleryViewModel);
+    galleryViewModel.getThrowable().observe(this, (throwable) -> {
+      if (throwable != null) {
+        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+      }
+    });
+  }
+
+  private void setUpImageViewModel() {
+    imageViewModel = new ViewModelProvider(this).get(ImageViewModel.class);
+    getLifecycle().addObserver(imageViewModel);
+    imageViewModel.getThrowable().observe(this, (throwable) -> {
+      if (throwable != null) {
+        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+      }
+    });
   }
 
   @Override
@@ -240,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
 
 
   //  Camera
-//   TODO move to repository
+  //   TODO move to repository
   private File createImageFile() throws IOException {
     // Create an image file name
     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
