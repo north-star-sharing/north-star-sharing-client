@@ -30,7 +30,7 @@
     android:layout_marginTop="@dimen/static_spacing"
     android:gravity="start"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/thumbnail_gallery"
+    app:layout_constraintBottom_toTopOf="@id/thumbnail_description"
     app:layout_constraintStart_toEndOf="@id/thumbnail_image"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_weight="3"
@@ -38,7 +38,7 @@
     />
 
   <TextView
-    android:id="@+id/thumbnail_gallery"
+    android:id="@+id/thumbnail_description"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/static_spacing"
