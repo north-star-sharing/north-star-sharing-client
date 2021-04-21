@@ -48,5 +48,14 @@
   <string name="store_dialog">Save Your Image</string>
   <string name="upload_failure">Sorry something went wrong, please try again</string>
   <string name="gallery_name">Gallery Name</string>
+  <string name="image_id">Image Id</string>
+  <string name="file_type">File Type</string>
+  <string name="date_created">Date Created</string>
+  <string name="file_url">File Path</string>
+  <string name="longitude">Longitude</string>
+  <string name="latitude">Latitude</string>
+  <string name="azimuth">Azimuth</string>
+  <string name="pitch">Pitch</string>
+  <string name="roll">Roll</string>
 
 </resources>
