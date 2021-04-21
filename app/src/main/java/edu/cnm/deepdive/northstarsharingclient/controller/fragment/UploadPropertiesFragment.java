@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentUploadPropertiesDialogBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
+import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import java.io.File;
@@ -125,6 +126,12 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     String description = binding.description.getText()
                                             .toString()
                                             .trim();
+    Image image = imageViewModel.getImage().getValue();
+    String azimuth = Float.toString(imageViewModel.getImage().getValue().getAzimuth());
+    String pitch = Float.toString(imageViewModel.getImage().getValue().getPitch());
+    String roll = Float.toString(imageViewModel.getImage().getValue().getRoll());
+    String latitude = Double.toString(imageViewModel.getImage().getValue().getLatitude());
+    String longitude = Double.toString(imageViewModel.getImage().getValue().getLongitude());
     String galleryTitle = binding.galleryTitle.getText()
                                               .toString()
                                               .trim();
@@ -134,7 +141,8 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
         galleryId = g.getId();
       }
     }
-    imageViewModel.store(uri, file, title, (description.isEmpty() ? null : description), galleryId);
+    imageViewModel.store(uri, file, title, (description.isEmpty() ? null : description), azimuth,
+        pitch, roll, latitude, longitude, galleryId);
   }
 
   @Override

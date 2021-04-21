@@ -31,7 +31,6 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pendingTask;
 
-
   public ImageViewModel(
       @NonNull Application application) {
     super(application);
@@ -72,11 +71,12 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
     this.throwable.postValue(throwable);
   }
 
-  public void store(Uri uri, File file, String title, String description, UUID galleryId) {
+  public void store(Uri uri, File file, String title, String description, String azimuth, String
+      pitch, String roll, String latitude, String longitude, UUID galleryId) {
     throwable.postValue(null);
     pendingTask.add(
         imageRepository
-            .add(uri, file,title, description, galleryId)
+            .add(uri, file,title, description, azimuth, pitch, roll, latitude, longitude, galleryId)
             .subscribe(
                 (image) -> loadImages(), // TODO explore updating list in place without refreshing.
                 this::postThrowable

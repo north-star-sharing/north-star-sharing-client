@@ -39,6 +39,11 @@ public interface NorthStarSharingWebServiceProxy {
       @Header("Authorization") String bearerToken,
       @Part MultipartBody.Part file,
       @Part("title") RequestBody title,
+      @Part("azimuth") RequestBody azimuth,
+      @Part("pitch") RequestBody pitch,
+      @Part("roll") RequestBody roll,
+      @Part("latitude") RequestBody latitude,
+      @Part("longitude") RequestBody longitude,
       @Path("id") UUID id);
 
   @Multipart
@@ -48,6 +53,11 @@ public interface NorthStarSharingWebServiceProxy {
       @Part MultipartBody.Part file,
       @Part("title") RequestBody title,
       @Part("description") RequestBody description,
+      @Part("azimuth") RequestBody azimuth,
+      @Part("pitch") RequestBody pitch,
+      @Part("roll") RequestBody roll,
+      @Part("latitude") RequestBody latitude,
+      @Part("longitude") RequestBody longitude,
       @Path("id") UUID id);
 
   @GET("images")
