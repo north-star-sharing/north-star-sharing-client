@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -34,7 +35,7 @@ public class ImageRepository {
   }
 
   @SuppressWarnings("BlockingMethodInNonBlockingContext")
-  public Single<Image> add(Uri uri, File file, String title, String description) {
+  public Single<Image> add(Uri uri, File file, String title, String description, UUID galleryId) {
     return signInService
         .refreshBearerToken()
         .observeOn(Schedulers.io())
@@ -50,9 +51,9 @@ public class ImageRepository {
             RequestBody titlePart = RequestBody.create(title, multipartFormType);
             if (description != null) {
               RequestBody descriptionPart = RequestBody.create(description, multipartFormType);
-              return serviceProxy.post(token, filePart, titlePart, descriptionPart);
+              return serviceProxy.post(token, filePart, titlePart, descriptionPart, galleryId);
             } else {
-              return serviceProxy.post(token, filePart, titlePart);
+              return serviceProxy.post(token, filePart, titlePart, galleryId);
             }
           }
         })

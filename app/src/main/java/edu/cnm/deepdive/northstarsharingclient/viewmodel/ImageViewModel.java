@@ -75,7 +75,7 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
     throwable.postValue(null);
     pendingTask.add(
         imageRepository
-            .add(uri, file,title, description)
+            .add(uri, file,title, description, galleryId)
             .subscribe(
                 (image) -> loadImages(), // TODO explore updating list in place without refreshing.
                 this::postThrowable

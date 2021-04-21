@@ -37,7 +37,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   private Gallery gallery;
   private String description;
   private AlertDialog dialog;
-  private ImageViewModel viewModel;
+  private ImageViewModel imageViewModel;
   private GalleryViewModel galleryViewModel;
   private List<Gallery> galleryList;
 
@@ -90,7 +90,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
         .into(binding.image);
     binding.imageTitle.addTextChangedListener(this);
     //noinspection ConstantConditions
-    viewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
+    imageViewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
     // TODO Observe as necessary, in the ImageListFragment
     // Populate the spinner
     galleryViewModel = new ViewModelProvider(getActivity()).get(GalleryViewModel.class);
@@ -134,7 +134,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
         galleryId = g.getId();
       }
     }
-    viewModel.store(uri, file, title, (description.isEmpty() ? null : description), galleryId);
+    imageViewModel.store(uri, file, title, (description.isEmpty() ? null : description), galleryId);
   }
 
   @Override
