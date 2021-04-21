@@ -22,7 +22,7 @@ import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageDetailNewBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
-import edu.cnm.deepdive.northstarsharingclient.viewmodel.MainViewModel;
+import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -37,7 +37,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   private String gallery;
   private String description;
   private AlertDialog dialog;
-  private MainViewModel viewModel;
+  private ImageViewModel viewModel;
   private GalleryViewModel galleryViewModel;
   private List<Gallery> galleryList;
 
@@ -89,8 +89,9 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
         .into(binding.image);
     binding.imageTitle.addTextChangedListener(this);
     //noinspection ConstantConditions
-    viewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+    viewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
     // TODO Observe as necessary, in the ImageListFragment
+    // Populate the spinner
     galleryViewModel = new ViewModelProvider(getActivity()).get(GalleryViewModel.class);
     galleryViewModel
         .getGalleryList()

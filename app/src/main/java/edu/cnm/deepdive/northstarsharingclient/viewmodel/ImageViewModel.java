@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
+public class ImageViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final UserRepository userRepository;
   private final ImageRepository imageRepository;
@@ -32,7 +32,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
   private final CompositeDisposable pendingTask;
 
 
-  public MainViewModel(
+  public ImageViewModel(
       @NonNull Application application) {
     super(application);
     userRepository = new UserRepository(application);
