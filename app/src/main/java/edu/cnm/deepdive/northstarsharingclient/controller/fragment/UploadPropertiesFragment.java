@@ -34,7 +34,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   private Uri uri;
   private File file;
   private String title;
-  private String gallery;
+  private Gallery gallery;
   private String description;
   private AlertDialog dialog;
   private ImageViewModel viewModel;
