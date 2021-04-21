@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.fragment;
 
 import android.os.Bundle;
+import android.provider.MediaStore.Images;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBind
 import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
+import java.util.List;
 import java.util.UUID;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +30,7 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
   private ImageViewModel imageViewModel;
   private UUID galleryId;
   private AlertDialog dialog;
+  private List<Images> images;
 
   public static ImageListFragment newInstance() {
     ImageListFragment fragment = new ImageListFragment();
@@ -55,9 +58,10 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
   }
 
   @Override
-  public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     imageViewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
+    imageViewModel.loadImages();
     imageViewModel.getImageList()
         .observe(getViewLifecycleOwner(), (imageList) -> {
           if (imageList != null) {
