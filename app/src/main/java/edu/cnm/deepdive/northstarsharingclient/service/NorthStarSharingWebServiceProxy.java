@@ -39,7 +39,7 @@ public interface NorthStarSharingWebServiceProxy {
       @Header("Authorization") String bearerToken,
       @Part MultipartBody.Part file,
       @Part("title") RequestBody title,
-      @Path("id") UUID galleryId);
+      @Path("id") UUID id);
 
   @Multipart
   @POST("galleries/{id}/images")
@@ -48,7 +48,7 @@ public interface NorthStarSharingWebServiceProxy {
       @Part MultipartBody.Part file,
       @Part("title") RequestBody title,
       @Part("description") RequestBody description,
-      @Path("id") UUID galleryId);
+      @Path("id") UUID id);
 
   @GET("images")
   Single<List<Image>> getAllImages(@Header("Authorization") String bearerToken);

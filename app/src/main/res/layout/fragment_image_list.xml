@@ -46,6 +46,7 @@
     android:layout_height="0dp"
     android:orientation="vertical"
     android:padding="@dimen/static_spacing"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     app:layout_constraintTop_toBottomOf="@id/display_gallery"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"

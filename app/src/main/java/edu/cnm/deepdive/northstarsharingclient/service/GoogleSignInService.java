@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +23,8 @@ public class GoogleSignInService {
 
   private GoogleSignInAccount account;
 
+  private final MutableLiveData<String> bearerToken;
+
   private static final String BEARER_TOKEN_FORMAT = "Bearer %s";
 
   private GoogleSignInService() {
@@ -31,8 +35,8 @@ public class GoogleSignInService {
         .requestId()
         .requestIdToken(BuildConfig.CLIENT_ID)
         .build();
-
     client = GoogleSignIn.getClient(context, options);
+    bearerToken = new MutableLiveData<>();
   }
 
   public static void setContext(Application context) {
@@ -45,6 +49,10 @@ public class GoogleSignInService {
 
   public GoogleSignInAccount getAccount() {
     return account;
+  }
+
+  public LiveData<String> getBearerToken() {
+    return bearerToken;
   }
 
   private void setAccount(GoogleSignInAccount account) {

@@ -15,7 +15,7 @@
     android:layout_margin="@dimen/half_static_spacing"
     android:layout_marginTop="@dimen/half_static_spacing"
     android:adjustViewBounds="true"
-    android:scaleType="center"
+    android:scaleType="fitCenter"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toStartOf="@id/thumbnail_title"

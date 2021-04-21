@@ -18,13 +18,13 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
 
   private final Context context;
   private final LayoutInflater inflater;
-  private final List<Image> images;
+  private final List<Image> imageList;
   private final OnImageClickHelper onImageClickHelper;
 
-  public ImageAdapter(Context context, List<Image> images, OnImageClickHelper onImageClickHelper) {
+  public ImageAdapter(Context context, List<Image> imageList, OnImageClickHelper onImageClickHelper) {
     this.context = context;
     this.inflater = LayoutInflater.from(context);
-    this.images = images;
+    this.imageList = imageList;
     this.onImageClickHelper = onImageClickHelper;
   }
 
@@ -42,7 +42,7 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
 
   @Override
   public int getItemCount() {
-    return images.size();
+    return imageList.size();
   }
 
   public class Holder extends RecyclerView.ViewHolder implements OnClickListener {
@@ -59,19 +59,18 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
     }
 
     private void bind(int position) {
-      image = images.get(position);
+      image = imageList.get(position);
       if (image.getHref() != null) {
         Picasso.get().load(String.format(BuildConfig.CONTENT_FORMAT, image.getHref()))
             .into(binding.thumbnailImage);
       }
       binding.thumbnailTitle.setText(image.getTitle());
       binding.thumbnailDescription.setText(image.getDescription());
-      binding.getRoot().setOnClickListener(this); //makes the RecyclerView item clickable
     }
 
     @Override
     public void onClick(View view) {
-      onImageClickHelper.onImageClick(images.get(getAdapterPosition()), getAdapterPosition());
+      onImageClickHelper.onImageClick(imageList.get(getAdapterPosition()), getAdapterPosition());
     }
 
   }

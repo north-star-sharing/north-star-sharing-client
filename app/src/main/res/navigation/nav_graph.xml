@@ -61,6 +61,7 @@
     android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
     tools:layout="@layout/fragment_image_list">
 
+
     <!--  <action-->
     <!--    android:id="@+id/open_camera"-->
     <!--    app:destination="@id/open_camera">-->
@@ -74,6 +75,15 @@
     <!--      app:argType="String"/>-->
 
     <!--  </action>-->
+
+    <action
+      android:id="@+id/action_navigation_home_self"
+      app:destination="@id/navigation_home"/>
+
+    <argument
+      android:name="gallery_images"
+      app:argType="string"/>
+
 
   </fragment>
 
@@ -94,6 +104,8 @@
     android:label="@string/edit_label"
     android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.ImageListFragment"
     tools:layout="@layout/fragment_image_detail_edit">
+
+<!--    TODO Add the rest of the args from nav NEW-->
 
     <argument
       android:name="image_id"
