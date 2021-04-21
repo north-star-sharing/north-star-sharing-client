@@ -29,10 +29,6 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
   private UUID galleryId;
   private AlertDialog dialog;
 
-  public ImageListFragment() {
-    // Required empty public constructor
-  }
-
   public static ImageListFragment newInstance() {
     ImageListFragment fragment = new ImageListFragment();
     return fragment;
@@ -63,12 +59,12 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
     super.onViewCreated(view, savedInstanceState);
     imageViewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
     imageViewModel.getImageList()
-                  .observe(getViewLifecycleOwner(), (imageList) -> {
-                    if (imageList != null) {
-                      binding.homeScreenImageList.setAdapter(
-                          new ImageAdapter(getContext(), imageList, this));
-                    }
-                  });
+        .observe(getViewLifecycleOwner(), (imageList) -> {
+          if (imageList != null) {
+            binding.homeScreenImageList.setAdapter(
+                new ImageAdapter(getContext(), imageList, this));
+          }
+        });
     galleryViewModel = new ViewModelProvider(getActivity()).get(GalleryViewModel.class);
 //    if (getArguments() != null) {
 //      ImageListFragmentArgs args = ImageListFragmentArgs.fromBundle(getArguments());
@@ -77,14 +73,14 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
 //    }
 //    galleryViewModel.getGallery(galleryId);
 
-    galleryViewModel.getThrowable()
-                    .observe(getViewLifecycleOwner(), (throwable) -> {
-                      if (throwable != null) {
-                        Snackbar.make(binding.getRoot(), throwable.getMessage(),
-                            BaseTransientBottomBar.LENGTH_INDEFINITE)
-                                .show();
-                      }
-                    });
+    imageViewModel.getThrowable()
+        .observe(getViewLifecycleOwner(), (throwable) -> {
+          if (throwable != null) {
+            Snackbar.make(binding.getRoot(), throwable.getMessage(),
+                BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .show();
+          }
+        });
   }
 
   @Override

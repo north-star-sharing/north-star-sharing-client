@@ -21,7 +21,8 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
   private final List<Image> imageList;
   private final OnImageClickHelper onImageClickHelper;
 
-  public ImageAdapter(Context context, List<Image> imageList, OnImageClickHelper onImageClickHelper) {
+  public ImageAdapter(Context context, List<Image> imageList,
+      OnImageClickHelper onImageClickHelper) {
     this.context = context;
     this.inflater = LayoutInflater.from(context);
     this.imageList = imageList;

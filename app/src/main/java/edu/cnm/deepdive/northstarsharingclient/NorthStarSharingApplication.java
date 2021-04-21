@@ -4,8 +4,8 @@ import android.app.Application;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
-import okhttp3.OkHttpClient;
 import okhttp3.Interceptor.Chain;
+import okhttp3.OkHttpClient;
 
 public class NorthStarSharingApplication extends Application {
 
@@ -23,13 +23,14 @@ public class NorthStarSharingApplication extends Application {
     GoogleSignInService.getInstance().getBearerToken().observeForever((bearerToken) ->
         this.bearerToken = bearerToken);
   }
+
   private void setupPicasso() {
     OkHttpClient client = new OkHttpClient.Builder()
         .addInterceptor((Chain chain) ->
             chain.proceed(
                 chain.request().newBuilder()
-                     .addHeader("Authorization", bearerToken)
-                     .build()
+                    .addHeader("Authorization", bearerToken)
+                    .build()
             )
         )
         .build();
