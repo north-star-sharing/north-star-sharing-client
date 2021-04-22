@@ -49,6 +49,10 @@
       app:argType="long"/>
 
     <argument
+      android:name="gallery_title"
+      app:argType="string"/>
+
+    <argument
       android:name="description"
       app:argType="string"/>
 
@@ -147,6 +151,10 @@
     <argument
       android:name="gallery_id"
       app:argType="long"/>
+
+    <argument
+      android:name="gallery_title"
+      app:argType="string"/>
 
     <argument
       android:name="description"

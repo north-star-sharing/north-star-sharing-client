@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +32,7 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
 
   @NonNull
   @Override
-  public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public ImageAdapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     ItemImageBinding binding = ItemImageBinding.inflate(inflater, parent, false);
     return new Holder(binding, onImageClickHelper);
   }
@@ -46,23 +47,34 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
     return imageList.size();
   }
 
-  public class Holder extends RecyclerView.ViewHolder implements OnClickListener {
+  public interface OnImageClickHelper {
+
+    void onImageLongClick(Image image, int position);
+    void onImageClick(Image image, int position);
+  }
+
+  public class Holder extends RecyclerView.ViewHolder implements OnLongClickListener, OnClickListener {
 
     private final ItemImageBinding binding;
+    private final OnImageClickHelper onImageClickHelper;
     private Image image;
-    private OnImageClickHelper onImageClickHelper;
 
     public Holder(ItemImageBinding binding, OnImageClickHelper onImageClickHelper) {
       super(binding.getRoot());
       this.binding = binding;
       this.onImageClickHelper = onImageClickHelper;
-      binding.getRoot().setOnClickListener(this);
+      binding.getRoot()
+             .setOnLongClickListener(this::onLongClick);
+      binding.getRoot()
+             .setOnClickListener(this::onClick);
     }
 
     private void bind(int position) {
       image = imageList.get(position);
       if (image.getHref() != null) {
-        Picasso.get().load(String.format(BuildConfig.CONTENT_FORMAT, image.getHref()))
+        Picasso
+            .get()
+            .load(String.format(BuildConfig.CONTENT_FORMAT, image.getHref()))
             .into(binding.thumbnailImage);
       }
       binding.thumbnailTitle.setText(image.getTitle());
@@ -74,12 +86,11 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
       onImageClickHelper.onImageClick(imageList.get(getAdapterPosition()), getAdapterPosition());
     }
 
-  }
-
-  public interface OnImageClickHelper {
-
-    void onImageClick(Image image, int position);
-
+    @Override
+    public boolean onLongClick(View view) {
+      onImageClickHelper.onImageLongClick(imageList.get(getAdapterPosition()), getAdapterPosition());
+      return true;
+    }
   }
 
 }

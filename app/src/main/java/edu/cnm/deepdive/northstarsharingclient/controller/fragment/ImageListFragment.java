@@ -20,7 +20,6 @@ import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import java.util.List;
 import java.util.UUID;
-import org.jetbrains.annotations.NotNull;
 
 
 public class ImageListFragment extends Fragment implements OnImageClickHelper {
@@ -43,32 +42,27 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
 
   }
 
-//  public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-//    binding = FragmentImageListBinding.inflate(LayoutInflater.from(getContext()), null, false);
-//    dialog = new Builder(AlertDialog)
-//        .set
-//  }
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentImageListBinding.inflate(inflater);
-//    binding.toCamera.setOnClickListener((click) -> dialog);
+//    binding.toCamera.setOnClickListener((click) -> TODO open nav to custom camera );
     return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    //noinspection ConstantConditions
     imageViewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
     imageViewModel.loadImages();
     imageViewModel.getImageList()
-        .observe(getViewLifecycleOwner(), (imageList) -> {
-          if (imageList != null) {
-            binding.homeScreenImageList.setAdapter(
-                new ImageAdapter(getContext(), imageList, this));
-          }
-        });
+                  .observe(getViewLifecycleOwner(), (imageList) -> {
+                    if (imageList != null) {
+                      binding.homeScreenImageList.setAdapter(
+                          new ImageAdapter(getContext(), imageList, this));
+                    }
+                  });
     galleryViewModel = new ViewModelProvider(getActivity()).get(GalleryViewModel.class);
 //    if (getArguments() != null) {
 //      ImageListFragmentArgs args = ImageListFragmentArgs.fromBundle(getArguments());
@@ -78,17 +72,26 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
 //    galleryViewModel.getGallery(galleryId);
 
     imageViewModel.getThrowable()
-        .observe(getViewLifecycleOwner(), (throwable) -> {
-          if (throwable != null) {
-            Snackbar.make(binding.getRoot(), throwable.getMessage(),
-                BaseTransientBottomBar.LENGTH_INDEFINITE)
-                .show();
-          }
-        });
+                  .observe(getViewLifecycleOwner(), (throwable) -> {
+                    if (throwable != null) {
+                      //noinspection ConstantConditions
+                      Snackbar.make(binding.getRoot(), throwable.getMessage(),
+                          BaseTransientBottomBar.LENGTH_INDEFINITE)
+                              .show();
+                    }
+                  });
+  }
+
+  @Override
+  public void onImageLongClick(Image image, int position) {
+    ImageDetailFragment fragment = ImageDetailFragment.newInstance(image);
+    fragment.show(getChildFragmentManager(), fragment.getClass().getName());
   }
 
   @Override
   public void onImageClick(Image image, int position) {
-
+    ImagePreviewFragment fragment = ImagePreviewFragment.newInstance(image);
+    fragment.show(getChildFragmentManager(), fragment.getClass().getName());
   }
+
 }

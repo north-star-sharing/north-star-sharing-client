@@ -16,8 +16,23 @@
   <string name="settings">Settings</string>
   <string name="add_a_tag">Search: Tags</string>
   <string name="image_title">Image Title</string>
-  <string name="description">Description</string>
+  <string name="title">Title:</string>
+  <string name="description">Description: </string>
   <string name="gallery_list_title">My Pictures</string>
+  <string name="tags">Tags:</string>
+  <string name="gallery_name">Gallery Name</string>
+  <string name="image_id">Image Id</string>
+  <string name="upload_failure">Sorry something went wrong, please try again</string>
+  <string name="file_type">File Type</string>
+  <string name="store_dialog">Save Your Image</string>
+  <string name="date_created">Date Created</string>
+  <string name="file_url">File Path</string>
+  <string name="longitude">Longitude</string>
+  <string name="latitude">Latitude</string>
+  <string name="azimuth">Azimuth</string>
+  <string name="pitch">Pitch</string>
+  <string name="roll">Roll</string>
+  <string name="activity_main_title">Title Activity Main</string>
 
   <!--  Button names-->
 
@@ -26,7 +41,6 @@
   <string name="find_tag_button">Button to find new tags</string>
   <string name="navigation_camera">Camera</string>
   <string name="edit_label">Edit Image</string>
-  <string name="activity_main_title">Title Activity Main</string>
   <string name="image_nav_header">Image</string>
 
   <!-- Preference Titles -->
@@ -45,17 +59,9 @@
   <string name="attachment_summary_off">Only download attachments when manually requested</string>
   <string name="settings_title">Settings</string>
   <string name="permissions_dialog_title">Select Permissions</string>
-  <string name="store_dialog">Save Your Image</string>
-  <string name="upload_failure">Sorry something went wrong, please try again</string>
-  <string name="gallery_name">Gallery Name</string>
-  <string name="image_id">Image Id</string>
-  <string name="file_type">File Type</string>
-  <string name="date_created">Date Created</string>
-  <string name="file_url">File Path</string>
-  <string name="longitude">Longitude</string>
-  <string name="latitude">Latitude</string>
-  <string name="azimuth">Azimuth</string>
-  <string name="pitch">Pitch</string>
-  <string name="roll">Roll</string>
+  <string name="image_being_inspected">Image being inspected</string>
+  <string name="no_tags">No tags added</string>
+  <string name="gallery">Gallery:</string>
+  <string name="image_gallery">Gallery Image is in</string>
 
 </resources>
