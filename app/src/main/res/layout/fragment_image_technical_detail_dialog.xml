@@ -11,16 +11,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-      android:id="@+id/image_description"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/half_static_spacing"
-      android:text="@string/description"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/detail_layout"
-      app:layout_constraintStart_toStartOf="parent"
-      />
 
     <LinearLayout
       android:id="@+id/detail_layout"
@@ -29,7 +19,7 @@
       android:orientation="vertical"
       android:padding="@dimen/double_static_spacing"
       android:layout_margin="@dimen/half_static_spacing"
-      app:layout_constraintTop_toBottomOf="@id/image_description">
+      app:layout_constraintTop_toTopOf="parent">
 
       <TextView
         android:id="@+id/image_id"
@@ -60,17 +50,17 @@
         style="@style/ImageAttribut"/>
 
       <TextView
-        android:id="@+id/longitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/longitude"
-        style="@style/ImageAttribut"/>
-
-      <TextView
         android:id="@+id/latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/latitude"
+        style="@style/ImageAttribut"/>
+
+      <TextView
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/longitude"
         style="@style/ImageAttribut"/>
 
       <TextView
