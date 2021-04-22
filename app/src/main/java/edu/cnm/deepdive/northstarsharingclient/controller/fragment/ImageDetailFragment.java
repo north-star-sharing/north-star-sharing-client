@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.BuildConfig;
+import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageTechnicalDetailDialogBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Image;
 
@@ -67,9 +68,9 @@ public class ImageDetailFragment extends DialogFragment {
         (image.getPitch() != 0) ? "Pitch: " + image.getPitch() : "N/A");
     binding.roll.setText(
         (image.getRoll() != 0) ? "Roll: " + image.getRoll() : "N/A");
-
     return new AlertDialog.Builder(getContext())
         .setTitle((image.getTitle() != null) ? image.getTitle() : "Untitled")
+        .setView(binding.getRoot())
         .setPositiveButton("Close", (dlg, which) -> {
 //  Left blank to close dialog
         })
