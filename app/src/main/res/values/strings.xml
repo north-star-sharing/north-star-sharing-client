@@ -57,5 +57,6 @@
   <string name="azimuth">Azimuth</string>
   <string name="pitch">Pitch</string>
   <string name="roll">Roll</string>
+  <string name="image_being_inspected">Image being inspected</string>
 
 </resources>

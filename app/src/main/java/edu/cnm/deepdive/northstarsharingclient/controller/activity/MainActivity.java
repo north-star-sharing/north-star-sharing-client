@@ -39,7 +39,6 @@ import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
 import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNewUpload;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
-import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
@@ -158,21 +157,25 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private void setUpGalleryViewModel() {
     galleryViewModel = new ViewModelProvider(this).get(GalleryViewModel.class);
     getLifecycle().addObserver(galleryViewModel);
-    galleryViewModel.getThrowable().observe(this, (throwable) -> {
-      if (throwable != null) {
-        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-      }
-    });
+    galleryViewModel.getThrowable()
+                    .observe(this, (throwable) -> {
+                      if (throwable != null) {
+                        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG)
+                             .show();
+                      }
+                    });
   }
 
   private void setUpImageViewModel() {
     imageViewModel = new ViewModelProvider(this).get(ImageViewModel.class);
     getLifecycle().addObserver(imageViewModel);
-    imageViewModel.getThrowable().observe(this, (throwable) -> {
-      if (throwable != null) {
-        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-      }
-    });
+    imageViewModel.getThrowable()
+                  .observe(this, (throwable) -> {
+                    if (throwable != null) {
+                      Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG)
+                           .show();
+                    }
+                  });
   }
 
   @Override
@@ -315,8 +318,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
       // TODO Sensor stuff goes here.
       OpenNewUpload action = MobileNavigationDirections.openNewUpload(
           0,
-          "Test Title" ,
-          0 ,
+          "Test Title",
+          0,
           "Test description",
           0,
           0,
@@ -337,15 +340,57 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   @Override
   public void onDrawerOpened(@NonNull @NotNull View drawerView) {
 //    TODO From the field containing the list of galleries add each gallery to the menu in the
-//     fallowing line LOOK AT Preload from the service
+//     fallowing line
     Menu menu = navigationView.getMenu();
-    MenuItem item = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Fun New Menu");
-    item.setOnMenuItemClickListener((mi) -> {
-      Log.d(getClass().getName(), "New Menu Clicker");
+    MenuItem itemStar = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Stars");
+    itemStar.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Stars");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    dynamicItems.add(item);
+    MenuItem itemNubile = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Nubile");
+    itemNubile.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Nubile");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    MenuItem itemBlackHoles = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Black Holes");
+    itemNubile.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Black Holes");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    MenuItem itemComets = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Comets");
+    itemNubile.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Comets");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    MenuItem itemPlanets = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Planets");
+    itemNubile.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Planets");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    MenuItem itemMoons = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Moons");
+    itemNubile.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Moons");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    MenuItem itemMMS = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Man Made Satellite's");
+    itemNubile.setOnMenuItemClickListener((mi) -> {
+      Log.d(getClass().getName(), "New Menu Man Made Satellite's");
+      drawer.closeDrawer(GravityCompat.START, true);
+      return true;
+    });
+    dynamicItems.add(itemStar);
+    dynamicItems.add(itemNubile);
+    dynamicItems.add(itemBlackHoles);
+    dynamicItems.add(itemComets);
+    dynamicItems.add(itemPlanets);
+    dynamicItems.add(itemMoons);
+    dynamicItems.add(itemMMS);
   }
 
   @Override

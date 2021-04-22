@@ -31,7 +31,7 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
 
   @NonNull
   @Override
-  public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public ImageAdapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     ItemImageBinding binding = ItemImageBinding.inflate(inflater, parent, false);
     return new Holder(binding, onImageClickHelper);
   }
@@ -62,7 +62,9 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
     private void bind(int position) {
       image = imageList.get(position);
       if (image.getHref() != null) {
-        Picasso.get().load(String.format(BuildConfig.CONTENT_FORMAT, image.getHref()))
+        Picasso
+            .get()
+            .load(String.format(BuildConfig.CONTENT_FORMAT, image.getHref()))
             .into(binding.thumbnailImage);
       }
       binding.thumbnailTitle.setText(image.getTitle());
@@ -77,7 +79,6 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
   }
 
   public interface OnImageClickHelper {
-
     void onImageClick(Image image, int position);
 
   }

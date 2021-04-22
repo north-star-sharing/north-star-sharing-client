@@ -21,6 +21,14 @@
       android:layout_margin="@dimen/half_static_spacing"
       app:layout_constraintTop_toTopOf="parent">
 
+      <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/image_being_inspected"
+        android:layout_margin="@dimen/half_static_spacing"/>
+
       <TextView
         android:id="@+id/image_id"
         android:layout_width="wrap_content"
