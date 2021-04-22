@@ -151,7 +151,7 @@
     android:id="@+id/navigation_new"
     android:label="@string/edit_label"
     android:name="edu.cnm.deepdive.northstarsharingclient.controller.fragment.UploadPropertiesFragment"
-    tools:layout="@layout/fragment_upload_properties_dialog">
+    tools:layout="@layout/fragment_upload_properties">
 
     <argument
       android:name="image_id"

@@ -313,7 +313,16 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
       // TODO Sensor stuff goes here.
-      OpenNewUpload action = MobileNavigationDirections.openNewUpload(0,"Test Title" , 0 , "Test description", 0, 0, 0, "Latitude", "Longitude");
+      OpenNewUpload action = MobileNavigationDirections.openNewUpload(
+          0,
+          "Test Title" ,
+          0 ,
+          "Test description",
+          0,
+          0,
+          0,
+          "Latitude",
+          "Longitude");
       action.setImageUri(uri);
       action.setImageFile(image);
       navController.navigate(action);

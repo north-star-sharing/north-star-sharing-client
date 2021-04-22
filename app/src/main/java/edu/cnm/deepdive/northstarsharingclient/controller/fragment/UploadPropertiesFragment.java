@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -18,12 +19,9 @@ import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.squareup.picasso.Picasso;
-import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
-import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNewUpload;
 import edu.cnm.deepdive.northstarsharingclient.R;
-import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentUploadPropertiesDialogBinding;
+import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentUploadPropertiesBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
-import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import java.io.File;
@@ -33,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class UploadPropertiesFragment extends DialogFragment implements TextWatcher {
 
-  private FragmentUploadPropertiesDialogBinding binding;
+  private FragmentUploadPropertiesBinding binding;
   private Uri uri;
   private File file;
   private String title;
@@ -59,7 +57,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   @Override
   public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
     binding =
-        FragmentUploadPropertiesDialogBinding.inflate(LayoutInflater.from(getContext()), null,
+        FragmentUploadPropertiesBinding.inflate(LayoutInflater.from(getContext()), null,
             false);
     dialog = new Builder(getContext())
         .setIcon(R.drawable.ic_add)
@@ -87,11 +85,15 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    getActivity()
+        .getWindow()
+        .setFlags(LayoutParams.FLAG_NOT_TOUCHABLE, LayoutParams.FLAG_NOT_TOUCHABLE);
     Picasso
         .get()
         .load(uri)
         .into(binding.image);
     binding.imageTitle.addTextChangedListener(this);
+    binding.galleryTitle.addTextChangedListener(this);
     //noinspection ConstantConditions
     imageViewModel = new ViewModelProvider(getActivity()).get(ImageViewModel.class);
     // TODO Observe as necessary, in the ImageListFragment
@@ -107,17 +109,30 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
                   getContext(), android.R.layout.simple_list_item_1, galleryList);
               simpleAutoText.setThreshold(1);
               simpleAutoText.setAdapter(adapter);
+              getActivity().getWindow()
+                           .clearFlags(LayoutParams.FLAG_NOT_TOUCHABLE);
+              binding.workingIndicator.setVisibility(View.GONE);
             });
   }
 
 
   private void checkSubmitConditions() {
     Button positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+    String galleryTitle = binding.galleryTitle.getText()
+                                              .toString()
+                                              .trim();
+    UUID galleryId = null;
+    for (Gallery g : galleryList) {
+      if (g != null && galleryTitle.equals(g.getTitle())) {
+        galleryId = g.getId();
+      }
+    }
     //noinspection ConstantConditions
-    positive.setEnabled(!binding.imageTitle.getText()
-                                           .toString()
-                                           .trim()
-                                           .isEmpty());
+    positive.setEnabled(galleryId != null && !binding.imageTitle.getText()
+                                                                .toString()
+                                                                .trim()
+                                                                .isEmpty());
+
   }
 
   @SuppressWarnings("ConstantConditions")

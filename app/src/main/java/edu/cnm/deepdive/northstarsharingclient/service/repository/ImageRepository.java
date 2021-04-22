@@ -36,7 +36,7 @@ public class ImageRepository {
 
   @SuppressWarnings("BlockingMethodInNonBlockingContext")
   public Single<Image> add(Uri uri, File file, String title, String description, String azimuth,
-      String pitch, String roll, String latitude, String longitude,UUID galleryId) {
+      String pitch, String roll, String latitude, String longitude, UUID galleryId) {
     return signInService
         .refreshBearerToken()
         .observeOn(Schedulers.io())
@@ -62,6 +62,7 @@ public class ImageRepository {
             } else {
               return serviceProxy.post(token, filePart, titlePart, azimuthPart,
                   pitchPart, rollPart, latitudePart, longitudePart, galleryId);
+//              FIXME This galleryId needs to go get the galleryId from a gallery in the database, look at where we get the ids for the autofill text field
             }
           }
         })
