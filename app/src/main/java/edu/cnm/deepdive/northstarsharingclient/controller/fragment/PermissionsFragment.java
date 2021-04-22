@@ -10,10 +10,15 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import edu.cnm.deepdive.northstarsharingclient.R;
+import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * A {@link DialogFragment} that requests permissions from the user to access Android system services,
+ * such as Internet, location, camera, etc.
+ */
 public class PermissionsFragment extends DialogFragment {
 
   private static final String PERMISSIONS_TO_EXPLAIN_KEY = "permissions_to_explain";
@@ -70,17 +75,17 @@ public class PermissionsFragment extends DialogFragment {
     String packageName = getContext().getPackageName();
     Resources res = getResources();
     return Arrays.stream(permissionsToExplain)
-                 .map((permission) -> {
-                   String[] permissionNameParts = permission.split(PERMISSION_DELIMITER);
-                   String permissionKey =
-                       permissionNameParts[permissionNameParts.length - 1].toLowerCase()
-                           + EXPLANATION_KEY_SUFFIX;
-                   int explanationId = res.getIdentifier(permissionKey, "string", packageName);
-                   return (explanationId != 0) ? getString(explanationId) : null;
-                 })
-                 .filter(Objects::nonNull)
-                 .distinct()
-                 .collect(Collectors.joining("\n"));
+        .map((permission) -> {
+          String[] permissionNameParts = permission.split(PERMISSION_DELIMITER);
+          String permissionKey =
+              permissionNameParts[permissionNameParts.length - 1].toLowerCase()
+                  + EXPLANATION_KEY_SUFFIX;
+          int explanationId = res.getIdentifier(permissionKey, "string", packageName);
+          return (explanationId != 0) ? getString(explanationId) : null;
+        })
+        .filter(Objects::nonNull)
+        .distinct()
+        .collect(Collectors.joining("\n"));
   }
 
   /**

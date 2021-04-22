@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -21,7 +22,11 @@ import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * A {@link Fragment} that displays a scrolling list of {@link Image}s. Each element in the list is
+ * clickable to open up an {@link ImagePreviewFragment} for that specific image. Long-pressing an
+ * element opens a card to display meta-data about the Image.
+ */
 public class ImageListFragment extends Fragment implements OnImageClickHelper {
 
   private FragmentImageListBinding binding;
@@ -31,6 +36,11 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
   private AlertDialog dialog;
   private List<Images> images;
 
+  /**
+   * Create a new instance of the {@link ImageListFragment}.
+   *
+   * @return The instance of the ImageDetailFragment.
+   */
   public static ImageListFragment newInstance() {
     ImageListFragment fragment = new ImageListFragment();
     return fragment;

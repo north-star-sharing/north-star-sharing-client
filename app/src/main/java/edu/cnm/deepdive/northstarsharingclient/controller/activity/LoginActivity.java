@@ -11,6 +11,9 @@ import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.ActivityLoginBinding;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 
+/**
+ * Controls the activity for the {@link com.google.android.gms.auth.api.signin.GoogleSignIn} screen.
+ */
 public class LoginActivity extends AppCompatActivity {
 
   private static final int LOGIN_REQUEST_CODE = 0322;

@@ -51,8 +51,9 @@ import java.util.Random;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Controls the activity for the main screen containing the scrolling list of images. Handles the
- * action when the camera floating action button is pressed.
+ * Controls the activity for the main screen containing the scrolling list of
+ * {@link edu.cnm.deepdive.northstarsharingclient.model.Image}s. Handles the action when the camera
+ * floating action button is pressed.
  */
 public class MainActivity extends AppCompatActivity implements DrawerListener {
 

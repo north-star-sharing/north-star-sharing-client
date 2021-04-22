@@ -29,6 +29,10 @@ import java.util.List;
 import java.util.UUID;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * A {@link DialogFragment} to handle entering the details of a new
+ * {@link edu.cnm.deepdive.northstarsharingclient.model.Image} and persisting it to the server.
+ */
 public class UploadPropertiesFragment extends DialogFragment implements TextWatcher {
 
   private FragmentUploadPropertiesBinding binding;
@@ -141,7 +145,6 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
                                                                 .toString()
                                                                 .trim()
                                                                 .isEmpty());
-
   }
 
   @SuppressWarnings("ConstantConditions")
@@ -152,10 +155,6 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     String description = binding.description.getText()
                                             .toString()
                                             .trim();
-    // TODO Access the bundle of arguments.
-//    OpenNewUpload action = MobileNavigationDirections.
-//     args = UploadPropertiesFragmentArgs.fromBundle(getArguments());
-
     String galleryTitle = binding.galleryTitle.getText()
                                               .toString()
                                               .trim();

@@ -14,10 +14,19 @@ import edu.cnm.deepdive.northstarsharingclient.BuildConfig;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageTechnicalDetailDialogBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Image;
 
+/**
+ * A {@link DialogFragment} that displays all the basic information of an {@link Image}.
+ */
 public class ImageDetailFragment extends DialogFragment {
 
   private Image image;
 
+  /**
+   * Creates a new instance of the ImageDetailFragment dialog to display an {@link Image}.
+   *
+   * @param {@link Image}
+   * @return The instance of the ImageDetailFragment.
+   */
   public static ImageDetailFragment newInstance(Image image) {
     ImageDetailFragment fragment = new ImageDetailFragment();
     Bundle args = new Bundle();

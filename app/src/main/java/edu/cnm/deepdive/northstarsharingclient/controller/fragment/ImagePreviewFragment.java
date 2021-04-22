@@ -15,10 +15,20 @@ import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageDetailEd
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageTechnicalDetailDialogBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Image;
 
+/**
+ * A {@link androidx.fragment.app.Fragment} that displays the basic information about an {@link Image}, such
+ * as the title and description. (Note: not yet implemented) From this Fragment, a button can be
+ * pressed to navigate to a screen to edit the Image's details.
+ */
 public class ImagePreviewFragment extends DialogFragment {
 
   private Image image;
 
+  /**
+   * Create a new instance of the {@link ImagePreviewFragment}.
+   *
+   * @return The instance of the ImagePreviewFragment.
+   */
   public static ImagePreviewFragment newInstance(Image image) {
     ImagePreviewFragment fragment = new ImagePreviewFragment();
     Bundle args = new Bundle();
