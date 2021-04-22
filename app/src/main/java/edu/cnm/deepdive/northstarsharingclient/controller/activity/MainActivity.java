@@ -50,6 +50,10 @@ import java.util.List;
 import java.util.Random;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Controls the activity for the main screen containing the scrolling list of images. Handles the
+ * action when the camera floating action button is pressed.
+ */
 public class MainActivity extends AppCompatActivity implements DrawerListener {
 
   static final int PERMISSIONS_REQUEST_CODE = 1515;
@@ -190,8 +194,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     }
   }
 
-
-  public void onAcknowledge(String[] permissionsToRequest) {
+  private void onAcknowledge(String[] permissionsToRequest) {
     ActivityCompat.requestPermissions(this, permissionsToRequest, PERMISSIONS_REQUEST_CODE);
   }
 
