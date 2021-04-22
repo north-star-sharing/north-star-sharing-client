@@ -49,23 +49,24 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
 
   public interface OnImageClickHelper {
 
+    void onImageLongClick(Image image, int position);
     void onImageClick(Image image, int position);
-
   }
 
-  public class Holder extends RecyclerView.ViewHolder implements OnClickListener,
-      OnLongClickListener {
+  public class Holder extends RecyclerView.ViewHolder implements OnLongClickListener, OnClickListener {
 
     private final ItemImageBinding binding;
-    private Image image;
     private final OnImageClickHelper onImageClickHelper;
+    private Image image;
 
     public Holder(ItemImageBinding binding, OnImageClickHelper onImageClickHelper) {
       super(binding.getRoot());
       this.binding = binding;
       this.onImageClickHelper = onImageClickHelper;
       binding.getRoot()
-             .setOnClickListener(this);
+             .setOnLongClickListener(this::onLongClick);
+      binding.getRoot()
+             .setOnClickListener(this::onClick);
     }
 
     private void bind(int position) {
@@ -87,7 +88,7 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
 
     @Override
     public boolean onLongClick(View view) {
-      onImageClickHelper.onImageClick(imageList.get(getAdapterPosition()), getAdapterPosition());
+      onImageClickHelper.onImageLongClick(imageList.get(getAdapterPosition()), getAdapterPosition());
       return true;
     }
   }

@@ -33,7 +33,7 @@
       android:adjustViewBounds="true"
       android:scaleType="fitCenter"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/title_input_layout"
+      app:layout_constraintBottom_toTopOf="@id/gallery_input_layout"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintWidth_percent=".7"
