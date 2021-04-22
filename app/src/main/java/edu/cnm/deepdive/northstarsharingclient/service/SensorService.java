@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
 import android.util.Log;
 import io.reactivex.Emitter;
 import io.reactivex.Observable;
@@ -12,6 +13,9 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.schedulers.Schedulers;
 import java.util.Arrays;
 
+/**
+ * Utility service to acquire the camera orientation asynchronously.
+ */
 public class SensorService {
 
   private final Context context;
@@ -29,6 +33,12 @@ public class SensorService {
   // private float[] rotationVectorValues = new float[4];
   private Emitter<float[]> emitter;
 
+  /**
+   * Create an instance of the SensorService. A Context is required for pop-up warnings and
+   * to initially acquire the Android {@link SensorManager} service.
+   *
+   * @param context The context in which the LocationService is being used.
+   */
   public SensorService(Context context) {
     this.context = context;
     sensorManager = setupListeners(context);
@@ -47,7 +57,7 @@ public class SensorService {
       @Override
       public void onSensorChanged(SensorEvent event) {
         gravityValues = event.values;
-        Log.d("Accelerometer vector: ", Arrays.toString(gravityValues));
+        //Log.d("Accelerometer vector: ", Arrays.toString(gravityValues));
         updateOrientation();
       }
 
@@ -60,7 +70,7 @@ public class SensorService {
       @Override
       public void onSensorChanged(SensorEvent event) {
         geoMagneticValues = event.values;
-        Log.d("Geomagnetic vector: ", Arrays.toString(geoMagneticValues));
+        //Log.d("Geomagnetic vector: ", Arrays.toString(geoMagneticValues));
         updateOrientation();
       }
 
@@ -94,12 +104,24 @@ public class SensorService {
     }
   }
 
+  /**
+   * Get the GPS coordinate float[] asynchronously. The values stored exactly match with the
+   * {@link android.location.LocationManager}'s getOrientation() method. Index [0] = azimuth,
+   * [1] = pitch, and [2] = roll. As lifecycle data running on a separate thread, this information
+   * will need to be observed.
+   *
+   * @return {@link Observable&lt;float[]&gt;}
+   */
   public Observable<float[]> getOrientation() {
     return Observable
         .create((ObservableEmitter<float[]> emitter) -> this.emitter = emitter)
         .subscribeOn(Schedulers.io());
   }
 
+  /**
+   * Turn on the sensor service updates. This service must be turned off with the stopSensors()
+   * method to prevent unnecessary battery consumption and avoid any memory leaks.
+   */
   public void startSensors() {
     Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     Sensor sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -113,6 +135,10 @@ public class SensorService {
 
   }
 
+  /**
+   * Turns off the position sensors to prevent unnecessary battery consumption and avoid any memory
+   * leaks.
+   */
   public void stopSensors() {
     sensorManager.unregisterListener(accelerometerListener);
     sensorManager.unregisterListener(magnetometerListener);

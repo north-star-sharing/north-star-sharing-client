@@ -14,7 +14,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Utility service to acquire the the GPS coordinates asynchronously.
+ * Utility service to acquire the GPS coordinates asynchronously.
  */
 public class LocationService implements LocationListener {
 
@@ -24,7 +24,7 @@ public class LocationService implements LocationListener {
 
   /**
    * Create an instance of the LocationService. A Context is required for pop-up warnings and
-   * to initially acquire the SystemSerivce.
+   * to initially acquire the Android {@link LocationManager} service.
    * @param context The context in which the LocationService is being used.
    */
   public LocationService(Context context) {
@@ -47,7 +47,7 @@ public class LocationService implements LocationListener {
 
   /**
    * Turns off the location service to prevent unnecessary battery consumption and avoid any memory
-   * leaks
+   * leaks.
    */
   public void stopUpdates() {
     locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -73,7 +73,7 @@ public class LocationService implements LocationListener {
     Log.d(getClass().getName(), location.toString());
     if (emitter != null) {
       emitter.onNext(location);
-      Log.d(getClass().getName(), "Location emitted.");
+      //Log.d(getClass().getName(), "Location emitted.");
     }
   }
 
