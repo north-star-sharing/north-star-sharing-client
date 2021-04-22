@@ -13,26 +13,28 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Utility service to acquire the the GPS coordinates asynchronously.
+ */
 public class LocationService implements LocationListener {
 
   private final Context context;
   private LocationManager locationManager;
-  private double latitude;
-  private double longitude;
   private Emitter<Location> emitter;
 
+  /**
+   * Create an instance of the LocationService. A Context is required for pop-up warnings and
+   * to initially acquire the SystemSerivce.
+   * @param context The context in which the LocationService is being used.
+   */
   public LocationService(Context context) {
     this.context = context;
   }
 
-  public double getLatitude() {
-    return latitude;
-  }
-
-  public double getLongitude() {
-    return longitude;
-  }
-
+  /**
+   * Turn on the location service updates. This service must be turned off with the stopUpdates()
+   * method to prevent unnecessary battery consumption and avoid any memory leaks.
+   */
   public void startUpdates() {
     try {
       locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -43,6 +45,10 @@ public class LocationService implements LocationListener {
     }
   }
 
+  /**
+   * Turns off the location service to prevent unnecessary battery consumption and avoid any memory
+   * leaks
+   */
   public void stopUpdates() {
     locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
     locationManager.removeUpdates(this);
@@ -51,6 +57,11 @@ public class LocationService implements LocationListener {
     }
   }
 
+  /**
+   * Get the GPS coordinate {@link Location} asynchronously. As lifecycle data running on a separate
+   * thread, this information will need to be observed.
+   * @return {@link Observable&lt;Location&gt;}
+   */
   public Observable<Location> getLocation() {
     return Observable
         .create((ObservableEmitter<Location> emitter) -> this.emitter = emitter)
@@ -59,8 +70,6 @@ public class LocationService implements LocationListener {
 
   @Override
   public void onLocationChanged(@NonNull Location location) {
-    latitude = location.getLatitude();
-    longitude = location.getLongitude();
     Log.d(getClass().getName(), location.toString());
     if (emitter != null) {
       emitter.onNext(location);
