@@ -132,6 +132,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">UserRepository</span>
 extends <a href="https://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
+<div class="block">A database repository utility for persisting <a href="../../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Users</code></a> to the server and
+ retrieving them.</div>
 </li>
 </ul>
 </div>
@@ -153,7 +155,10 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(android.content.Context)">UserRepository</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;context)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Create a <a href="UserRepository.html" title="class in edu.cnm.deepdive.northstarsharingclient.service.repository"><code>UserRepository</code></a> for persisting <a href="../../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Users</code></a> to the server and retrieving
+ them.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -176,12 +181,17 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignInAccount.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink">GoogleSignInAccount</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAccount()">getAccount</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Retrieve the user's account from the <a href="../GoogleSignInService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service"><code>GoogleSignInService</code></a></div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">User</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getUserProfile()">getUserProfile</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Retrieve the user's profile from the <a href="../GoogleSignInService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service"><code>GoogleSignInService</code></a> asynchronously, using a
+ <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -214,6 +224,12 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>UserRepository</h4>
 <pre>public&nbsp;UserRepository&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;context)</pre>
+<div class="block">Create a <a href="UserRepository.html" title="class in edu.cnm.deepdive.northstarsharingclient.service.repository"><code>UserRepository</code></a> for persisting <a href="../../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Users</code></a> to the server and retrieving
+ them. A <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink"><code>Context</code></a> may be required for some operations.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>context</code> - <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink"><code>Context</code></a></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -233,6 +249,11 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>getAccount</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignInAccount.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink">GoogleSignInAccount</a>&nbsp;getAccount()</pre>
+<div class="block">Retrieve the user's account from the <a href="../GoogleSignInService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service"><code>GoogleSignInService</code></a></div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignInAccount.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink"><code>GoogleSignInAccount</code></a></dd>
+</dl>
 </li>
 </ul>
 <a id="getUserProfile()">
@@ -242,6 +263,12 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>getUserProfile</h4>
 <pre class="methodSignature">public&nbsp;<a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">User</a>&gt;&nbsp;getUserProfile()</pre>
+<div class="block">Retrieve the user's profile from the <a href="../GoogleSignInService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service"><code>GoogleSignInService</code></a> asynchronously, using a
+ <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;User&gt;}</dd>
+</dl>
 </li>
 </ul>
 </li>

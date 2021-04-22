@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":1,"i7":2,"i8":2,"i9":2};
+var data = {"i0":2,"i1":2,"i2":2,"i3":1,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":1,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":1,"i20":2,"i21":2,"i22":1,"i23":2,"i24":2,"i25":2,"i26":2,"i27":2,"i28":2};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -110,44 +110,187 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/GoogleSignInService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">GoogleSignInService</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/model/CelestialObject.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">CelestialObject</a></td>
+<th class="colLast" scope="row">
+<div class="block">Encapsulates a persistent celestial object with: name, right ascension, and declination.</div>
+</th>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/ImageListFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">ImageListFragment</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a></td>
+<th class="colLast" scope="row">
+<div class="block">Encapsulates a persistent gallery object with: title, description, Href location, reference to
+ the creating <a href="edu/cnm/deepdive/northstarsharingclient/model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>User</code></a>, and reference to the {@link List&lt;Image&gt;}.</div>
+</th>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/activity/LoginActivity.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.activity">LoginActivity</a></td>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/adapter/GalleryAdapter.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter">GalleryAdapter</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/activity/MainActivity.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.activity">MainActivity</a></td>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/adapter/GalleryAdapter.OnGalleryClickHelper.html" title="interface in edu.cnm.deepdive.northstarsharingclient.adapter">GalleryAdapter.OnGalleryClickHelper</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/viewmodel/MainViewModel.html" title="class in edu.cnm.deepdive.northstarsharingclient.viewmodel">MainViewModel</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/repository/GalleryRepository.html" title="class in edu.cnm.deepdive.northstarsharingclient.service.repository">GalleryRepository</a></td>
+<th class="colLast" scope="row">
+<div class="block">A database repository utility for persisting <a href="edu/cnm/deepdive/northstarsharingclient/model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> to the server and
+ retrieving them.</div>
+</th>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/NorthStarSharingApplication.html" title="class in edu.cnm.deepdive.northstarsharingclient">NorthStarSharingApplication</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/viewmodel/GalleryViewModel.html" title="class in edu.cnm.deepdive.northstarsharingclient.viewmodel">GalleryViewModel</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>ViewModel</code></a> to hold the <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> for the <a href="edu/cnm/deepdive/northstarsharingclient/model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a>
+ information.</div>
+</th>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/GoogleSignInService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">GoogleSignInService</a></td>
+<th class="colLast" scope="row">
+<div class="block">A database utility service for persisting <a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignIn.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink"><code>GoogleSignIn</code></a> data to the server and
+ retrieving it.</div>
+</th>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/NorthStarSharingWebServiceProxy.InstanceHolder.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy.InstanceHolder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a></td>
+<th class="colLast" scope="row">
+<div class="block">Encapsulates a persistent image object with: title, description, file metadata (original filename
+ and MIME type), reference to the contributing <a href="edu/cnm/deepdive/northstarsharingclient/model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>User</code></a>, and reference to the actual content.</div>
+</th>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">User</a></td>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/adapter/ImageAdapter.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/repository/UserRepository.html" title="class in edu.cnm.deepdive.northstarsharingclient.service.repository">UserRepository</a></td>
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/adapter/ImageAdapter.OnImageClickHelper.html" title="interface in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter.OnImageClickHelper</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/ImageDetailFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">ImageDetailFragment</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/fragment/app/DialogFragment.html?is-external=true" title="class or interface in androidx.fragment.app" class="externalLink"><code>DialogFragment</code></a> that displays all the basic information of an <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a>.</div>
+</th>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/ImageListFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">ImageListFragment</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/fragment/app/Fragment.html?is-external=true" title="class or interface in androidx.fragment.app" class="externalLink"><code>Fragment</code></a> that displays a scrolling list of <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a>s.</div>
+</th>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/ImagePreviewFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">ImagePreviewFragment</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/fragment/app/Fragment.html?is-external=true" title="class or interface in androidx.fragment.app" class="externalLink"><code>Fragment</code></a> that displays the basic information about an <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a>, such
+ as the title and description.</div>
+</th>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/repository/ImageRepository.html" title="class in edu.cnm.deepdive.northstarsharingclient.service.repository">ImageRepository</a></td>
+<th class="colLast" scope="row">
+<div class="block">A database repository utility for persisting <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a> to the server and retrieving
+ them.</div>
+</th>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/viewmodel/ImageViewModel.html" title="class in edu.cnm.deepdive.northstarsharingclient.viewmodel">ImageViewModel</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>ViewModel</code></a> to hold the <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> for the <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a>
+ information.</div>
+</th>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/LocationService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">LocationService</a></td>
+<th class="colLast" scope="row">
+<div class="block">Utility service to acquire the GPS coordinates asynchronously.</div>
+</th>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/activity/LoginActivity.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.activity">LoginActivity</a></td>
+<th class="colLast" scope="row">
+<div class="block">Controls the activity for the <a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignIn.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink"><code>GoogleSignIn</code></a> screen.</div>
+</th>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/activity/MainActivity.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.activity">MainActivity</a></td>
+<th class="colLast" scope="row">
+<div class="block">Controls the activity for the main screen containing the scrolling list of
+ <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a>s.</div>
+</th>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/NorthStarSharingApplication.html" title="class in edu.cnm.deepdive.northstarsharingclient">NorthStarSharingApplication</a></td>
+<th class="colLast" scope="row">
+<div class="block">North Star Sharing is a proof-of-concept group project for
+ <a href="https://deepdivecoding.com/">Deep Dive Coding</a> through
+ <a href="./edu/cnm/deepdive/northstarsharingclient/CNM">https://www.cnm.edu/</a>.</div>
+</th>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy</a></td>
+<th class="colLast" scope="row">
+<div class="block">An interface used by <code>Retrofit</code> to dynamically construct the HTTP GET and POST requests
+ to the web service.</div>
+</th>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/NorthStarSharingWebServiceProxy.InstanceHolder.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy.InstanceHolder</a></td>
+<th class="colLast" scope="row">
+<div class="block">A helper class to create and contain a singleton instance of the
+ <a href="edu/cnm/deepdive/northstarsharingclient/service/NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service"><code>NorthStarSharingWebServiceProxy</code></a>.</div>
+</th>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/PermissionsFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">PermissionsFragment</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/fragment/app/DialogFragment.html?is-external=true" title="class or interface in androidx.fragment.app" class="externalLink"><code>DialogFragment</code></a> that requests permissions from the user to access Android system services,
+ such as Internet, location, camera, etc.</div>
+</th>
+</tr>
+<tr id="i22" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/PermissionsFragment.OnAcknowledgeListener.html" title="interface in edu.cnm.deepdive.northstarsharingclient.controller.fragment">PermissionsFragment.OnAcknowledgeListener</a></td>
+<th class="colLast" scope="row">
+<div class="block">Callback interface for returning control to controller managing permissions request flow.</div>
+</th>
+</tr>
+<tr id="i23" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/viewmodel/PermissionViewModel.html" title="class in edu.cnm.deepdive.northstarsharingclient.viewmodel">PermissionViewModel</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>ViewModel</code></a> to hold the <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> for the Android permissions
+ information.</div>
+</th>
+</tr>
+<tr id="i24" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/SensorService.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">SensorService</a></td>
+<th class="colLast" scope="row">
+<div class="block">Utility service to acquire the camera orientation asynchronously.</div>
+</th>
+</tr>
+<tr id="i25" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/SettingsFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">SettingsFragment</a></td>
+<th class="colLast" scope="row">
+<div class="block">Fragment to create and manage the widgets on the Settings screen.</div>
+</th>
+</tr>
+<tr id="i26" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/controller/fragment/UploadPropertiesFragment.html" title="class in edu.cnm.deepdive.northstarsharingclient.controller.fragment">UploadPropertiesFragment</a></td>
+<th class="colLast" scope="row">
+<div class="block">A <a href="https://developer.android.com/reference/androidx/fragment/app/DialogFragment.html?is-external=true" title="class or interface in androidx.fragment.app" class="externalLink"><code>DialogFragment</code></a> to handle entering the details of a new
+ <a href="edu/cnm/deepdive/northstarsharingclient/model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> and persisting it to the server.</div>
+</th>
+</tr>
+<tr id="i27" class="rowColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">User</a></td>
+<th class="colLast" scope="row">
+<div class="block">Encapsulates a persistent user object with: latest connected date/time, and display name.</div>
+</th>
+</tr>
+<tr id="i28" class="altColor">
+<td class="colFirst"><a href="edu/cnm/deepdive/northstarsharingclient/service/repository/UserRepository.html" title="class in edu.cnm.deepdive.northstarsharingclient.service.repository">UserRepository</a></td>
+<th class="colLast" scope="row">
+<div class="block">A database repository utility for persisting <a href="edu/cnm/deepdive/northstarsharingclient/model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Users</code></a> to the server and
+ retrieving them.</div>
+</th>
 </tr>
 </table>
 </li>

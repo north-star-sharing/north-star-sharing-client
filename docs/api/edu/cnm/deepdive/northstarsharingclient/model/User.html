@@ -132,6 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">User</span>
 extends <a href="https://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
+<div class="block">Encapsulates a persistent user object with: latest connected date/time, and display name.</div>
 </li>
 </ul>
 </div>
@@ -176,42 +177,60 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getConnected()">getConnected</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns the datetime this user was most recently updated in the database.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCreated()">getCreated</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns the datetime this user was first persisted to the database.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDisplayName()">getDisplayName</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns the title of this user.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getId()">getId</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns the unique identifier of this user.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setConnected(java.util.Date)">setConnected</a></span>&#8203;(<a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a>&nbsp;connected)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Sets the datetime this user was most recently persisted in the database to the specified <code>
+ updated</code>.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCreated(java.util.Date)">setCreated</a></span>&#8203;(<a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a>&nbsp;created)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Sets the datetime this user was first persisted to the database to the specified <code>
+ created</code>.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDisplayName(java.lang.String)">setDisplayName</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;displayName)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Sets the title of this user to the specified <code>title</code>.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setId(java.util.UUID)">setId</a></span>&#8203;(<a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Sets the unique identifier of this user to the specified <code>id</code>.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -263,6 +282,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>getId</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;getId()</pre>
+<div class="block">Returns the unique identifier of this user.</div>
 </li>
 </ul>
 <a id="setId(java.util.UUID)">
@@ -272,6 +292,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>setId</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setId&#8203;(<a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</pre>
+<div class="block">Sets the unique identifier of this user to the specified <code>id</code>.</div>
 </li>
 </ul>
 <a id="getCreated()">
@@ -281,6 +302,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>getCreated</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a>&nbsp;getCreated()</pre>
+<div class="block">Returns the datetime this user was first persisted to the database.</div>
 </li>
 </ul>
 <a id="setCreated(java.util.Date)">
@@ -290,6 +312,8 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>setCreated</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setCreated&#8203;(<a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a>&nbsp;created)</pre>
+<div class="block">Sets the datetime this user was first persisted to the database to the specified <code>
+ created</code>.</div>
 </li>
 </ul>
 <a id="getConnected()">
@@ -299,6 +323,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>getConnected</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a>&nbsp;getConnected()</pre>
+<div class="block">Returns the datetime this user was most recently updated in the database.</div>
 </li>
 </ul>
 <a id="setConnected(java.util.Date)">
@@ -308,6 +333,8 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>setConnected</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setConnected&#8203;(<a href="https://developer.android.com/reference/java/util/Date.html?is-external=true" title="class or interface in java.util" class="externalLink">Date</a>&nbsp;connected)</pre>
+<div class="block">Sets the datetime this user was most recently persisted in the database to the specified <code>
+ updated</code>.</div>
 </li>
 </ul>
 <a id="getDisplayName()">
@@ -317,6 +344,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>getDisplayName</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;getDisplayName()</pre>
+<div class="block">Returns the title of this user.</div>
 </li>
 </ul>
 <a id="setDisplayName(java.lang.String)">
@@ -326,6 +354,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <li class="blockList">
 <h4>setDisplayName</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setDisplayName&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;displayName)</pre>
+<div class="block">Sets the title of this user to the specified <code>title</code>.</div>
 </li>
 </ul>
 </li>

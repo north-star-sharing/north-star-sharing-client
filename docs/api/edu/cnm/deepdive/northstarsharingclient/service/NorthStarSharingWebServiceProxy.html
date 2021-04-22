@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":1,"i4":6,"i5":6,"i6":6};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -123,6 +123,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public interface <span class="typeNameLabel">NorthStarSharingWebServiceProxy</span></pre>
+<div class="block">An interface used by <code>Retrofit</code> to dynamically construct the HTTP GET and POST requests
+ to the web service.</div>
 </li>
 </ul>
 </div>
@@ -146,7 +148,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="NorthStarSharingWebServiceProxy.InstanceHolder.html" title="class in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy.InstanceHolder</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">A helper class to create and contain a singleton instance of the
+ <a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service"><code>NorthStarSharingWebServiceProxy</code></a>.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -167,14 +172,77 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static <a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInstance()">getInstance</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllImages(java.lang.String)">getAllImages</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</code></th>
+<td class="colLast">
+<div class="block">Retrieve a <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a> asynchronously, using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a>
+ ReactiveX value response.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGallery(java.util.UUID,java.lang.String)">getGallery</a></span>&#8203;(<a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id,
+          <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</code></th>
+<td class="colLast">
+<div class="block">Retrieve a <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> asynchronously, using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a>
+ ReactiveX value response.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGalleryList(java.lang.String)">getGalleryList</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</code></th>
+<td class="colLast">
+<div class="block">Retrieve a <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of all <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> asynchronously, using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a>
+ ReactiveX value response.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>static <a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInstance()">getInstance</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get a reference to the singleton instance of the <a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service"><code>NorthStarSharingWebServiceProxy</code></a>.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">User</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProfile(java.lang.String)">getProfile</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get user's <a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignIn.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink"><code>GoogleSignIn</code></a> profile asynchronously,
+ using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#post(java.lang.String,okhttp3.MultipartBody.Part,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,java.util.UUID)">post</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken,
+    okhttp3.MultipartBody.Part&nbsp;file,
+    okhttp3.RequestBody&nbsp;title,
+    okhttp3.RequestBody&nbsp;azimuth,
+    okhttp3.RequestBody&nbsp;pitch,
+    okhttp3.RequestBody&nbsp;roll,
+    okhttp3.RequestBody&nbsp;latitude,
+    okhttp3.RequestBody&nbsp;longitude,
+    <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</code></th>
+<td class="colLast">
+<div class="block">POST a single <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> to the web service without a description asynchronously, using a
+ <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#post(java.lang.String,okhttp3.MultipartBody.Part,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,java.util.UUID)">post</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken,
+    okhttp3.MultipartBody.Part&nbsp;file,
+    okhttp3.RequestBody&nbsp;title,
+    okhttp3.RequestBody&nbsp;description,
+    okhttp3.RequestBody&nbsp;azimuth,
+    okhttp3.RequestBody&nbsp;pitch,
+    okhttp3.RequestBody&nbsp;roll,
+    okhttp3.RequestBody&nbsp;latitude,
+    okhttp3.RequestBody&nbsp;longitude,
+    <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</code></th>
+<td class="colLast">
+<div class="block">POST a single <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> to the web service with a description asynchronously, using a
+ <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -200,17 +268,181 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getInstance</h4>
 <pre class="methodSignature">static&nbsp;<a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service">NorthStarSharingWebServiceProxy</a>&nbsp;getInstance()</pre>
+<div class="block">Get a reference to the singleton instance of the <a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service"><code>NorthStarSharingWebServiceProxy</code></a>.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><a href="NorthStarSharingWebServiceProxy.html" title="interface in edu.cnm.deepdive.northstarsharingclient.service"><code>NorthStarSharingWebServiceProxy</code></a></dd>
+</dl>
 </li>
 </ul>
 <a id="getProfile(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getProfile</h4>
 <pre class="methodSignature">@GET("users/me")
 <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/User.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">User</a>&gt;&nbsp;getProfile&#8203;(@Header("Authorization")
                         <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</pre>
+<div class="block">Get user's <a href="https://developer.android.com/reference/com/google/android/gms/auth/api/signin/GoogleSignIn.html?is-external=true" title="class or interface in com.google.android.gms.auth.api.signin" class="externalLink"><code>GoogleSignIn</code></a> profile asynchronously,
+ using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bearerToken</code> - The Oauth2 bearer token used for authorizing the request.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;User&gt;}</dd>
+</dl>
+</li>
+</ul>
+<a id="post(java.lang.String,okhttp3.MultipartBody.Part,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,java.util.UUID)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>post</h4>
+<pre class="methodSignature">@Multipart
+@POST("galleries/{id}/images")
+<a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;&nbsp;post&#8203;(@Header("Authorization")
+                   <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken,
+                   @Part
+                   okhttp3.MultipartBody.Part&nbsp;file,
+                   @Part("title")
+                   okhttp3.RequestBody&nbsp;title,
+                   @Part("azimuth")
+                   okhttp3.RequestBody&nbsp;azimuth,
+                   @Part("pitch")
+                   okhttp3.RequestBody&nbsp;pitch,
+                   @Part("roll")
+                   okhttp3.RequestBody&nbsp;roll,
+                   @Part("latitude")
+                   okhttp3.RequestBody&nbsp;latitude,
+                   @Part("longitude")
+                   okhttp3.RequestBody&nbsp;longitude,
+                   @Path("id")
+                   <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</pre>
+<div class="block">POST a single <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> to the web service without a description asynchronously, using a
+ <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bearerToken</code> - The Oauth2 bearer token used for authorizing the request.</dd>
+<dd><code>file</code> - The <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> <a href="https://developer.android.com/reference/java/io/File.html?is-external=true" title="class or interface in java.io" class="externalLink"><code>File</code></a> to be persisted.</dd>
+<dd><code>title</code> - The user-entered title.</dd>
+<dd><code>azimuth</code> - The azimuth of the camera at the time of the picture.</dd>
+<dd><code>pitch</code> - The pitch of the camera at the time of the picture.</dd>
+<dd><code>roll</code> - The roll of the camera at the time of the picture.</dd>
+<dd><code>latitude</code> - The latitude of the camera at the time of the picture.</dd>
+<dd><code>longitude</code> - The longitude of the camera at the time of the picture.</dd>
+<dd><code>id</code> - The unique identifier for the <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> that will contain this <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> sent as a path variable.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;Image&gt;}</dd>
+</dl>
+</li>
+</ul>
+<a id="post(java.lang.String,okhttp3.MultipartBody.Part,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,okhttp3.RequestBody,java.util.UUID)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>post</h4>
+<pre class="methodSignature">@Multipart
+@POST("galleries/{id}/images")
+<a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;&nbsp;post&#8203;(@Header("Authorization")
+                   <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken,
+                   @Part
+                   okhttp3.MultipartBody.Part&nbsp;file,
+                   @Part("title")
+                   okhttp3.RequestBody&nbsp;title,
+                   @Part("description")
+                   okhttp3.RequestBody&nbsp;description,
+                   @Part("azimuth")
+                   okhttp3.RequestBody&nbsp;azimuth,
+                   @Part("pitch")
+                   okhttp3.RequestBody&nbsp;pitch,
+                   @Part("roll")
+                   okhttp3.RequestBody&nbsp;roll,
+                   @Part("latitude")
+                   okhttp3.RequestBody&nbsp;latitude,
+                   @Part("longitude")
+                   okhttp3.RequestBody&nbsp;longitude,
+                   @Path("id")
+                   <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</pre>
+<div class="block">POST a single <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> to the web service with a description asynchronously, using a
+ <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a> ReactiveX value response.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bearerToken</code> - The Oauth2 bearer token used for authorizing the request.</dd>
+<dd><code>file</code> - The <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> <a href="https://developer.android.com/reference/java/io/File.html?is-external=true" title="class or interface in java.io" class="externalLink"><code>File</code></a> to be persisted.</dd>
+<dd><code>title</code> - The user-entered title.</dd>
+<dd><code>description</code> - The user-entered description.</dd>
+<dd><code>azimuth</code> - The azimuth of the camera at the time of the picture.</dd>
+<dd><code>pitch</code> - The pitch of the camera at the time of the picture.</dd>
+<dd><code>roll</code> - The roll of the camera at the time of the picture.</dd>
+<dd><code>latitude</code> - The latitude of the camera at the time of the picture.</dd>
+<dd><code>longitude</code> - The longitude of the camera at the time of the picture.</dd>
+<dd><code>id</code> - The unique identifier for the <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> that will contain this <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> sent as a path variable.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;Image&gt;}</dd>
+</dl>
+</li>
+</ul>
+<a id="getAllImages(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAllImages</h4>
+<pre class="methodSignature">@GET("images")
+<a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;&gt;&nbsp;getAllImages&#8203;(@Header("Authorization")
+                                 <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</pre>
+<div class="block">Retrieve a <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a> asynchronously, using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a>
+ ReactiveX value response.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bearerToken</code> - The Oauth2 bearer token used for authorizing the request.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;List&lt;Image&gt;&gt;}</dd>
+</dl>
+</li>
+</ul>
+<a id="getGallery(java.util.UUID,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getGallery</h4>
+<pre class="methodSignature">@GET("galleries/{galleryId}")
+<a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;&nbsp;getGallery&#8203;(@Path("id")
+                           <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id,
+                           @Header("Authorization")
+                           <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</pre>
+<div class="block">Retrieve a <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> asynchronously, using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a>
+ ReactiveX value response.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The unique identifier for the <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> sent as a path variable.</dd>
+<dd><code>bearerToken</code> - The Oauth2 bearer token used for authorizing the request.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;List&lt;Image&gt;&gt;}</dd>
+</dl>
+</li>
+</ul>
+<a id="getGalleryList(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getGalleryList</h4>
+<pre class="methodSignature">@GET("galleries")
+<a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink">Single</a>&lt;<a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;&gt;&nbsp;getGalleryList&#8203;(@Header("Authorization")
+                                     <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;bearerToken)</pre>
+<div class="block">Retrieve a <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of all <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> asynchronously, using a <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html?is-external=true" title="class or interface in io.reactivex" class="externalLink"><code>Single</code></a>
+ ReactiveX value response.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bearerToken</code> - The Oauth2 bearer token used for authorizing the request.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link Single&lt;List&lt;Image&gt;&gt;}</dd>
+</dl>
 </li>
 </ul>
 </li>
