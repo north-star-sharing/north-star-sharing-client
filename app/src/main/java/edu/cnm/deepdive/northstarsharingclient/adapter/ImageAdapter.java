@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,17 +47,25 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
     return imageList.size();
   }
 
-  public class Holder extends RecyclerView.ViewHolder implements OnClickListener {
+  public interface OnImageClickHelper {
+
+    void onImageClick(Image image, int position);
+
+  }
+
+  public class Holder extends RecyclerView.ViewHolder implements OnClickListener,
+      OnLongClickListener {
 
     private final ItemImageBinding binding;
     private Image image;
-    private OnImageClickHelper onImageClickHelper;
+    private final OnImageClickHelper onImageClickHelper;
 
     public Holder(ItemImageBinding binding, OnImageClickHelper onImageClickHelper) {
       super(binding.getRoot());
       this.binding = binding;
       this.onImageClickHelper = onImageClickHelper;
-      binding.getRoot().setOnClickListener(this);
+      binding.getRoot()
+             .setOnClickListener(this);
     }
 
     private void bind(int position) {
@@ -76,11 +85,11 @@ public class ImageAdapter extends RecyclerView.Adapter<Holder> {
       onImageClickHelper.onImageClick(imageList.get(getAdapterPosition()), getAdapterPosition());
     }
 
-  }
-
-  public interface OnImageClickHelper {
-    void onImageClick(Image image, int position);
-
+    @Override
+    public boolean onLongClick(View view) {
+      onImageClickHelper.onImageClick(imageList.get(getAdapterPosition()), getAdapterPosition());
+      return true;
+    }
   }
 
 }

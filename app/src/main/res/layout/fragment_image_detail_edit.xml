@@ -12,52 +12,59 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-      android:id="@+id/image"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:scaleType="fitCenter"
-      android:adjustViewBounds="true"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/title_input_layout"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintWidth_percent=".7"
-      android:layout_margin="@dimen/static_spacing"
-      tools:ignore="ContentDescription"/>
-
     <ImageButton
       android:id="@+id/edit_details"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/static_spacing"
-      android:scaleType="fitCenter"
       android:adjustViewBounds="true"
+      android:contentDescription="@string/edit_button"
+      android:scaleType="fitCenter"
       android:src="@drawable/ic_edit"
-      app:layout_constraintTop_toTopOf="@id/image"
+      android:elevation="@dimen/half_static_spacing"
       app:layout_constraintEnd_toEndOf="@id/image"
-      android:contentDescription="@string/edit_button"/>
+      app:layout_constraintTop_toTopOf="@id/image"/>
 
+    <ImageView
+      android:id="@+id/image"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/static_spacing"
+      android:adjustViewBounds="true"
+      android:scaleType="fitCenter"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/title_input_layout"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintWidth_percent=".7"
+      tools:ignore="ContentDescription"/>
 
     <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/title_input_layout"
+      android:id="@+id/gallery_input_layout"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/static_spacing"
-      app:hintEnabled="true"
       app:hintAnimationEnabled="true"
-      app:layout_constraintTop_toBottomOf="@id/image"
+      app:hintEnabled="true"
       app:layout_constraintBottom_toTopOf="@id/description_input_layout"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent">
+      app:layout_constraintTop_toBottomOf="@id/image">
 
-      <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/image_title"
+      <TextView
+        android:id="@+id/gallery_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/half_static_spacing"
-        android:hint="@string/image_title"
-        android:inputType="text"/>
+        android:text="@string/gallery"/>
+
+      <TextView
+        android:id="@+id/gallery_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_static_spacing"
+        android:hint="@string/image_gallery"
+        />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,22 +73,28 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/static_spacing"
-      app:hintEnabled="true"
       app:hintAnimationEnabled="true"
-      app:layout_constraintTop_toBottomOf="@id/title_input_layout"
+      app:hintEnabled="true"
       app:layout_constraintBottom_toTopOf="@id/tags_input_layout"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent">
+      app:layout_constraintTop_toBottomOf="@id/gallery_input_layout">
 
-      <com.google.android.material.textfield.TextInputEditText
+      <TextView
+        android:id="@+id/description_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_static_spacing"
+        android:text="@string/description"/>
+
+      <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/half_static_spacing"
         android:hint="@string/description"
-        android:inputType="textMultiLine"
-        android:minLines="1"
-        android:maxLines="3"/>
+        android:maxLines="3"
+        android:minLines="1"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,19 +103,26 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/static_spacing"
-      app:hintEnabled="true"
       app:hintAnimationEnabled="true"
-      app:layout_constraintTop_toBottomOf="@id/description_input_layout"
+      app:hintEnabled="true"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent">
+      app:layout_constraintTop_toBottomOf="@id/description_input_layout">
 
-      <AutoCompleteTextView
+      <TextView
+        android:id="@+id/tag_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_static_spacing"
+        android:text="@string/tags"/>
+
+      <TextView
         android:id="@+id/tags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/half_static_spacing"
-        android:hint="@string/add_a_tag"
-        android:inputType="textAutoComplete"/>
+        android:hint="@string/no_tags"
+        />
 
     </com.google.android.material.textfield.TextInputLayout>
 

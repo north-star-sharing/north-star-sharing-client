@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   private Sensor sensorMagneticField;
   private float[] floatGravity = new float[3];
   private float[] floatGeoMagnetic = new float[3];
-  private float[] floatRotationMatrix = new float[9];
-  private float[] floatOrientation = new float[3]; //[0] = Azimuth, [1] = pitch, [2] = roll
+  private final float[] floatRotationMatrix = new float[9];
+  private final float[] floatOrientation = new float[3]; //[0] = Azimuth, [1] = pitch, [2] = roll
   private double azimuth;
   private double pitch;
   private double roll;
@@ -317,9 +317,10 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
       // TODO Sensor stuff goes here.
       OpenNewUpload action = MobileNavigationDirections.openNewUpload(
-          0,
-          "Test Title",
-          0,
+          0L,
+          "Test Image Title",
+          0L,
+          "Test Gallery Title",
           "Test description",
           0,
           0,

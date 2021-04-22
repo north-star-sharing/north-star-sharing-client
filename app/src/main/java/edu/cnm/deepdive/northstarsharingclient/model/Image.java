@@ -160,10 +160,10 @@ public class Image implements Serializable {
   }
 
   /**
-   * Sets the azimuth angle in degrees at the time the image was captured. This value represents
-   * the angle between the device's y-axis and the magnetic north pole. When facing north, this
-   * angle is 0, when facing south, this angle is π. Likewise, when facing east, this angle is π/2,
-   * and when facing west, this angle is -π/2. The range of values is -π to π.
+   * Sets the azimuth angle in degrees at the time the image was captured. This value represents the
+   * angle between the device's y-axis and the magnetic north pole. When facing north, this angle is
+   * 0, when facing south, this angle is π. Likewise, when facing east, this angle is π/2, and when
+   * facing west, this angle is -π/2. The range of values is -π to π.
    */
   public void setAzimuth(float azimuth) {
     this.azimuth = azimuth;
@@ -181,8 +181,8 @@ public class Image implements Serializable {
   }
 
   /**
-   * Sets the pitch angle in degrees at the time the image was captured. This value represents
-   * the angle between a plane parallel to the device's screen and a plane parallel to the ground.
+   * Sets the pitch angle in degrees at the time the image was captured. This value represents the
+   * angle between a plane parallel to the device's screen and a plane parallel to the ground.
    * Assuming that the bottom edge of the device faces the user and that the screen is face-up,
    * tilting the top edge of the device toward the ground creates a positive pitch angle. The range
    * of values is -π to π.
@@ -257,6 +257,10 @@ public class Image implements Serializable {
 
   public Gallery getGallery() {
     return gallery;
+  }
+
+  public String getGalleryTitle() {
+    return gallery.getTitle();
   }
 
   public void setGallery(Gallery gallery) {

@@ -20,17 +20,20 @@ public class NorthStarSharingApplication extends Application {
 
   private void setupSignin() {
     GoogleSignInService.setContext(this);
-    GoogleSignInService.getInstance().getBearerToken().observeForever((bearerToken) ->
-        this.bearerToken = bearerToken);
+    GoogleSignInService.getInstance()
+                       .getBearerToken()
+                       .observeForever((bearerToken) ->
+                           this.bearerToken = bearerToken);
   }
 
   private void setupPicasso() {
     OkHttpClient client = new OkHttpClient.Builder()
         .addInterceptor((Chain chain) ->
             chain.proceed(
-                chain.request().newBuilder()
-                    .addHeader("Authorization", bearerToken)
-                    .build()
+                chain.request()
+                     .newBuilder()
+                     .addHeader("Authorization", bearerToken)
+                     .build()
             )
         )
         .build();
