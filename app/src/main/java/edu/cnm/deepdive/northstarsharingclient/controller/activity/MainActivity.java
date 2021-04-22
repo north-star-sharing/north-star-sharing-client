@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.hardware.SensorManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ import edu.cnm.deepdive.northstarsharingclient.viewmodel.PermissionViewModel;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   /* Camera orientation fields */
   private FragmentImageListBinding binding;
   private SensorManager sensorManager;
+  private Location location;
+  private float[] orientation;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +129,14 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
       if (throwable != null) {
         Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
       }
+    });
+    imageViewModel.getLocation().observe(this, (location)-> {
+      this.location = location;
+      Log.d(getClass().getName(), location.toString());
+    });
+    imageViewModel.getOrientation().observe(this, (orientation) -> {
+      this.orientation = orientation;
+      Log.d(getClass().getName(), Arrays.toString(orientation));
     });
   }
 
@@ -265,26 +277,23 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
-      // TODO Sensor stuff goes here.
       OpenNewUpload action = MobileNavigationDirections.openNewUpload(
           0,
           "Test Title" ,
           0 ,
-          "Test description",
-          0,
-          0,
-          0,
-          "Latitude",
-          "Longitude");
+          "Test description");
       action.setImageUri(uri);
       action.setImageFile(image);
-      float[] orientationAngles = SensorService.getOrientation(sensorManager);
-      action.setAzimuth(orientationAngles[0]);
-      action.setPitch(orientationAngles[1]);
-      action.setRoll(orientationAngles[2]);
-      LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-      locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
-      action.setLatitude()
+      // Set camera GPS coordinates here.
+      if (location != null) {
+        action.setLatitude(location.getLatitude());
+        action.setLongitude(location.getLongitude());
+      }
+      if (orientation != null) {
+        action.setAzimuth(orientation[0]);
+        action.setPitch(orientation[1]);
+        action.setRoll(orientation[2]);
+      }
       navController.navigate(action);
     }
   }

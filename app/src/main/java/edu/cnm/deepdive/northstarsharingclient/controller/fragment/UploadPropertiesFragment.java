@@ -41,6 +41,11 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
   private ImageViewModel imageViewModel;
   private GalleryViewModel galleryViewModel;
   private List<Gallery> galleryList;
+  private float azimuth;
+  private float pitch;
+  private float roll;
+  private double latitude;
+  private double longitude;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +55,11 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     file = args.getImageFile();
     description = args.getDescription();
     title = args.getImageTitle();
-//    TODO Get other args as needed
+    azimuth = args.getAzimuth();
+    pitch = args.getPitch();
+    roll = args.getRoll();
+    latitude = (args.getLatitude() != null) ? args.getLatitude() : 0;
+    longitude = (args.getLongitude() != null) ? args.getLongitude() : 0;
   }
 
   @NonNull
@@ -146,11 +155,7 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     // TODO Access the bundle of arguments.
 //    OpenNewUpload action = MobileNavigationDirections.
 //     args = UploadPropertiesFragmentArgs.fromBundle(getArguments());
-    String azimuth = "0";
-    String pitch = "0";
-    String roll = "0";
-    String latitude = "0";
-    String longitude = "0";
+
     String galleryTitle = binding.galleryTitle.getText()
                                               .toString()
                                               .trim();

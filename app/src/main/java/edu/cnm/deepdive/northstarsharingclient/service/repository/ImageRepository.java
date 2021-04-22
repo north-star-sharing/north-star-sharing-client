@@ -35,8 +35,8 @@ public class ImageRepository {
   }
 
   @SuppressWarnings("BlockingMethodInNonBlockingContext")
-  public Single<Image> add(Uri uri, File file, String title, String description, String azimuth,
-      String pitch, String roll, String latitude, String longitude, UUID galleryId) {
+  public Single<Image> add(Uri uri, File file, String title, String description, float azimuth,
+      float pitch, float roll, double latitude, double longitude, UUID galleryId) {
     return signInService
         .refreshBearerToken()
         .observeOn(Schedulers.io())
@@ -50,11 +50,12 @@ public class ImageRepository {
             MultipartBody.Part filePart =
                 MultipartBody.Part.createFormData("file", file.getName(), fileBody);
             RequestBody titlePart = RequestBody.create(title, multipartFormType);
-            RequestBody azimuthPart = RequestBody.create(azimuth, multipartFormType);
-            RequestBody pitchPart = RequestBody.create(pitch, multipartFormType);
-            RequestBody rollPart = RequestBody.create(roll, multipartFormType);
-            RequestBody latitudePart = RequestBody.create(latitude, multipartFormType);
-            RequestBody longitudePart = RequestBody.create(longitude, multipartFormType);
+            RequestBody azimuthPart = RequestBody.create(String.valueOf(azimuth), multipartFormType);
+            RequestBody pitchPart = RequestBody.create(String.valueOf(pitch), multipartFormType);
+            RequestBody rollPart = RequestBody.create(String.valueOf(roll), multipartFormType);
+            RequestBody latitudePart = RequestBody.create(String.valueOf(latitude), multipartFormType);
+            RequestBody longitudePart = RequestBody.create(String.valueOf(longitude), multipartFormType);
+            Log.d(getClass().getName(), String.format("Azimuth = %f, Pitch = %f, Roll = %f, Latitude = %f, Longitude = %f", azimuth, pitch, roll, latitude, longitude));
             if (description != null) {
               RequestBody descriptionPart = RequestBody.create(description, multipartFormType);
               return serviceProxy.post(token, filePart, titlePart, descriptionPart, azimuthPart,

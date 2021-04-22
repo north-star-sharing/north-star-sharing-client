@@ -1,56 +1,124 @@
 package edu.cnm.deepdive.northstarsharingclient.service;
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
+import io.reactivex.Emitter;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.schedulers.Schedulers;
+import java.util.Arrays;
 
-public abstract class SensorService {
+public class SensorService {
 
-  private static float[] gravityValues;
-  private static float[] GeoMagneticValues;
-  private static float[] rotationMatrix = new float[9];
-  private static float[] orientationAngles = new float[3]; //[0] = Azimuth, [1] = pitch, [2] = roll
+  private final Context context;
+  private final SensorManager sensorManager;
+  // private final float[] rotationMatrix = new float[16]; // For use with rotation vectors.
+  private final float[] rotationMatrix = new float[9]; // For use with magnetometer and accelerometer.
+  private final float[] inclinationMatrix = new float[9];
+  private final float[] orientationAngles = new float[3]; //[0] = Azimuth, [1] = pitch, [2] = roll
 
-  public static float[] getOrientation(SensorManager sensorManager) {
-    Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-    Sensor sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-    SensorEventListener sensorEventListenerAccelerometer = new SensorEventListener() {
+  private SensorEventListener accelerometerListener;
+  private SensorEventListener magnetometerListener;
+  private SensorEventListener rotationVectorListener;
+  private float[] gravityValues = new float[3];
+  private float[] geoMagneticValues = new float[3];
+  // private float[] rotationVectorValues = new float[4];
+  private Emitter<float[]> emitter;
+
+  public SensorService(Context context) {
+    this.context = context;
+    sensorManager = setupListeners(context);
+  }
+
+  private void convertToDegrees() {
+    orientationAngles[0] = (float) Math.toDegrees(orientationAngles[0]); // azimuth
+    orientationAngles[1] = (float) Math.toDegrees(orientationAngles[1]); // pitch
+    orientationAngles[2] = (float) Math.toDegrees(orientationAngles[2]); // roll
+  }
+
+  private SensorManager setupListeners(Context context) {
+    final SensorManager sensorManager;
+    sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+    accelerometerListener = new SensorEventListener() {
       @Override
       public void onSensorChanged(SensorEvent event) {
         gravityValues = event.values;
-        SensorManager.getRotationMatrix(rotationMatrix, null, gravityValues, GeoMagneticValues);
-        SensorManager.getOrientation(rotationMatrix, orientationAngles);
+        Log.d("Accelerometer vector: ", Arrays.toString(gravityValues));
+        updateOrientation();
       }
 
       @Override
-      public void onAccuracyChanged(Sensor sensor, int accuracy) { /* Do nothing. */ }
+      public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Do nothing.
+      }
     };
-    SensorEventListener sensorEventListenerMagneticField = new SensorEventListener() {
+    magnetometerListener = new SensorEventListener() {
       @Override
       public void onSensorChanged(SensorEvent event) {
-        GeoMagneticValues = event.values;
-        SensorManager.getRotationMatrix(rotationMatrix, null, gravityValues, GeoMagneticValues);
-        SensorManager.getOrientation(rotationMatrix, orientationAngles);
+        geoMagneticValues = event.values;
+        Log.d("Geomagnetic vector: ", Arrays.toString(geoMagneticValues));
+        updateOrientation();
       }
 
       @Override
-      public void onAccuracyChanged(Sensor sensor, int accuracy) { /* Do nothing. */ }
+      public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Do nothing.
+      }
     };
-    // Turn the sensors on to capture the camera angles.
-    sensorManager.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer,
-        SensorManager.SENSOR_DELAY_NORMAL);
-    sensorManager.registerListener(sensorEventListenerMagneticField, sensorMagneticField,
-        SensorManager.SENSOR_DELAY_NORMAL);
-    // Convert the camera angles to degrees.
-    orientationAngles[0] = (float) (-orientationAngles[0] * 180 / Math.PI); // azimuth
-    orientationAngles[1] = (float) (-orientationAngles[1] * 180 / Math.PI); // pitch
-    orientationAngles[2] = (float) (-orientationAngles[2] * 180 / Math.PI); // roll
-    // Turn the sensors off.
-    sensorManager.unregisterListener(sensorEventListenerAccelerometer);
-    sensorManager.unregisterListener(sensorEventListenerMagneticField);
-    return orientationAngles;
+    /*rotationVectorListener = new SensorEventListener() {
+      @Override
+      public void onSensorChanged(SensorEvent event) {
+        rotationVectorValues = event.values;
+        Log.d("Rotation vector: ", Arrays.toString(rotationVectorValues));
+        updateOrientation();
+      }
+
+      @Override
+      public void onAccuracyChanged(Sensor sensor, int accuracy) { *//* Do nothing. *//* }
+    };*/
+    return sensorManager;
   }
 
+  private void updateOrientation() {
+    float[] previousOrientation = Arrays.copyOf(orientationAngles, orientationAngles.length);
+    SensorManager.getRotationMatrix(rotationMatrix, inclinationMatrix, gravityValues, geoMagneticValues);
+    // SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVectorValues);
+    SensorManager.getOrientation(rotationMatrix, orientationAngles);
+    convertToDegrees();
+    if (emitter != null && !Arrays.equals(previousOrientation, orientationAngles)) {
+      emitter.onNext(orientationAngles);
+    }
+  }
+
+  public Observable<float[]> getOrientation() {
+    return Observable
+        .create((ObservableEmitter<float[]> emitter) -> this.emitter = emitter)
+        .subscribeOn(Schedulers.io());
+  }
+
+  public void startSensors() {
+    Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    Sensor sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+    // Sensor sensorRotationVector = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+    // Turn the sensors on to capture the camera angles.
+    sensorManager.registerListener(accelerometerListener, sensorAccelerometer,
+        SensorManager.SENSOR_DELAY_NORMAL);
+    sensorManager.registerListener(magnetometerListener, sensorMagneticField,
+        SensorManager.SENSOR_DELAY_NORMAL);
+    // sensorManager.registerListener(rotationVectorListener, sensorRotationVector, SensorManager.SENSOR_DELAY_NORMAL);
+
+  }
+
+  public void stopSensors() {
+    sensorManager.unregisterListener(accelerometerListener);
+    sensorManager.unregisterListener(magnetometerListener);
+    if (emitter != null) {
+      emitter.onComplete();
+    }
+  }
 
 }
