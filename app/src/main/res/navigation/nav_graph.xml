@@ -52,6 +52,25 @@
       android:name="description"
       app:argType="string"/>
 
+    <argument
+      android:name="azimuth"
+      app:argType="float"/>
+
+    <argument
+      android:name="pitch"
+      app:argType="float"/>
+
+    <argument
+      android:name="roll"
+      app:argType="float"/>
+
+    <argument
+      android:name="latitude"
+      app:argType="string"/>
+
+    <argument
+      android:name="longitude"
+      app:argType="string"/>
 
   </action>
 
@@ -75,15 +94,6 @@
     <!--      app:argType="String"/>-->
 
     <!--  </action>-->
-
-    <action
-      android:id="@+id/action_navigation_home_self"
-      app:destination="@id/navigation_home"/>
-
-    <argument
-      android:name="gallery_images"
-      app:argType="string"/>
-
 
     <action
       android:id="@+id/action_navigation_home_self"
@@ -170,7 +180,6 @@
     <argument
       android:name="gallery_id"
       app:argType="long"/>
-
 
   </dialog>
 

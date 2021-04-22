@@ -18,6 +18,8 @@ import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.squareup.picasso.Picasso;
+import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
+import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNewUpload;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentUploadPropertiesDialogBinding;
 import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
@@ -126,12 +128,14 @@ public class UploadPropertiesFragment extends DialogFragment implements TextWatc
     String description = binding.description.getText()
                                             .toString()
                                             .trim();
-    Image image = imageViewModel.getImage().getValue();
-    String azimuth = Float.toString(imageViewModel.getImage().getValue().getAzimuth());
-    String pitch = Float.toString(imageViewModel.getImage().getValue().getPitch());
-    String roll = Float.toString(imageViewModel.getImage().getValue().getRoll());
-    String latitude = Double.toString(imageViewModel.getImage().getValue().getLatitude());
-    String longitude = Double.toString(imageViewModel.getImage().getValue().getLongitude());
+    // TODO Access the bundle of arguments.
+//    OpenNewUpload action = MobileNavigationDirections.
+//     args = UploadPropertiesFragmentArgs.fromBundle(getArguments());
+    String azimuth = "0";
+    String pitch = "0";
+    String roll = "0";
+    String latitude = "0";
+    String longitude = "0";
     String galleryTitle = binding.galleryTitle.getText()
                                               .toString()
                                               .trim();
