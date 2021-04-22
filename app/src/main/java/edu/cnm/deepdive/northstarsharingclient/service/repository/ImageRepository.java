@@ -62,7 +62,6 @@ public class ImageRepository {
             } else {
               return serviceProxy.post(token, filePart, titlePart, azimuthPart,
                   pitchPart, rollPart, latitudePart, longitudePart, galleryId);
-//              FIXME This galleryId needs to go get the galleryId from a gallery in the database, look at where we get the ids for the autofill text field
             }
           }
         })

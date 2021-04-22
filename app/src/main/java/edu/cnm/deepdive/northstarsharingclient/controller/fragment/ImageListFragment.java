@@ -72,7 +72,7 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
     galleryViewModel = new ViewModelProvider(getActivity()).get(GalleryViewModel.class);
 //    if (getArguments() != null) {
 //      ImageListFragmentArgs args = ImageListFragmentArgs.fromBundle(getArguments());
-//      // TODO Filter which images are shown in the recycle view by gallery ID.
+      // TODO Filter which images are shown in the recycle view by gallery ID.
 //      galleryId = UUID.fromString(args.());
 //    }
 //    galleryViewModel.getGallery(galleryId);

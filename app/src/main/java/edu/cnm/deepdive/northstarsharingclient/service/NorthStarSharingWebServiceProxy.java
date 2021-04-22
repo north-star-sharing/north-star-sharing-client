@@ -59,7 +59,7 @@ public interface NorthStarSharingWebServiceProxy {
       @Part("latitude") RequestBody latitude,
       @Part("longitude") RequestBody longitude,
       @Path("id") UUID id);
-// FIXME^^^^^^FIXME^^^^^^^FIXME^^^^^^^^^^
+
   @GET("images")
   Single<List<Image>> getAllImages(@Header("Authorization") String bearerToken);
 

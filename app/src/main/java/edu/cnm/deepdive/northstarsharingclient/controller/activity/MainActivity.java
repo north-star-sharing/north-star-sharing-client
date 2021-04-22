@@ -1,13 +1,12 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -39,8 +38,8 @@ import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections;
 import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNewUpload;
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
-import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
+import edu.cnm.deepdive.northstarsharingclient.service.SensorService;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.PermissionViewModel;
@@ -73,15 +72,6 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   /* Camera orientation fields */
   private FragmentImageListBinding binding;
   private SensorManager sensorManager;
-  private Sensor sensorAccelerometer;
-  private Sensor sensorMagneticField;
-  private float[] floatGravity = new float[3];
-  private float[] floatGeoMagnetic = new float[3];
-  private float[] floatRotationMatrix = new float[9];
-  private float[] floatOrientation = new float[3]; //[0] = Azimuth, [1] = pitch, [2] = roll
-  private double azimuth;
-  private double pitch;
-  private double roll;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -97,43 +87,6 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     setUpNavigation();
     // Get access to the sensor manager for establishing the camera's position/angles.
     sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-    // TODO Move sensor stuff into onActivityResult() so we can capture the lat/lon coordinates &
-    //      camera angle of the picture.
-    sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-    sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-    SensorEventListener sensorEventListenerAccelerometer = new SensorEventListener() {
-      @Override
-      public void onSensorChanged(SensorEvent event) {
-        floatGravity = event.values;
-        SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic);
-        SensorManager.getOrientation(floatRotationMatrix, floatOrientation);
-      }
-
-      @Override
-      public void onAccuracyChanged(Sensor sensor, int accuracy) { /* Do nothing. */ }
-    };
-    SensorEventListener sensorEventListenerMagneticField = new SensorEventListener() {
-      @Override
-      public void onSensorChanged(SensorEvent event) {
-        floatGeoMagnetic = event.values;
-        SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic);
-        SensorManager.getOrientation(floatRotationMatrix, floatOrientation);
-        azimuth = -floatOrientation[0] * 180 / Math.PI;
-        pitch = -floatOrientation[1] * 180 / Math.PI;
-        roll = -floatOrientation[2] * 180 / Math.PI;
-      }
-
-      @Override
-      public void onAccuracyChanged(Sensor sensor, int accuracy) { /* Do nothing. */ }
-    };
-    sensorManager.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer,
-        SensorManager.SENSOR_DELAY_NORMAL);
-    sensorManager.registerListener(sensorEventListenerMagneticField, sensorMagneticField,
-        SensorManager.SENSOR_DELAY_NORMAL);
-    sensorManager.unregisterListener(sensorEventListenerAccelerometer);
-    sensorManager.unregisterListener(sensorEventListenerMagneticField);
-
   }
 
   private void setUpCamera() {
@@ -325,6 +278,13 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
           "Longitude");
       action.setImageUri(uri);
       action.setImageFile(image);
+      float[] orientationAngles = SensorService.getOrientation(sensorManager);
+      action.setAzimuth(orientationAngles[0]);
+      action.setPitch(orientationAngles[1]);
+      action.setRoll(orientationAngles[2]);
+      LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+      locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
+      action.setLatitude()
       navController.navigate(action);
     }
   }
