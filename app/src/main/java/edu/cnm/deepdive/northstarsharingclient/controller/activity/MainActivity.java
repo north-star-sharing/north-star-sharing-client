@@ -1,13 +1,11 @@
 package edu.cnm.deepdive.northstarsharingclient.controller.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.hardware.SensorManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,14 +38,12 @@ import edu.cnm.deepdive.northstarsharingclient.MobileNavigationDirections.OpenNe
 import edu.cnm.deepdive.northstarsharingclient.R;
 import edu.cnm.deepdive.northstarsharingclient.databinding.FragmentImageListBinding;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
-import edu.cnm.deepdive.northstarsharingclient.service.SensorService;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.GalleryViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.ImageViewModel;
 import edu.cnm.deepdive.northstarsharingclient.viewmodel.PermissionViewModel;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -86,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     permissionViewModel = new ViewModelProvider(this).get(PermissionViewModel.class);
     checkPermissions();
     setUpImageViewModel();
+    setUpImageViewModel();
     setUpGalleryViewModel();
     setUpCamera();
     setUpNavigation();
@@ -116,12 +113,12 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     galleryViewModel = new ViewModelProvider(this).get(GalleryViewModel.class);
     getLifecycle().addObserver(galleryViewModel);
     galleryViewModel.getThrowable()
-                    .observe(this, (throwable) -> {
-                      if (throwable != null) {
-                        Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG)
-                             .show();
-                      }
-                    });
+        .observe(this, (throwable) -> {
+          if (throwable != null) {
+            Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG)
+                .show();
+          }
+        });
   }
 
   private void setUpImageViewModel() {
@@ -132,14 +129,8 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         Toast.makeText(this, throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
       }
     });
-    imageViewModel.getLocation().observe(this, (location)-> {
-      this.location = location;
-      Log.d(getClass().getName(), location.toString());
-    });
-    imageViewModel.getOrientation().observe(this, (orientation) -> {
-      this.orientation = orientation;
-      Log.d(getClass().getName(), Arrays.toString(orientation));
-    });
+    imageViewModel.getLocation().observe(this, (location) -> this.location = location);
+    imageViewModel.getOrientation().observe(this, (orientation) -> this.orientation = orientation);
   }
 
   @Override
@@ -165,13 +156,13 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         break;
       case R.id.sign_out:
         GoogleSignInService.getInstance()
-                           .signOut()
-                           .addOnCompleteListener((ignore) -> {
-                             Intent intent = new Intent(this, LoginActivity.class)
-                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                     | Intent.FLAG_ACTIVITY_NEW_TASK);
-                             startActivity(intent);
-                           });
+            .signOut()
+            .addOnCompleteListener((ignore) -> {
+              Intent intent = new Intent(this, LoginActivity.class)
+                  .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                      | Intent.FLAG_ACTIVITY_NEW_TASK);
+              startActivity(intent);
+            });
         break;
       default:
         handled = super.onOptionsItemSelected(item);
@@ -270,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
         // Error occurred while creating the File
         Snackbar.make(findViewById(R.id.drawer_layout), "Failed to take a picture",
             BaseTransientBottomBar.LENGTH_INDEFINITE)
-                .show();
+            .show();
       }
     }
   }
@@ -281,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
       OpenNewUpload action = MobileNavigationDirections.openNewUpload(
           0L,
-          "Test Title" ,
+          "Test Title",
           0L,
           "Gallery",
           "Test description");
