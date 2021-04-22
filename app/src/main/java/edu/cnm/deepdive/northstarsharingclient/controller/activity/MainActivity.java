@@ -280,9 +280,10 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
       OpenNewUpload action = MobileNavigationDirections.openNewUpload(
-          0,
+          0L,
           "Test Title" ,
-          0 ,
+          0L,
+          "Gallery",
           "Test description");
       action.setImageUri(uri);
       action.setImageFile(image);
