@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModel;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * A {@link androidx.lifecycle.ViewModel} to hold the {@link LiveData} for the Android permissions
+ * information.
+ */
 public class PermissionViewModel extends ViewModel {
 
   private final MutableLiveData<Set<String>> permissions = new MutableLiveData<>(new HashSet<>());

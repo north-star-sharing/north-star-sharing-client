@@ -18,12 +18,17 @@ import edu.cnm.deepdive.northstarsharingclient.service.LocationService;
 import edu.cnm.deepdive.northstarsharingclient.service.SensorService;
 import edu.cnm.deepdive.northstarsharingclient.service.repository.ImageRepository;
 import edu.cnm.deepdive.northstarsharingclient.service.repository.UserRepository;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * A {@link androidx.lifecycle.ViewModel} to hold the {@link LiveData} for the {@link Image}
+ * information.
+ */
 public class ImageViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final UserRepository userRepository;
@@ -39,6 +44,11 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
   private final LocationService locationService;
   private final SensorService sensorService;
 
+  /**
+   * Create an instance of the {@link ImageViewModel}.
+   *
+   * @param application The context that is making use of this ViewModel and it's relevant information.
+   */
   public ImageViewModel(
       @NonNull Application application) {
     super(application);
@@ -57,6 +67,85 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
     trackLocation();
     trackOrientation();
 //    loadImages();
+  }
+
+  /**
+   * Return the {@link User} that created the {@link Image}.
+   *
+   * @return {@link LiveData&lt;User&gt;}
+   */
+  public LiveData<User> getUser() {
+    return user;
+  }
+
+  /**
+   * Return the {@link Throwable} when an error is thrown.
+   *
+   * @return {@link LiveData&lt;Throwable&gt;}
+   */
+  public LiveData<Throwable> getThrowable() {
+    return throwable;
+  }
+
+  /**
+   * Return the {@link Image} that is being managed.
+   *
+   * @return {@link LiveData&lt;Image&gt;}
+   */
+  public LiveData<Image> getImage() {
+    return image;
+  }
+
+  /**
+   * Return a {@link List} of {@link Image Images} that is being managed.
+   *
+   * @return {@link LiveData&lt;List&lt;Image&gt;&gt;}
+   */
+  public LiveData<List<Image>> getImageList() {
+    return imageList;
+  }
+
+  /**
+   * Return a {@link Location} where {@link Image} was captured.
+   *
+   * @return {@link LiveData&lt;Location&gt;}
+   */
+  public LiveData<Location> getLocation() {
+    return location;
+  }
+
+  /**
+   * Return a {@link Float} array where {@link Image} was captured.
+   *
+   * @return {@link LiveData&lt;float[]&gt;}
+   */
+  public LiveData<float[]> getOrientation() {
+    return orientation;
+  }
+
+  public void store(Uri uri, File file, String title, String description, float azimuth, float
+      pitch, float roll, double latitude, double longitude, UUID galleryId) {
+    throwable.postValue(null);
+    pendingTask.add(
+        imageRepository
+            .add(uri, file, title, description, azimuth, pitch, roll, latitude, longitude,
+                galleryId)
+            .subscribe(
+                (image) -> loadImages(),
+                this::postThrowable
+            )
+    );
+  }
+
+  public void loadImages() {
+    throwable.postValue(null);
+    pendingTask.add(
+        imageRepository.getAll()
+            .subscribe(
+                imageList::postValue,
+                throwable::postValue
+            )
+    );
   }
 
   private void trackLocation() {
@@ -87,30 +176,6 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
     );
   }
 
-  public LiveData<User> getUser() {
-    return user;
-  }
-
-  public LiveData<Throwable> getThrowable() {
-    return throwable;
-  }
-
-  public LiveData<Image> getImage() {
-    return image;
-  }
-
-  public LiveData<List<Image>> getImageList() {
-    return imageList;
-  }
-
-  public LiveData<Location> getLocation() {
-    return location;
-  }
-
-  public LiveData<float[]> getOrientation() {
-    return orientation;
-  }
-
   @OnLifecycleEvent(Event.ON_STOP)
   private void clearPending() {
     pendingTask.clear();
@@ -123,28 +188,4 @@ public class ImageViewModel extends AndroidViewModel implements LifecycleObserve
     this.throwable.postValue(throwable);
   }
 
-  public void store(Uri uri, File file, String title, String description, float azimuth, float
-      pitch, float roll, double latitude, double longitude, UUID galleryId) {
-    throwable.postValue(null);
-    pendingTask.add(
-        imageRepository
-            .add(uri, file, title, description, azimuth, pitch, roll, latitude, longitude,
-                galleryId)
-            .subscribe(
-                (image) -> loadImages(),
-                this::postThrowable
-            )
-    );
-  }
-
-  public void loadImages() {
-    throwable.postValue(null);
-    pendingTask.add(
-        imageRepository.getAll()
-            .subscribe(
-                imageList::postValue,
-                throwable::postValue
-            )
-    );
-  }
 }

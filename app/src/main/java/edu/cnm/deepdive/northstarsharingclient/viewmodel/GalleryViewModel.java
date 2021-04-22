@@ -14,6 +14,10 @@ import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * A {@link androidx.lifecycle.ViewModel} to hold the {@link LiveData} for the {@link Gallery}
+ * information.
+ */
 public class GalleryViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final MutableLiveData<Gallery> gallery;
