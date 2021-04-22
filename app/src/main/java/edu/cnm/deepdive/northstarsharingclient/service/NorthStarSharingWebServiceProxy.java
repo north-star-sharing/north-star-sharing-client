@@ -24,15 +24,46 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
+/**
+ * An interface used by {@link Retrofit} to dynamically construct the HTTP GET and POST requests
+ * to the web service.
+ */
 public interface NorthStarSharingWebServiceProxy {
 
+  /**
+   * Get a reference to the singleton instance of the {@link NorthStarSharingWebServiceProxy}.
+   *
+   * @return {@link NorthStarSharingWebServiceProxy}
+   */
   static NorthStarSharingWebServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;
   }
 
+  /**
+   * Get user's {@link com.google.android.gms.auth.api.signin.GoogleSignIn} profile asynchronously,
+   * using a {@link Single} ReactiveX value response
+   *
+   * @param bearerToken The Oauth2 bearer token used for authorizing the request.
+   * @return {@link Single&lt;User&gt;}
+   */
   @GET("users/me")
   Single<User> getProfile(@Header("Authorization") String bearerToken);
 
+  /**
+   * POST a single {@link Image} to the web service without a description asynchronously, using a
+   * {@link Single} ReactiveX value response.
+   *
+   * @param bearerToken The Oauth2 bearer token used for authorizing the request.
+   * @param file The {@link Image} {@link java.io.File} to be persisted.
+   * @param title The user-entered title.
+   * @param azimuth The azimuth of the camera at the time of the picture.
+   * @param pitch The pitch of the camera at the time of the picture.
+   * @param roll The roll of the camera at the time of the picture.
+   * @param latitude The latitude of the camera at the time of the picture.
+   * @param longitude The longitude of the camera at the time of the picture.
+   * @param id The unique identifier for the {@link Gallery} that will contain this {@link Image} sent as a path variable.
+   * @return {@link Single&lt;Image&gt;}
+   */
   @Multipart
   @POST("galleries/{id}/images")
   Single<Image> post(
@@ -46,6 +77,22 @@ public interface NorthStarSharingWebServiceProxy {
       @Part("longitude") RequestBody longitude,
       @Path("id") UUID id);
 
+  /**
+   * POST a single {@link Image} to the web service with a description asynchronously, using a
+   * {@link Single} ReactiveX value response.
+   *
+   * @param bearerToken The Oauth2 bearer token used for authorizing the request.
+   * @param file The {@link Image} {@link java.io.File} to be persisted.
+   * @param title The user-entered title.
+   * @param description The user-entered description.
+   * @param azimuth The azimuth of the camera at the time of the picture.
+   * @param pitch The pitch of the camera at the time of the picture.
+   * @param roll The roll of the camera at the time of the picture.
+   * @param latitude The latitude of the camera at the time of the picture.
+   * @param longitude The longitude of the camera at the time of the picture.
+   * @param id The unique identifier for the {@link Gallery} that will contain this {@link Image} sent as a path variable.
+   * @return {@link Single&lt;Image&gt;}
+   */
   @Multipart
   @POST("galleries/{id}/images")
   Single<Image> post(
@@ -60,15 +107,41 @@ public interface NorthStarSharingWebServiceProxy {
       @Part("longitude") RequestBody longitude,
       @Path("id") UUID id);
 
+  /**
+   * Retrieve a {@link List} of {@link Image Images} asynchronously, using a {@link Single}
+   * ReactiveX value response.
+   *
+   * @param bearerToken The Oauth2 bearer token used for authorizing the request.
+   * @return {@link Single&lt;List&lt;Image&gt;&gt;}
+   */
   @GET("images")
   Single<List<Image>> getAllImages(@Header("Authorization") String bearerToken);
 
+  /**
+   * Retrieve a {@link Gallery} asynchronously, using a {@link Single}
+   * ReactiveX value response.
+   *
+   * @param id The unique identifier for the {@link Gallery} sent as a path variable.
+   * @param bearerToken The Oauth2 bearer token used for authorizing the request.
+   * @return {@link Single&lt;List&lt;Image&gt;&gt;}
+   */
   @GET("galleries/{galleryId}")
-  Single<Gallery> getGallery(@Path("id") UUID id, @Header("Authorization") String bearToken);
+  Single<Gallery> getGallery(@Path("id") UUID id, @Header("Authorization") String bearerToken);
 
+  /**
+   * Retrieve a {@link List} of all {@link Gallery Galleries} asynchronously, using a {@link Single}
+   * ReactiveX value response.
+   *
+   * @param bearerToken The Oauth2 bearer token used for authorizing the request.
+   * @return {@link Single&lt;List&lt;Image&gt;&gt;}
+   */
   @GET("galleries")
   Single<List<Gallery>> getGalleryList(@Header("Authorization") String bearerToken);
 
+  /**
+   * A helper class to create and contain a singleton instance of the
+   * {@link NorthStarSharingWebServiceProxy}.
+   */
   class InstanceHolder {
 
     private static final NorthStarSharingWebServiceProxy INSTANCE;

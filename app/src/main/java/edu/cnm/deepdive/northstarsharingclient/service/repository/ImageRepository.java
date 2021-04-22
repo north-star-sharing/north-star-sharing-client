@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
+import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
 import edu.cnm.deepdive.northstarsharingclient.model.Image;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 import edu.cnm.deepdive.northstarsharingclient.service.NorthStarSharingWebServiceProxy;
@@ -18,6 +19,10 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
+/**
+ * A database repository utility for persisting {@link Image Images} to the server and retrieving
+ * them.
+ */
 public class ImageRepository {
 
   private final Context context;
@@ -26,6 +31,11 @@ public class ImageRepository {
   private final ContentResolver resolver;
   private final MediaType multipartFormType;
 
+  /**
+   * Create an {@link ImageRepository}. A {@link Context} may be required for some operations.
+   *
+   * @param context {@link Context}
+   */
   public ImageRepository(Context context) {
     this.context = context;
     serviceProxy = NorthStarSharingWebServiceProxy.getInstance();
@@ -34,6 +44,21 @@ public class ImageRepository {
     multipartFormType = MediaType.parse("multipart/form-data");
   }
 
+  /**
+   * Adds a single {@link Image} asynchronously, using a {@link Single} ReactiveX value response.
+   *
+   * @param uri The location of the file in local storage.
+   * @param file A reference to the {@link File} object.
+   * @param title The user-entered title.
+   * @param description The user-entered description.
+   * @param azimuth The azimuth of the camera at the time of the picture.
+   * @param pitch The pitch of the camera at the time of the picture.
+   * @param roll The roll of the camera at the time of the picture.
+   * @param latitude The latitude of the camera at the time of the picture.
+   * @param longitude The longitude of the camera at the time of the picture.
+   * @param galleryId The {@link Gallery} that was selected by the user.
+   * @return {@link Single&lt;Image&gt;}
+   */
   @SuppressWarnings("BlockingMethodInNonBlockingContext")
   public Single<Image> add(Uri uri, File file, String title, String description, float azimuth,
       float pitch, float roll, double latitude, double longitude, UUID galleryId) {
@@ -78,6 +103,12 @@ public class ImageRepository {
         });
   }
 
+  /**
+   * Get a {@link List} of all {@link Image Images} from the server asynchronously, using a
+   * {@link Single} ReactiveX value response.
+   *
+   * @return {@link Single&lt;List&lt;Image&gt&gt;}
+   */
   public Single<List<Image>> getAll() {
     return signInService.refreshBearerToken()
                         .observeOn(Schedulers.io())

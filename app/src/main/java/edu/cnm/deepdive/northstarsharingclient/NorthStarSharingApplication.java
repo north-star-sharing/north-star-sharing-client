@@ -7,6 +7,18 @@ import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 import okhttp3.Interceptor.Chain;
 import okhttp3.OkHttpClient;
 
+/**
+ * North Star Sharing is a proof-of-concept group project for
+ * <a href="https://deepdivecoding.com/">Deep Dive Coding</a> through
+ * <a href="CNM">https://www.cnm.edu/</a>. The
+ * purpose of this Android app is to create a social media-style experience around sharing
+ * astronomy pictures of the night sky. For more information about the project, please visit the
+ * <a href="https://north-star-sharing.github.io/>North Star Sharing site</a> on Github.
+ *
+ * This class is the entry point for the {@link Application} that starts the
+ * {@link GoogleSignInService} and initializes {@link Picasso}
+ * for handling {@link edu.cnm.deepdive.northstarsharingclient.model.Image Images}.
+ */
 public class NorthStarSharingApplication extends Application {
 
   private String bearerToken;
