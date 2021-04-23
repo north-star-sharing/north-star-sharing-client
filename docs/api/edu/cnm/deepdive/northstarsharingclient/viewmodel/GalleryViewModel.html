@@ -170,7 +170,9 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(android.app.Application)">GalleryViewModel</a></span>&#8203;(<a href="https://developer.android.com/reference/android/app/Application.html?is-external=true" title="class or interface in android.app" class="externalLink">Application</a>&nbsp;application)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Create an instance of the <a href="GalleryViewModel.html" title="class in edu.cnm.deepdive.northstarsharingclient.viewmodel"><code>GalleryViewModel</code></a>.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -193,27 +195,38 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink">LiveData</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGallery()">getGallery</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return a <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> from <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> that is being managed by the view model.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGallery(java.util.UUID)">getGallery</a></span>&#8203;(<a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get a specific <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> by looking up it's <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>UUID</code></a> identifier}</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink">LiveData</a>&lt;<a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGalleryList()">getGalleryList</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return the <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of all <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> from <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> that is being
+ managed by the view model.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink">LiveData</a>&lt;<a href="https://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Throwable</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThrowable()">getThrowable</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return a <a href="https://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang" class="externalLink"><code>Throwable</code></a> error from <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> that is being managed by the view model.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#loadGalleryList()">loadGalleryList</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Acquire the list of all <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> from the repository.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -261,6 +274,12 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <h4>GalleryViewModel</h4>
 <pre>public&nbsp;GalleryViewModel&#8203;(<a href="https://developer.android.com/reference/androidx/annotation/NonNull.html?is-external=true" title="class or interface in androidx.annotation" class="externalLink">@NonNull</a>
                         <a href="https://developer.android.com/reference/android/app/Application.html?is-external=true" title="class or interface in android.app" class="externalLink">Application</a>&nbsp;application)</pre>
+<div class="block">Create an instance of the <a href="GalleryViewModel.html" title="class in edu.cnm.deepdive.northstarsharingclient.viewmodel"><code>GalleryViewModel</code></a>. An <a href="https://developer.android.com/reference/android/app/Application.html?is-external=true" title="class or interface in android.app" class="externalLink"><code>Application</code></a> Context may be required
+ for functionality of other classes that are used.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>application</code> - The context in which the GalleryViewModel is being used.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -280,6 +299,11 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <li class="blockList">
 <h4>getGallery</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink">LiveData</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;&nbsp;getGallery()</pre>
+<div class="block">Return a <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> from <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> that is being managed by the view model.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link LiveData&lt;Gallery&gt;}</dd>
+</dl>
 </li>
 </ul>
 <a id="getGalleryList()">
@@ -289,6 +313,12 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <li class="blockList">
 <h4>getGalleryList</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink">LiveData</a>&lt;<a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Gallery</a>&gt;&gt;&nbsp;getGalleryList()</pre>
+<div class="block">Return the <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of all <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> from <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> that is being
+ managed by the view model.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link LiveData&lt;List&lt;Gallery&gt;&gt;}</dd>
+</dl>
 </li>
 </ul>
 <a id="getThrowable()">
@@ -298,6 +328,11 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <li class="blockList">
 <h4>getThrowable</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink">LiveData</a>&lt;<a href="https://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Throwable</a>&gt;&nbsp;getThrowable()</pre>
+<div class="block">Return a <a href="https://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang" class="externalLink"><code>Throwable</code></a> error from <a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html?is-external=true" title="class or interface in androidx.lifecycle" class="externalLink"><code>LiveData</code></a> that is being managed by the view model.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>{@link LiveData&lt;Throwable&gt;}</dd>
+</dl>
 </li>
 </ul>
 <a id="getGallery(java.util.UUID)">
@@ -307,6 +342,11 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <li class="blockList">
 <h4>getGallery</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;getGallery&#8203;(<a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;id)</pre>
+<div class="block">Get a specific <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Gallery</code></a> by looking up it's <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>UUID</code></a> identifier}</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The unique <a href="https://developer.android.com/reference/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>UUID</code></a> identifier of a gallery.</dd>
+</dl>
 </li>
 </ul>
 <a id="loadGalleryList()">
@@ -316,6 +356,7 @@ implements <a href="https://developer.android.com/reference/androidx/lifecycle/L
 <li class="blockList">
 <h4>loadGalleryList</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;loadGalleryList()</pre>
+<div class="block">Acquire the list of all <a href="../model/Gallery.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Galleries</code></a> from the repository.</div>
 </li>
 </ul>
 </li>
