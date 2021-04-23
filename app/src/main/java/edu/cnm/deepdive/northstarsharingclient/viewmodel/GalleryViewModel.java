@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.northstarsharingclient.viewmodel;
 
 import android.app.Application;
+import android.hardware.SensorManager;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Lifecycle.Event;
@@ -26,6 +27,12 @@ public class GalleryViewModel extends AndroidViewModel implements LifecycleObser
   private final CompositeDisposable pending;
   private final GalleryRepository galleryRepository;
 
+  /**
+   * Create an instance of the {@link GalleryViewModel}. An {@link Application} Context may be required
+   * for functionality of other classes that are used.
+   *
+   * @param application The context in which the GalleryViewModel is being used.
+   */
   public GalleryViewModel(
       @NonNull Application application) {
     super(application);
@@ -37,19 +44,39 @@ public class GalleryViewModel extends AndroidViewModel implements LifecycleObser
     loadGalleryList();
   }
 
-
+  /**
+   * Return a {@link Gallery} from {@link LiveData} that is being managed by the view model.
+   *
+   * @return {@link LiveData&lt;Gallery&gt;}
+   */
   public LiveData<Gallery> getGallery() {
     return gallery;
   }
 
+  /**
+   * Return the {@link List} of all {@link Gallery Galleries} from {@link LiveData} that is being
+   * managed by the view model.
+   *
+   * @return {@link LiveData&lt;List&lt;Gallery&gt;&gt;}
+   */
   public LiveData<List<Gallery>> getGalleryList() {
     return galleryList;
   }
 
+  /**
+   * Return a {@link Throwable} error from {@link LiveData} that is being managed by the view model.
+   *
+   * @return {@link LiveData&lt;Throwable&gt;}
+   */
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }
 
+  /**
+   * Get a specific {@link Gallery} by looking up it's {@link UUID} identifier}
+   *
+   * @param id The unique {@link UUID} identifier of a gallery.
+   */
   public void getGallery(UUID id) {
     throwable.postValue(null);
     pending.add(
@@ -62,6 +89,9 @@ public class GalleryViewModel extends AndroidViewModel implements LifecycleObser
     );
   }
 
+  /**
+   * Acquire the list of all {@link Gallery Galleries} from the repository.
+   */
   public void loadGalleryList() {
     throwable.postValue(null);
     pending.add(
