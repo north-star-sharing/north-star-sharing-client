@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.northstarsharingclient;
 
 import android.app.Application;
+import com.facebook.stetho.Stetho;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
@@ -28,6 +29,7 @@ public class NorthStarSharingApplication extends Application {
     super.onCreate();
     setupSignin();
     setupPicasso();
+    Stetho.initializeWithDefaults(this);
   }
 
   private void setupSignin() {
