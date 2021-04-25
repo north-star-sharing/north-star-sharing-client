@@ -137,6 +137,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">ImageAdapter</span>
 extends <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.Adapter.html?is-external=true" title="class or interface in androidx.recyclerview.widget" class="externalLink">RecyclerView.Adapter</a>&lt;<a href="ImageAdapter.Holder.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter.Holder</a>&gt;</pre>
+<div class="block">A <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.Adapter.html?is-external=true" title="class or interface in androidx.recyclerview.widget" class="externalLink"><code>RecyclerView.Adapter</code></a> to display a scrolling list of <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a>.</div>
 </li>
 </ul>
 </div>
@@ -160,12 +161,17 @@ extends <a href="https://developer.android.com/reference/androidx/recyclerview/w
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="ImageAdapter.Holder.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter.Holder</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">A nested class of <a href="ImageAdapter.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter"><code>ImageAdapter</code></a> to manage the behavior of an individual <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> in
+ the <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.html?is-external=true" title="class or interface in androidx.recyclerview.widget" class="externalLink"><code>RecyclerView</code></a>.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static interface&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="ImageAdapter.OnImageClickHelper.html" title="interface in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter.OnImageClickHelper</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">An interface that handles <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink"><code>View.OnClickListener</code></a> events for <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Image</code></a> items.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -195,7 +201,9 @@ extends <a href="https://developer.android.com/reference/androidx/recyclerview/w
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(android.content.Context,java.util.List,edu.cnm.deepdive.northstarsharingclient.adapter.ImageAdapter.OnImageClickHelper)">ImageAdapter</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;context,
             <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;&nbsp;imageList,
             <a href="ImageAdapter.OnImageClickHelper.html" title="interface in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter.OnImageClickHelper</a>&nbsp;onImageClickHelper)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Create an instance of a <a href="ImageAdapter.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter"><code>ImageAdapter</code></a> to manage the scrolling list of <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a>.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -272,6 +280,13 @@ extends <a href="https://developer.android.com/reference/androidx/recyclerview/w
 <pre>public&nbsp;ImageAdapter&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;context,
                     <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model">Image</a>&gt;&nbsp;imageList,
                     <a href="ImageAdapter.OnImageClickHelper.html" title="interface in edu.cnm.deepdive.northstarsharingclient.adapter">ImageAdapter.OnImageClickHelper</a>&nbsp;onImageClickHelper)</pre>
+<div class="block">Create an instance of a <a href="ImageAdapter.html" title="class in edu.cnm.deepdive.northstarsharingclient.adapter"><code>ImageAdapter</code></a> to manage the scrolling list of <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>context</code> - The application <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink"><code>Context</code></a> in which the instance is being used.</dd>
+<dd><code>imageList</code> - The <a href="https://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> of <a href="../model/Image.html" title="class in edu.cnm.deepdive.northstarsharingclient.model"><code>Images</code></a> displayed by the <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.html?is-external=true" title="class or interface in androidx.recyclerview.widget" class="externalLink"><code>RecyclerView</code></a></dd>
+<dd><code>onImageClickHelper</code> - An implementation of the <a href="ImageAdapter.OnImageClickHelper.html" title="interface in edu.cnm.deepdive.northstarsharingclient.adapter"><code>ImageAdapter.OnImageClickHelper</code></a> to handle <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink"><code>View.OnClickListener</code></a> events</dd>
+</dl>
 </li>
 </ul>
 </li>

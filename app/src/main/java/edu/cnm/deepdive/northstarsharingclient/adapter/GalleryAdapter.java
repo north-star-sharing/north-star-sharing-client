@@ -13,6 +13,9 @@ import edu.cnm.deepdive.northstarsharingclient.model.Gallery;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * A {@link RecyclerView.Adapter} to display a scrolling list of {@link Gallery Galleries}.
+ */
 public class GalleryAdapter extends RecyclerView.Adapter<Holder> {
 
   private final Context context;
@@ -20,6 +23,17 @@ public class GalleryAdapter extends RecyclerView.Adapter<Holder> {
   private final List<Gallery> galleryList;
   private final OnGalleryClickHelper onGalleryClickHelper;
 
+  /**
+   * Create an instance of a {@link GalleryAdapter} to manage the scrolling list of {@link Gallery
+   * Galleries}.
+   *
+   * @param context              The application {@link Context} in which the instance is being
+   *                             used.
+   * @param galleryList          The {@link List} of {@link Gallery Galleries} displayed by the
+   *                             {@link RecyclerView}
+   * @param onGalleryClickHelper An implementation of the {@link OnGalleryClickHelper} to handle
+   *                             {@link OnClickListener} events
+   */
   public GalleryAdapter(Context context, List<Gallery> galleryList,
       OnGalleryClickHelper onGalleryClickHelper) {
     this.context = context;
@@ -45,30 +59,51 @@ public class GalleryAdapter extends RecyclerView.Adapter<Holder> {
     return galleryList.size();
   }
 
+  /**
+   * An interface that handles {@link OnClickListener} events for {@link Gallery} items.
+   */
   public interface OnGalleryClickHelper {
 
+    /**
+     * The action to perform when clicking a {@link Gallery} in the {@link RecyclerView}.
+     *
+     * @param galleryId A unique identifier for the {@link Gallery} that is being clicked
+     * @param view      Which layout to display the {@link Gallery Gallery's} {@link
+     *                  edu.cnm.deepdive.northstarsharingclient.model.Image Images} in
+     */
     void onGalleryClick(String galleryId, View view);
   }
 
+  /**
+   * A nested class of {@link GalleryAdapter} to manage the behavior of an individual {@link
+   * Gallery} in the {@link RecyclerView}.
+   */
   class Holder extends RecyclerView.ViewHolder implements OnClickListener {
 
     private final ItemImageBinding binding;
     OnGalleryClickHelper onGalleryClickHelper;
     private Gallery gallery;
 
+    /**
+     * Create an instance of a {@link Holder}
+     *
+     * @param binding              The binding to the layout that will be used for displaying a
+     *                             single {@link Gallery} element
+     * @param onGalleryClickHelper The {@link OnGalleryClickHelper} that will handle click actions.
+     */
     public Holder(ItemImageBinding binding, OnGalleryClickHelper onGalleryClickHelper) {
       super(binding.getRoot());
       this.binding = binding;
       this.onGalleryClickHelper = onGalleryClickHelper;
       binding.getRoot()
-             .setOnClickListener(this);
+          .setOnClickListener(this);
     }
 
     private void bind(int position) {
       gallery = galleryList.get(position);
       binding.thumbnailTitle.setText(gallery.getTitle());
       binding.getRoot()
-             .setOnClickListener(this);
+          .setOnClickListener(this);
     }
 
 
