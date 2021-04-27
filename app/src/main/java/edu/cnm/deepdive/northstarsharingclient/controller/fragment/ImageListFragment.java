@@ -56,7 +56,7 @@ public class ImageListFragment extends Fragment implements OnImageClickHelper {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentImageListBinding.inflate(inflater);
-//    binding.toCamera.setOnClickListener((click) -> TODO open nav to custom camera );
+//    binding.toCamera.setOnClickListener((click) -> ); TODO open nav to custom camera
     return binding.getRoot();
   }
 

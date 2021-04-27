@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
   @Override
   public void onDrawerOpened(@NonNull @NotNull View drawerView) {
 //    TODO From the field containing the list of galleries add each gallery to the menu in the
-//     fallowing line
+//     fallowing line ** This should be a for loop of GETs **
     Menu menu = navigationView.getMenu();
     MenuItem itemStar = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Stars");
     itemStar.setOnMenuItemClickListener((mi) -> {
