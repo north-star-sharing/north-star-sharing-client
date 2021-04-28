@@ -34,6 +34,8 @@
     android:id="@+id/display_gallery"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:layout_margin="@dimen/half_static_spacing"
     app:layout_constraintTop_toBottomOf="@id/tag_text_layout"
     app:layout_constraintBottom_toTopOf="@id/home_screen_image_list"
     app:layout_constraintStart_toStartOf="parent"

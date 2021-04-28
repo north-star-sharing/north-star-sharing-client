@@ -306,55 +306,55 @@ public class MainActivity extends AppCompatActivity implements DrawerListener {
 //    TODO From the field containing the list of galleries add each gallery to the menu in the
 //     fallowing line ** This should be a for loop of GETs **
     Menu menu = navigationView.getMenu();
-    MenuItem itemStar = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Stars");
+    MenuItem itemStar = menu.add(Menu.NONE, rng.nextInt(), 7, "Stars");
     itemStar.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Stars");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    MenuItem itemNubile = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Nubile");
+    MenuItem itemNubile = menu.add(Menu.NONE, rng.nextInt(), 3, "Nubile");
     itemNubile.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Nubile");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    MenuItem itemBlackHoles = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Black Holes");
+    MenuItem itemBlackHoles = menu.add(Menu.NONE, rng.nextInt(), 1, "Black Holes");
     itemNubile.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Black Holes");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    MenuItem itemComets = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Comets");
+    MenuItem itemComets = menu.add(Menu.NONE, rng.nextInt(), 2, "Comets");
     itemNubile.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Comets");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    MenuItem itemPlanets = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Planets");
+    MenuItem itemPlanets = menu.add(Menu.NONE, rng.nextInt(), 6, "Planets");
     itemNubile.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Planets");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    MenuItem itemMoons = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Moons");
+    MenuItem itemMoons = menu.add(Menu.NONE, rng.nextInt(), 5, "Moons");
     itemNubile.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Moons");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    MenuItem itemMMS = menu.add(Menu.NONE, rng.nextInt(), Menu.NONE, "Man Made Satellite's");
+    MenuItem itemMMS = menu.add(Menu.NONE, rng.nextInt(), 4, "Man Made Satellite's");
     itemNubile.setOnMenuItemClickListener((mi) -> {
       Log.d(getClass().getName(), "New Menu Man Made Satellite's");
       drawer.closeDrawer(GravityCompat.START, true);
       return true;
     });
-    dynamicItems.add(itemStar);
-    dynamicItems.add(itemNubile);
     dynamicItems.add(itemBlackHoles);
     dynamicItems.add(itemComets);
-    dynamicItems.add(itemPlanets);
-    dynamicItems.add(itemMoons);
+    dynamicItems.add(itemNubile);
     dynamicItems.add(itemMMS);
+    dynamicItems.add(itemMoons);
+    dynamicItems.add(itemPlanets);
+    dynamicItems.add(itemStar);
   }
 
   @Override

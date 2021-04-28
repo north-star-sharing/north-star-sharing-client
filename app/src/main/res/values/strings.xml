@@ -64,5 +64,6 @@
   <string name="gallery">Gallery:</string>
   <string name="image_gallery">Gallery Image is in</string>
   <string name="my_pictures">My Pictures</string>
+  <string name="available_galleries">Available Galleries</string>
 
 </resources>
