@@ -82,7 +82,6 @@ public class GoogleSignInService {
     this.account = account;
     if (account != null) { //testing with Postman
       this.bearerToken.postValue(String.format(BEARER_TOKEN_FORMAT, account.getIdToken()));
-      Log.d(getClass().getSimpleName() + "  Bearer Token ", account.getIdToken());
     } else {
       this.bearerToken.postValue(null);
     }

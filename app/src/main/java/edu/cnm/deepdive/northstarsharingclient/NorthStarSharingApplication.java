@@ -7,6 +7,8 @@ import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.northstarsharingclient.service.GoogleSignInService;
 import okhttp3.Interceptor.Chain;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 
 /**
  * North Star Sharing is a proof-of-concept group project for
@@ -41,6 +43,8 @@ public class NorthStarSharingApplication extends Application {
   }
 
   private void setupPicasso() {
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(BuildConfig.DEBUG ? Level.HEADERS : Level.NONE);
     OkHttpClient client = new OkHttpClient.Builder()
         .addInterceptor((Chain chain) ->
             chain.proceed(
@@ -50,6 +54,7 @@ public class NorthStarSharingApplication extends Application {
                      .build()
             )
         )
+        .addInterceptor(interceptor)
         .build();
     Picasso.setSingletonInstance(
         new Picasso.Builder(this)
