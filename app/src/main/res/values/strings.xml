@@ -8,7 +8,7 @@
 
   <!--Navigation Titles-->
 
-  <string name="image_list">Home Screen, Image List</string>
+  <string name="image_list">North Star Sharing</string>
 
   <!--  Layout Display Text-->
 
@@ -63,5 +63,6 @@
   <string name="no_tags">No tags added</string>
   <string name="gallery">Gallery:</string>
   <string name="image_gallery">Gallery Image is in</string>
+  <string name="my_pictures">My Pictures</string>
 
 </resources>
