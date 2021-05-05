@@ -115,7 +115,13 @@ public interface NorthStarSharingWebServiceProxy {
    * @return {@link Single&lt;List&lt;Image&gt;&gt;}
    */
   @GET("images")
-  Single<List<Image>> getAllImages(@Header("Authorization") String bearerToken);
+  Single<List<Image>> getAllImages(
+      @Header("Authorization") String bearerToken);
+
+  @GET("{id}/images")
+  Single<Image> getImage(
+      @Path("id") UUID id,
+      @Header("Authorization") String bearerToken);
 
   /**
    * Retrieve a {@link Gallery} asynchronously, using a {@link Single}
@@ -126,7 +132,9 @@ public interface NorthStarSharingWebServiceProxy {
    * @return {@link Single&lt;List&lt;Image&gt;&gt;}
    */
   @GET("galleries/{galleryId}")
-  Single<Gallery> getGallery(@Path("id") UUID id, @Header("Authorization") String bearerToken);
+  Single<Gallery> getGallery(
+      @Path("id") UUID id,
+      @Header("Authorization") String bearerToken);
 
   /**
    * Retrieve a {@link List} of all {@link Gallery Galleries} asynchronously, using a {@link Single}
@@ -136,7 +144,8 @@ public interface NorthStarSharingWebServiceProxy {
    * @return {@link Single&lt;List&lt;Image&gt;&gt;}
    */
   @GET("galleries")
-  Single<List<Gallery>> getGalleryList(@Header("Authorization") String bearerToken);
+  Single<List<Gallery>> getGalleryList(
+      @Header("Authorization") String bearerToken);
 
   /**
    * A helper class to create and contain a singleton instance of the

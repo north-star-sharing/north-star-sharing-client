@@ -114,4 +114,10 @@ public class ImageRepository {
                         .observeOn(Schedulers.io())
                         .flatMap(serviceProxy::getAllImages);
   }
+
+  public Single<Image> getImage(UUID id) {
+    return signInService.refreshBearerToken()
+        .observeOn(Schedulers.io())
+        .flatMap((account) -> serviceProxy.getImage(id, account));
+  }
 }
